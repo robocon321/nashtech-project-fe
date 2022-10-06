@@ -1,6 +1,12 @@
+:root {
+  --green: #73B320;
+  --blue: #39b0ff;
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;  
+  box-sizing: border-box;
 }
 
 code {
@@ -8,10 +14,66 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .color-green {
-  color: #73B320;
+  color: var(--green);
 }
 
 .color-blue {
-  color: #39b0ff;
+  color: var(--blue);
+}
+
+.bg-green {
+  background-color: var(--green);
+}
+
+.bg-blue {
+  background-color: var(--blue);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  color: black;
+}
+
+.dropdown-content p:hover {
+  color: var(--blue);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

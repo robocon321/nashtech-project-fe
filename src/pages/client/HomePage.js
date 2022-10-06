@@ -1,6 +1,10 @@
+import Home from "../../components/client/home/Home";
+
 const HomePage = (props) => {
   return (
-    <div>HomePage</div>
+    <main>
+      <Home />
+    </main>
   )
 }
 

@@ -1,0 +1,341 @@
+/*  start banner */
+
+.banner-carousel {
+  width: 100%;
+}
+
+.banner-carousel img {
+  width: 100%;
+  height: 100%;
+}
+
+
+/*  end banner */
+
+
+
+/* start services */
+
+.services {
+  background-color: #9cc665;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 30px 0px;
+  margin-bottom: 20px;
+}
+
+.service {
+  display: flex;
+  align-items: center;
+}
+
+.icon-service {
+  font-size: 40px;
+  color: white;
+  margin-right: 10px;
+}
+
+.title-service {
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.detail-service {
+  color: white;
+  font-size: 15px;
+}
+
+
+/*  end service  */
+
+
+/*  start product */
+
+
+.product {
+  position: relative;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tab {
+  padding: 20px;
+  margin: 0px 20px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: #d0ecff;
+}
+
+.top-product {
+  position: relative;
+  height: 300px;
+  border: 1px solid orange;
+}
+
+.top-product img {
+  width: 100%;
+  height: 100%;
+}
+
+.counter-product {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 40px;
+  color: white;
+  background-color: var(--blue);
+  font-size: 25px;
+}
+
+.discount-product {
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background-color: red;
+  padding: 5px 5px;
+}
+
+.bottom-product {
+  padding: 20px;
+}
+
+.star {
+  color: rgb(202, 202, 202);
+}
+
+.star.active {
+  color: rgb(242, 113, 0);
+}
+
+.title-product {
+  color: #525252;
+  margin: 5px 0px;
+}
+
+.title-product a {
+  color: black;
+}
+
+.title-product a:hover {
+  color: var(--blue)
+}
+
+.price-product {
+  display: flex;
+}
+
+.discount-price-product {
+  color: #b81d21;
+  margin-right: 10px;
+}
+
+.real-price-product {
+  color: #525252;
+  text-decoration: line-through;
+}
+
+.action-links {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.action-link {
+  background-color: rgb(242, 113, 0);
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.product:hover .action-links {
+  opacity: 1;
+}
+
+.action-link:hover {
+  background-color: var(--blue);  
+}
+
+.sub-banner {
+  padding: 20px 0px;
+}
+
+
+.module-category {
+  margin: 20px 0px;
+}
+
+.head-module-category {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #eff4f7;
+}
+
+.icon-module-category {
+  width: 50px;
+  height: 50px;
+  background-color: var(--blue);
+  color: white;
+  font-size: 25px;
+}
+
+.title-module-category {
+  font-size: 20px;
+  height: 100%;
+  padding: 0px 20px;
+  left: 70px;
+  top: 0;
+}
+
+.image-module-category {
+  width: 100%;
+}
+
+.image-module-category img {
+  width: 100%;
+}
+
+/* start banners  */
+
+
+
+.banners {
+  margin: 20px 0px;
+}
+
+.banner {
+  height: 100%;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* end banner */
+
+
+/* start feature */
+
+
+.features-category {
+  margin: 60px 0px;
+}
+
+.feature {
+  background-color: #eff4f7;
+  height: 250px;
+  position: relative;
+}
+
+.list-feature {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+}
+
+.list-feature h3 {
+  color: var(--blue);
+}
+
+.list-feature li {
+  padding: 2px 0px;
+}
+
+.list-feature a {
+  color: #464646;
+  transition: margin 0.5s;
+}
+
+.list-feature a:hover {
+  color: var(--blue);
+  margin-left: 10px;
+}
+
+.image-feature {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* end feature */
+
+
+
+
+/* start blog */
+
+
+.blog {
+  display: flex;
+  margin: 20px 0px;
+}
+
+.blog h4 {
+  padding: 0px;
+  margin: 0px;
+}
+
+.blog h4 a {
+  color: black;
+}
+
+.blog h4 a:hover {
+  color: var(--blue);
+}
+
+.info-blog {
+  margin: 10px;
+}
+
+.image-blog {
+  width: 75px;
+  height: 75px;
+}
+
+.image-blog img {
+  width: 100%;
+  height: 100%;
+}
+
+.author-date {
+  margin-top: 5px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.author-date .author {
+  margin-right: 20px;
+}
+
+
+/* end blog */
+
+
+/* start brand */
+
+.brands {
+  margin: 40px 0px;
+}

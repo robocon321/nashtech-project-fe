@@ -1,0 +1,158 @@
+.top-footer {
+  background-color: #3b4348;
+  color: white;
+}
+
+.wrap-top-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0px;
+}
+
+.icon-top-footer {
+  background-color: var(--blue);
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.mailbox-top-footer {
+  width: 600px;
+  display: flex;
+}
+
+.mailbox-top-footer input {
+  width: 75%;
+  padding: 15px;
+  outline: none;
+  border: none;
+}
+
+.mailbox-top-footer button {
+  width: 25%;
+  padding: 15px;
+  border: var(--green);
+  color: white;
+  background-color: var(--green);
+}
+
+.social-top-footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;  
+  border-radius: 50%;
+}
+
+.social-top-footer li:nth-child(1) a {
+  background-color: #22b9ff;
+}
+
+.social-top-footer li:nth-child(2) a {
+  background-color: #ff8338;
+}
+
+.social-top-footer li:nth-child(3) a {
+  background-color: #4f5aab;
+}
+
+.social-top-footer li:nth-child(4) a {
+  background-color: #0A66C2;
+}
+
+
+/* end top footer */
+
+
+/* start center footer */
+
+.center-footer {
+  background-color: #313131;
+  padding: 20px 0px;
+}
+
+.center-footer h3 {
+  color: white;
+}
+
+.center-footer li {
+  font-size: 15px;
+  padding: 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.center-footer a {
+  color: #adadad;
+  display: inline-block;
+  transition: margin-left 0.5s;
+}
+
+.center-footer a:hover {
+  margin-left: 10px;
+  color: var(--blue);
+}
+
+.icon-center-footer {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;  
+  background-color: var(--blue); 
+  color: white; 
+  margin-right: 10px;
+}
+
+.title-center-footer {
+  color: white;
+}
+
+.content-center-footer {
+  color: #adadad;
+}
+
+/* end center footer */
+
+
+/* start bottom footer */
+
+.bottom-footer {
+  padding: 20px 0px;
+  background-color: #262626;
+}
+
+.wrap-bottom-footer {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  color: white;
+}
+
+.wrap-bottom-footer p {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #adadad;
+}
+
+/* end bottom footer */
+
+@media only screen and (max-width: 1200px) {
+  .wrap-top-footer {
+    display: block;
+    text-align: center;
+  }
+
+  .col-top-footer {
+    padding: 10px 0px;
+  }
+
+  .mailbox-top-footer {
+    width: 100%;
+  }
+}
