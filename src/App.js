@@ -7,11 +7,14 @@ import {
   Route
 } from "react-router-dom";
 import LayoutAdmin from './pages/admin/LayoutAdmin';
+import LayoutClient from './pages/client/LayoutClient';
+
 import NotFound from './pages/404/NotFoundPage';
 
 import HomePage from './pages/client/HomePage';
+import ProductPage from './pages/client/ProductPage';
+
 import Dashboard from './pages/admin/DashboardPage';
-import LayoutClient from './pages/client/LayoutClient';
 
 
 function App() {
@@ -38,6 +41,7 @@ function App() {
         <Routes>     
           <Route path='/' element={<LayoutClient />}>
             <Route path='' element={<HomePage />}/>
+            <Route path='product' element={<ProductPage />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>
