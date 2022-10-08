@@ -34,8 +34,8 @@ function App() {
         <Routes>     
           <Route path='/admin' element={<LayoutAdmin />}>
             <Route path='dashboard' element={<Dashboard />}/>
-            <Route path='*' element={<NotFound />} />
           </Route>
+          <Route path='*' element={<NotFound />} />
         </Routes>
       )
     } else {
@@ -46,8 +46,8 @@ function App() {
             <Route path='product' element={<ProductPage />} />
             <Route path='about-us' element={<AboutUsPage />} />
             <Route path='contact-us' element={<ContactUsPage />} />
-            <Route path='*' element={<NotFound />} />
           </Route>
+          <Route path='*' element={<NotFound />} />
         </Routes>
       )
     }

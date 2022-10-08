@@ -1,7 +1,11 @@
-const NotFound = (props) => {
+import NotFound from "../../components/404/NotFound";
+
+const NotFoundPage = (props) => {
   return (
-    <h1>Not found</h1>
+    <main>
+      <NotFound />
+    </main>
   )
 }
 
-export default NotFound;
+export default NotFoundPage;
