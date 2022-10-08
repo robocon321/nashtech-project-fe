@@ -18,6 +18,8 @@ import ProductDetailPage from './pages/client/ProductDetailPage';
 
 import Dashboard from './pages/admin/DashboardPage';
 import ContactUsPage from './pages/client/ContactUsPage';
+import SignInPage from './pages/auth/SignInPage';
+import SignUpPage from './pages/auth/SignUpPage';
 
 
 function App() {
@@ -49,6 +51,8 @@ function App() {
             <Route path='about-us' element={<AboutUsPage />} />
             <Route path='contact-us' element={<ContactUsPage />} />
           </Route>
+          <Route path='/sign-in' element={<SignInPage />} />
+          <Route path='/sign-up' element={<SignUpPage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       )
