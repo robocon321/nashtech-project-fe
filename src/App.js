@@ -13,6 +13,7 @@ import NotFound from './pages/404/NotFoundPage';
 
 import HomePage from './pages/client/HomePage';
 import ProductPage from './pages/client/ProductPage';
+import AboutUsPage from './pages/client/AboutUsPage';
 
 import Dashboard from './pages/admin/DashboardPage';
 
@@ -42,6 +43,7 @@ function App() {
           <Route path='/' element={<LayoutClient />}>
             <Route path='' element={<HomePage />}/>
             <Route path='product' element={<ProductPage />} />
+            <Route path='about-us' element={<AboutUsPage />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>

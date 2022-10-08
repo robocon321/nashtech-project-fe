@@ -1,0 +1,32 @@
+.field label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.field label span {
+  color: red;
+}
+
+.field input,  textarea {
+  padding: 10px;
+  width: 100%;
+  border: 0.5px solid var(--gray);
+  outline: none;
+}
+
+.field input:focus, textarea:focus {
+  border: 0.5px solid orange;
+}
+
+button {
+  background-color: var(--blue);
+  border: none;
+  color: white;
+  padding: 20px 40px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--green);
+}
