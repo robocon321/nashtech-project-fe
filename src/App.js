@@ -16,6 +16,7 @@ import ProductPage from './pages/client/ProductPage';
 import AboutUsPage from './pages/client/AboutUsPage';
 
 import Dashboard from './pages/admin/DashboardPage';
+import ContactUsPage from './pages/client/ContactUsPage';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path='' element={<HomePage />}/>
             <Route path='product' element={<ProductPage />} />
             <Route path='about-us' element={<AboutUsPage />} />
+            <Route path='contact-us' element={<ContactUsPage />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>
