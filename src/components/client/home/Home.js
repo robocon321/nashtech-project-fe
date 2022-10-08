@@ -21,7 +21,7 @@ const Product = (item) => {
   return (
     <div className={styles["product"]}>
       <div className={styles["top-product"]}>
-        <img src="images/product_1.jpg" alt="Not found" />
+        <img src="/images/product_1.jpg" alt="Not found" />
         <div className={"flex-center " + styles["counter-product"]}><span>615 : 10 : 31 : 38</span></div>
         <div className={styles["discount-product"]}>-2%</div>
       </div>
@@ -71,12 +71,12 @@ const Home = (props) => {
         >
           <SwiperSlide>
             <div className={styles["banner-carousel"]}>
-              <img src="images/main-banner-1.jpg" alt="Not found" />
+              <img src="/images/main-banner-1.jpg" alt="Not found" />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className={styles["banner-carousel"]}>
-              <img src="images/main-banner-2.jpg" alt="Not found" />
+              <img src="/images/main-banner-2.jpg" alt="Not found" />
             </div>
           </SwiperSlide>
         </Swiper>
@@ -182,7 +182,7 @@ const Home = (props) => {
       </div>
       <div className={styles["banner"] + " " + styles["sub-banner"]}>
         <Container>
-          <img src="images/home-banner-3.jpg" alt="Not found" />
+          <img src="/images/home-banner-3.jpg" alt="Not found" />
         </Container>
       </div>
       <div className={styles["module-category"]}>
@@ -196,7 +196,7 @@ const Home = (props) => {
                 <div className={styles["title-module-category"]}>PHONES & TABLETS</div>                
               </div>
               <div className={styles["image-module-category"]}>
-                <img src="images/banner-phone.jpg" alt="Not found" />
+                <img src="/images/banner-phone.jpg" alt="Not found" />
               </div>
             </Grid>
             <Grid item md={6}>
@@ -207,7 +207,7 @@ const Home = (props) => {
                 <div className={styles["title-module-category"]}><span>COMPUTER</span></div>                
               </div>
               <div className={styles["image-module-category"]}>
-                <img src="images/banner-computer.jpg" alt="Not found" />
+                <img src="/images/banner-computer.jpg" alt="Not found" />
               </div>
             </Grid>
           </Grid>
@@ -276,7 +276,7 @@ const Home = (props) => {
                 <div className={styles["title-module-category"]}>TV & CINEMA</div>                
               </div>
               <div className={styles["image-module-category"]}>
-                <img src="images/banner-tv.jpg" alt="Not found" />
+                <img src="/images/banner-tv.jpg" alt="Not found" />
               </div>
             </Grid>
             <Grid item md={6}>
@@ -287,7 +287,7 @@ const Home = (props) => {
                 <div className={styles["title-module-category"]}><span>AUDIO</span></div>                
               </div>
               <div className={styles["image-module-category"]}>
-                <img src="images/banner-audio.jpg" alt="Not found" />
+                <img src="/images/banner-audio.jpg" alt="Not found" />
               </div>
             </Grid>
           </Grid>
@@ -350,31 +350,31 @@ const Home = (props) => {
           <Grid container spacing={5}>
             <Grid item xs={12} md={3}>
               <div className={styles["banner"]}>
-                <img src="images/banner-cameras.jpg" alt="Not found" />
+                <img src="/images/banner-cameras.jpg" alt="Not found" />
               </div>
             </Grid>
             <Grid item xs={12} md={6}>
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                   <div className={styles["banner"]}>
-                    <img src="images/banner-washing.jpg" alt="Not found" />
+                    <img src="/images/banner-washing.jpg" alt="Not found" />
                   </div>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <div className={styles["banner"]}>
-                    <img src="images/banner-watch.jpg" alt="Not found" />
+                    <img src="/images/banner-watch.jpg" alt="Not found" />
                   </div>
                 </Grid>
                 <Grid item xs={12} md={12}>
                   <div className={styles["banner"]}>
-                    <img src="images/banner-sale.jpg" alt="Not found" />
+                    <img src="/images/banner-sale.jpg" alt="Not found" />
                   </div>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item xs={12} md={3}>
               <div className={styles["banner"]}>
-                <img src="images/banner-head-phone.jpg" alt="Not found" />
+                <img src="/images/banner-head-phone.jpg" alt="Not found" />
               </div>
             </Grid>            
           </Grid>
@@ -398,7 +398,7 @@ const Home = (props) => {
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
-                  <img src="images/feature-1.png" alt="Not found" />
+                  <img src="/images/feature-1.png" alt="Not found" />
                 </div>
               </div>
             </Grid>
@@ -416,7 +416,7 @@ const Home = (props) => {
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
-                  <img src="images/feature-2.png" alt="Not found" />
+                  <img src="/images/feature-2.png" alt="Not found" />
                 </div>
               </div>
             </Grid>
@@ -434,7 +434,7 @@ const Home = (props) => {
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
-                  <img src="images/feature-3.png" alt="Not found" />
+                  <img src="/images/feature-3.png" alt="Not found" />
                 </div>
               </div>
             </Grid>
@@ -452,7 +452,7 @@ const Home = (props) => {
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
-                  <img src="images/feature-4.png" alt="Not found" />
+                  <img src="/images/feature-4.png" alt="Not found" />
                 </div>
               </div>
             </Grid>       
@@ -478,7 +478,7 @@ const Home = (props) => {
                 <SwiperSlide>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -494,7 +494,7 @@ const Home = (props) => {
                   </div>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -512,7 +512,7 @@ const Home = (props) => {
                 <SwiperSlide>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -528,7 +528,7 @@ const Home = (props) => {
                   </div>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -562,7 +562,7 @@ const Home = (props) => {
                 <SwiperSlide>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -578,7 +578,7 @@ const Home = (props) => {
                   </div>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -596,7 +596,7 @@ const Home = (props) => {
                 <SwiperSlide>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -612,7 +612,7 @@ const Home = (props) => {
                   </div>
                   <div className={styles["blog"]}>
                     <div className={styles["image-blog"]}>
-                      <img src="images/blog-1.jpg" alt="Not found" />
+                      <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
                       <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
@@ -638,32 +638,32 @@ const Home = (props) => {
           <Grid container spacing={2}>
               <Grid item xs={6} md={4} lg={2}>
                 <div className={styles["brand"]}>
-                  <img src="images/brand-1.jpg" alt="Not found" />
+                  <img src="/images/brand-1.jpg" alt="Not found" />
                 </div>
               </Grid>
               <Grid item xs={6} md={4} lg={2}>
                 <div className={styles["brand"]}>
-                  <img src="images/brand-2.jpg" alt="Not found" />
+                  <img src="/images/brand-2.jpg" alt="Not found" />
                 </div>
               </Grid>
               <Grid item xs={6} md={4} lg={2}>
                 <div className={styles["brand"]}>
-                  <img src="images/brand-3.jpg" alt="Not found" />
+                  <img src="/images/brand-3.jpg" alt="Not found" />
                 </div>
               </Grid>
               <Grid item xs={6} md={4} lg={2}>
                 <div className={styles["brand"]}>
-                  <img src="images/brand-4.jpg" alt="Not found" />
+                  <img src="/images/brand-4.jpg" alt="Not found" />
                 </div>
               </Grid>
               <Grid item xs={6} md={4} lg={2}>
                 <div className={styles["brand"]}>
-                  <img src="images/brand-5.jpg" alt="Not found" />
+                  <img src="/images/brand-5.jpg" alt="Not found" />
                 </div>
               </Grid>
               <Grid item xs={6} md={4} lg={2}>
                 <div className={styles["brand"]}>
-                  <img src="images/brand-6.jpg" alt="Not found" />
+                  <img src="/images/brand-6.jpg" alt="Not found" />
                 </div>
               </Grid>
           </Grid>

@@ -75,7 +75,7 @@ const Header = (props) => {
           <div className={styles["col-center-header"]}>
             <img
               className="logo-center-header"
-              src="images/logo.png"
+              src="/images/logo.png"
               alt="Not found"
             />
           </div>

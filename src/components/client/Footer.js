@@ -138,7 +138,7 @@ const Footer = (props) => {
               </div>
             </div>
             <div className={styles["col-bottom-footer"]}>
-              <img src="images/payment.png" alt="Not found" />
+              <img src="/images/payment.png" alt="Not found" />
             </div>
           </div>
         </Container>

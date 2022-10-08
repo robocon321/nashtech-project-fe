@@ -14,6 +14,7 @@ import NotFound from './pages/404/NotFoundPage';
 import HomePage from './pages/client/HomePage';
 import ProductPage from './pages/client/ProductPage';
 import AboutUsPage from './pages/client/AboutUsPage';
+import ProductDetailPage from './pages/client/ProductDetailPage'; 
 
 import Dashboard from './pages/admin/DashboardPage';
 import ContactUsPage from './pages/client/ContactUsPage';
@@ -44,6 +45,7 @@ function App() {
           <Route path='/' element={<LayoutClient />}>
             <Route path='' element={<HomePage />}/>
             <Route path='product' element={<ProductPage />} />
+            <Route path='product/:id' element={<ProductDetailPage />} />
             <Route path='about-us' element={<AboutUsPage />} />
             <Route path='contact-us' element={<ContactUsPage />} />
           </Route>

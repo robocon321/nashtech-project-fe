@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Container, Slider, Pagination } from '@mui/material';
 import { Grid } from '@mui/material';
-import styles from './Product.module.css';
 import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaShippingFast, FaDropbox, FaRegCalendar, FaStar, FaRegEye, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
-import { TiMessages }  from 'react-icons/ti';
+import { FaStar, FaRegEye, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
+
+import styles from './Product.module.css';
+import Services from "../../common/Service";
 
 const Product = (item) => {
   return (
     <div className={styles["product"]}>
       <div className={styles["top-product"]}>
-        <img src="images/product_1.jpg" alt="Not found" />
+        <img src="/images/product_1.jpg" alt="Not found" />
         <div className={styles["discount-product"]}>-2%</div>
       </div>
       <div className={styles["bottom-product"]}>
@@ -172,13 +173,13 @@ const Index = (props) => {
               </div>             
             </div>
             <div className={styles["banner"]}>
-              <img src="images/big-sale-banner.jpg" alt="Not found" />
+              <img src="/images/big-sale-banner.jpg" alt="Not found" />
             </div>
             <div className={styles["new-products"]}>
               <h2>NEW PRODUCTS</h2>
               <div className={styles["new-product"]}>
                 <div className={styles["image-new-product"]}>
-                  <img src="images/new-product-1.jpg" alt="Not found" />
+                  <img src="/images/new-product-1.jpg" alt="Not found" />
                 </div>
                 <div className={styles["info-new-product"]}>
                   <div className={styles["stars"]}>
@@ -194,7 +195,7 @@ const Index = (props) => {
               </div>
               <div className={styles["new-product"]}>
                 <div className={styles["image-new-product"]}>
-                  <img src="images/new-product-1.jpg" alt="Not found" />
+                  <img src="/images/new-product-1.jpg" alt="Not found" />
                 </div>
                 <div className={styles["info-new-product"]}>
                   <div className={styles["stars"]}>
@@ -210,7 +211,7 @@ const Index = (props) => {
               </div>
               <div className={styles["new-product"]}>
                 <div className={styles["image-new-product"]}>
-                  <img src="images/new-product-1.jpg" alt="Not found" />
+                  <img src="/images/new-product-1.jpg" alt="Not found" />
                 </div>
                 <div className={styles["info-new-product"]}>
                   <div className={styles["stars"]}>
@@ -226,7 +227,7 @@ const Index = (props) => {
               </div>
               <div className={styles["new-product"]}>
                 <div className={styles["image-new-product"]}>
-                  <img src="images/new-product-1.jpg" alt="Not found" />
+                  <img src="/images/new-product-1.jpg" alt="Not found" />
                 </div>
                 <div className={styles["info-new-product"]}>
                   <div className={styles["stars"]}>
@@ -245,7 +246,7 @@ const Index = (props) => {
           </Grid>
           <Grid item md={12} lg={9} order={{md: 1, lg: 2}}>
             <div className={styles["banner"]}>
-              <img src="images/save-big-banner.jpg" alt="Not found" />              
+              <img src="/images/save-big-banner.jpg" alt="Not found" />              
             </div>
             <div className={styles["toolbar"]}>
               <div className={styles["grid-layout"]}>
@@ -338,51 +339,9 @@ const Index = (props) => {
               <Pagination count={10} size="large" />
             </div>
           </Grid>
-        </Grid>
+        </Grid>        
       </Container>
-      <div className={styles["services"]}>
-          <Container>
-            <Grid container spacing={5}>
-              <Grid item md={3} sm={6} xs={12}>
-                <div className={styles["service"]}>
-                  <div className={"flex-center " + styles["icon-service"]}><FaShippingFast /></div>
-                  <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>Free Shipping</div>
-                    <div className={styles["detail-service"]}>One order over $99</div>
-                  </div>
-                </div>
-              </Grid>
-              <Grid item md={3} sm={6} xs={12}>
-                <div className={styles["service"]}>
-                  <div className={"flex-center " + styles["icon-service"]}><FaDropbox /></div>
-                  <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>Special Gift Cards</div>
-                    <div className={styles["detail-service"]}>Give the perfect gift</div>
-                  </div>
-                </div>
-              </Grid>
-              <Grid item md={3} sm={6} xs={12}>
-                <div className={styles["service"]}>
-                  <div className={"flex-center " + styles["icon-service"]}><FaRegCalendar /></div>
-                  <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>Daily Promotion</div>
-                    <div className={styles["detail-service"]}>Set up perspiciatis unde</div>
-                  </div>
-                </div>
-              </Grid>
-              <Grid item md={3} sm={6} xs={12}>
-                <div className={styles["service"]}>
-                  <div className={"flex-center " + styles["icon-service"]}><TiMessages /></div>
-                  <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>24/7 Customer Care</div>
-                    <div className={styles["detail-service"]}>Hours: 04.0987 654 321</div>
-                  </div>
-                </div>
-              </Grid>           
-            </Grid>
-          </Container>
-      </div>
-
+      <Services />
     </>
   )
 }

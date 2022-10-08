@@ -1,0 +1,326 @@
+/* start top info */
+
+.top-info {
+  margin-top: 40px;
+}
+
+/* start image */
+
+.main-image-product-detail {
+  width: 100%;
+  border: 0.5px solid var(--gray);
+}
+
+.main-image-product-detail:hover {
+  border: 0.5px solid orange;
+}
+
+.main-image-product-detail img {
+  width: 100%;
+}
+
+.sub-image-product-detail {
+  cursor: pointer;
+  width: 100%;
+}
+
+.sub-image-product-detail:hover {
+  border: 0.5px solid orange;
+}
+
+.sub-image-product-detail img {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* end image */
+
+
+/* start product info */
+
+.review-overall {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: gray;
+  border-top: 0.5px solid var(--gray);
+  border-bottom: 0.5px solid var(--gray);
+  padding: 10px 0px;
+}
+
+.review-overall a {
+  color: gray;
+  margin: 0px 10px;
+}
+
+.review-overall a:hover {
+  color: var(--blue);
+}
+
+.description {
+  font-size: 15px;
+  color: rgb(54, 54, 54);
+}
+
+.info-product {
+  font-size: 15px;
+  color: rgb(54, 54, 54);
+}
+
+.info-product a {
+  color: var(--green);
+}
+
+.info-product a:hover {
+  color: var(--blue);
+}
+
+.price-product {
+  color: rgb(185, 1, 1);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.action-links {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.action-links label {
+  margin-right: 10px;
+  color: rgb(54, 54, 54);
+}
+
+.action-links input {
+  padding: 20px 10px;
+  margin-right: 10px;
+  border: 0.5px solid var(--gray);
+  outline: none;
+}
+
+.action-links input:focus {
+  border: 0.5px solid orange;
+}
+.btn-cart {
+  padding: 20px 10px;
+  background-color: #005e99;
+  margin-right: 10px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  padding: 20px 40px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-cart:hover {
+  background-color: var(--green);
+}
+
+.btn-wishlist {
+  background-color: rgb(215, 239, 255);
+  color: #005e99;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0px;
+  border: none;
+}
+
+.btn-wishlist:hover {
+  color: white;
+  background-color: #005e99;
+}
+
+.tags {
+  margin-top: 20px;
+}
+
+.tags span {
+  font-size: 15px;
+  color: gray;
+}
+
+.tags a {
+  color: var(--green);
+}
+
+.tags a:hover {
+  color: var(--blue);
+}
+
+/* end product info */
+
+.banner {
+  margin-bottom: 20px;
+}
+
+.banner img {
+  width: 100%;
+}
+
+
+/* end top info */
+
+/* start tabs */
+
+.tabs {
+  margin: 40px 0px;
+}
+
+.wrap-tabs {
+  border: 0.5px solid var(--gray);  
+}
+
+/* start review */
+
+.reviews {
+  padding: 10px;
+  border: 0.5px solid var(--gray);
+}
+
+.review {
+  display: flex;
+}
+
+.avatar-review {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.avatar-review img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.review-form {
+  margin: 40px 20px 40px 0px;
+}
+
+.rating-review-form {
+  margin: 20px 0px;
+}
+
+/* end review */
+
+
+/* end tabs */
+
+
+/* start product */
+
+.related-product {
+  margin: 40px 0px;
+}
+
+.product {
+  position: relative;
+}
+
+.top-product {
+  position: relative;
+  height: 300px;
+  border: 1px solid orange;
+}
+
+.top-product img {
+  width: 100%;
+  height: 100%;
+}
+
+.counter-product {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 40px;
+  color: white;
+  background-color: var(--blue);
+  font-size: 25px;
+}
+
+.discount-product {
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  padding: 5px 5px;
+}
+
+.bottom-product {
+  padding: 20px;
+}
+
+.star {
+  color: rgb(202, 202, 202);
+}
+
+.star.active {
+  color: rgb(242, 113, 0);
+}
+
+.title-product {
+  color: #525252;
+  margin: 5px 0px;
+}
+
+.title-product a {
+  color: black;
+}
+
+.title-product a:hover {
+  color: var(--blue)
+}
+
+.price-product {
+  display: flex;
+}
+
+.discount-price-product {
+  color: #b81d21;
+  margin-right: 10px;
+}
+
+.real-price-product {
+  color: #525252;
+  text-decoration: line-through;
+}
+
+.action-links {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.action-link {
+  background-color: rgb(242, 113, 0);
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.product:hover .action-links {
+  opacity: 1;
+}
+
+.action-link:hover {
+  background-color: var(--blue);  
+}
+
+
+/* end product */
