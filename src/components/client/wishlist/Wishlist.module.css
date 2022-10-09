@@ -1,0 +1,27 @@
+table.table-wishlist {
+  width: 100%;
+  margin: 40px 0px;
+}
+
+table.table-wishlist, th, td {
+  border: 0.5px solid var(--gray);
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table.table-wishlist td {
+  color: gray;
+  font-size: 15px;
+}
+
+table.table-wishlist a {
+  color: var(--green);
+}
+
+table.table-wishlist a:hover {
+  color: var(--blue);
+}
+
+table.table-wishlist button {
+  margin-right: 10px;
+}

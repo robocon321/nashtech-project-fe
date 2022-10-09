@@ -20,6 +20,7 @@ import Dashboard from './pages/admin/DashboardPage';
 import ContactUsPage from './pages/client/ContactUsPage';
 import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
+import WishlistPage from './pages/client/WishlistPage';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
             <Route path='product/:id' element={<ProductDetailPage />} />
             <Route path='about-us' element={<AboutUsPage />} />
             <Route path='contact-us' element={<ContactUsPage />} />
+            <Route path='wishlist' element={<WishlistPage />} />
           </Route>
           <Route path='/sign-in' element={<SignInPage />} />
           <Route path='/sign-up' element={<SignUpPage />} />
