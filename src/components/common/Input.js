@@ -21,6 +21,37 @@ const Input = ({
   id = ''
 }) => {
   switch(type) {
+    case 'select':
+      return (
+        <div className={styles['field']}>
+          {
+            title &&           
+            <label className={styles['label']} htmlFor={id}>{title}:{' '} 
+              {
+                required && <span className={styles['required']}>*</span>
+              }
+            </label>
+          }
+          <select 
+            id={id}
+            name={name} 
+            required={required} 
+            style={{...style}}  
+            className={styles['input']}>
+            <option value="" selected disabled hidden>
+              {placeholder}
+            </option>
+            {
+              props.data.map(item => {
+                return (
+                  <option value={props[value]}>{item[props.key]}</option>
+                )
+              })
+            }
+          </select>
+          
+        </div>
+      )
     case 'radio':
       return (
         <div className={styles['field']}>
@@ -43,7 +74,7 @@ const Input = ({
             {
               props.data.map((item, index) => {
                 return (
-                  <FormControlLabel value={item.value} control={<Radio />} label={item.label} key={index} />
+                  <FormControlLabel value={item[props.value]} control={<Radio />} label={item[props.key]} key={index} />
                 )
               })
             }
