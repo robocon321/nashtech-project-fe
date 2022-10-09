@@ -1,11 +1,11 @@
-import { Container } from '@mui/material';
+import { Container } from "@mui/material";
 
-import styles from './OrderDetail.module.css';
+import styles from "./OrderDetail.module.css";
 
 const OrderDetail = (props) => {
   return (
     <>
-            <Container>
+      <Container>
         <h1>My Order Detail</h1>
         <table className={styles["table-order-detail"]}>
           <thead>
@@ -22,15 +22,13 @@ const OrderDetail = (props) => {
             <tr>
               <td>
                 <div className={styles["image-row"]}>
-                  <img src="/images/wishlist-1.jpg" alt="Not found" />                  
+                  <img src="/images/wishlist-1.jpg" alt="Not found" />
                 </div>
               </td>
               <td>
                 <a href="#">Koss Porta Pro On Ear</a>
               </td>
-              <td>
-                Product 12
-              </td>
+              <td>Product 12</td>
               <td>10</td>
               <td>$80.00</td>
               <td>$800.00</td>
@@ -38,15 +36,13 @@ const OrderDetail = (props) => {
             <tr>
               <td>
                 <div className={styles["image-row"]}>
-                  <img src="/images/wishlist-1.jpg" alt="Not found" />                  
+                  <img src="/images/wishlist-1.jpg" alt="Not found" />
                 </div>
               </td>
               <td>
                 <a href="#">Koss Porta Pro On Ear</a>
               </td>
-              <td>
-                Product 12
-              </td>
+              <td>Product 12</td>
               <td>10</td>
               <td>$80.00</td>
               <td>$800.00</td>
@@ -54,9 +50,8 @@ const OrderDetail = (props) => {
           </tbody>
         </table>
       </Container>
-
     </>
-  )
-}
+  );
+};
 
 export default OrderDetail;
