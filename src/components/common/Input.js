@@ -24,11 +24,15 @@ const Input = ({
     case 'radio':
       return (
         <div className={styles['field']}>
-          <label className={styles['label']} htmlFor={id}>{title}:{' '} 
-            {
-              required && <span className={styles['required']}>*</span>
-            }
-          </label>
+          {
+            title &&           
+            <label className={styles['label']} htmlFor={id}>{title}:{' '} 
+              {
+                required && <span className={styles['required']}>*</span>
+              }
+            </label>
+          }
+
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue={value}
@@ -49,11 +53,15 @@ const Input = ({
     case 'textarea':
       return (
         <div className={styles['field']}>
-          <label className={styles['label']} htmlFor={id}>{title}:{' '} 
-            {
-              required && <span className={styles['required']}>*</span>
-            }
-          </label>
+          {
+            title &&           
+            <label className={styles['label']} htmlFor={id}>{title}:{' '} 
+              {
+                required && <span className={styles['required']}>*</span>
+              }
+            </label>
+          }
+
           <textarea
               className={styles['input']}       
               type={type} 
@@ -72,11 +80,15 @@ const Input = ({
     default :
       return (
         <div className={styles['field']}>
-        <label className={styles['label']} htmlFor={id}>{title}:{' '} 
           {
-            required && <span className={styles['required']}>*</span>
+            title &&           
+            <label className={styles['label']} htmlFor={id}>{title}:{' '} 
+              {
+                required && <span className={styles['required']}>*</span>
+              }
+            </label>
           }
-        </label>
+
         <input
             className={styles['input']}
             type={type} 
