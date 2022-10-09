@@ -1,0 +1,105 @@
+/* start table cart */
+
+table.table-cart {
+  width: 100%;
+  margin: 40px 0px;
+}
+
+table.table-cart, th, td {
+  border: 0.5px solid var(--gray);
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table.table-cart td {
+  color: gray;
+  font-size: 15px;
+}
+
+table.table-cart a {
+  color: var(--green);
+}
+
+table.table-cart a:hover {
+  color: var(--blue);
+}
+
+table.table-cart button {
+  margin-right: 10px;
+}
+
+table.table-cart .quantity-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table.table-cart .quantity-cart input {
+  margin-right: 10px;
+  padding: 10px;
+  border: 0.5px solid var(--gray);
+  outline: none;
+}
+
+table.table-cart .quantity-cart input:focus {
+  border-color: orange;
+}
+
+
+/* end table cart */
+
+
+
+/* start total price */
+
+.total-price {
+  margin: 40px 0px;
+}
+
+.total-price button {
+  background-color: black;
+}
+
+/* start calculate shipping */
+
+.calculate-shipping select, .calculate-shipping input {
+  width: 100%;
+  padding: 10px;
+  border: 0.5px solid var(--gray);
+  outline: none;
+}
+
+.calculate-shipping select:focus, .calculate-shipping input:focus {
+  border-color: orange;
+}
+
+.calculate-shipping button {
+  width: 100%;
+}
+
+/* end calculate shipping */
+
+
+/* start cart summary */
+
+.cart-summary {
+  padding: 40px;
+  background-color: var(--gray);
+}
+
+.row-cart-summary {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.btn-cart-summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+
+/* end cart summary */
+
+
+/* end total price */

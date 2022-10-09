@@ -26,7 +26,7 @@ const Wishlist = (props) => {
             <tr>
               <td>
                 <div className={styles["image-row"]}>
-                  <img src="./images/wishlist-1.jpg" alt="Not found" />                  
+                  <img src="/images/wishlist-1.jpg" alt="Not found" />                  
                 </div>
               </td>
               <td>
@@ -49,7 +49,7 @@ const Wishlist = (props) => {
             <tr>
               <td>
                 <div className={styles["image-row"]}>
-                  <img src="./images/wishlist-1.jpg" alt="Not found" />                  
+                  <img src="/images/wishlist-1.jpg" alt="Not found" />                  
                 </div>
               </td>
               <td>
@@ -72,7 +72,7 @@ const Wishlist = (props) => {
             <tr>
               <td>
                 <div className={styles["image-row"]}>
-                  <img src="./images/wishlist-1.jpg" alt="Not found" />                  
+                  <img src="/images/wishlist-1.jpg" alt="Not found" />                  
                 </div>
               </td>
               <td>
