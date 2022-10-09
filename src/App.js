@@ -24,6 +24,8 @@ import WishlistPage from './pages/client/WishlistPage';
 import DetailAccountPage  from './pages/client/DetailAccountPage';
 import CartPage from './pages/client/CartPage';
 import AddressPage from './pages/client/AddressPage';
+import OrderHistoryPage from './pages/client/OrderHistoryPage';
+import OrderDetailPage from './pages/client/OrderDetailPage';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -57,6 +59,8 @@ function App() {
             <Route path='detail-account' element={<DetailAccountPage />} />
             <Route path='cart' element={<CartPage />} />
             <Route path='address' element={<AddressPage />} />
+            <Route path='order-history' element={<OrderHistoryPage />} />
+            <Route path='order-history/:id' element={<OrderDetailPage />} />
           </Route>
           <Route path='/sign-in' element={<SignInPage />} />
           <Route path='/sign-up' element={<SignUpPage />} />

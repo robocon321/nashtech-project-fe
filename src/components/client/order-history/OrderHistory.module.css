@@ -1,27 +1,24 @@
-.table-wishlist {
+.order-history table {
   width: 100%;
   margin: 40px 0px;
 }
 
-.table-wishlist, .table-wishlist th, .table-wishlist td {
+.order-history table, .order-history table th, .order-history table td {
   border: 0.5px solid var(--gray);
   border-collapse: collapse;
   text-align: center;
+  padding: 10px;
 }
 
-.table-wishlist td {
+.order-history table td {
   color: gray;
   font-size: 15px;
 }
 
-.table-wishlist a {
+.order-history a {
   color: var(--green);
 }
 
-.table-wishlist a:hover {
+.order-history a:hover {
   color: var(--blue);
-}
-
-.table-wishlist button {
-  margin-right: 10px;
 }
