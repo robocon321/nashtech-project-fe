@@ -1,20 +1,20 @@
-.field label {
+.field .label {
   display: block;
   margin-bottom: 10px;
 }
 
-.field label span {
+.field .label .required {
   color: red;
 }
 
-.field input,  textarea {
+.field .input {
   padding: 10px;
   width: 100%;
   border: 0.5px solid var(--gray);
   outline: none;
 }
 
-.field input:focus, textarea:focus {
+.field .input:focus {
   border: 0.5px solid orange;
 }
 

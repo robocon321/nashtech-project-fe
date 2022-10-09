@@ -21,7 +21,7 @@ import ContactUsPage from './pages/client/ContactUsPage';
 import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import WishlistPage from './pages/client/WishlistPage';
-
+import DetailAccountPage  from './pages/client/DetailAccountPage';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -52,6 +52,7 @@ function App() {
             <Route path='about-us' element={<AboutUsPage />} />
             <Route path='contact-us' element={<ContactUsPage />} />
             <Route path='wishlist' element={<WishlistPage />} />
+            <Route path='detail-account' element={<DetailAccountPage />} />
           </Route>
           <Route path='/sign-in' element={<SignInPage />} />
           <Route path='/sign-up' element={<SignUpPage />} />
