@@ -1,10 +1,10 @@
 import { Container, Button, Grid } from '@mui/material';
-import {  FaShoppingCart, FaPlus} from 'react-icons/fa';
+import {  FaPlus } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { RiSubtractFill } from 'react-icons/ri';
 
 import styles from "./Cart.module.css";
-
+import Input from './../../common/Input';
 
 const Cart = (props) => {
   return (
@@ -87,32 +87,27 @@ const Cart = (props) => {
         <div className={styles['total-price']}>
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <div className={styles['calculate-shipping']}>
-              <h2>Calculate Shipping</h2>
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md={6}>
-                    <select>
-                      <option value="" selected disabled hidden>Choose province</option>
-                    </select>
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <select>
-                      <option value="" selected disabled hidden>Choose district</option>
-                    </select>
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <select>
-                      <option value="" selected disabled hidden>Choose street</option>
-                    </select>
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <Button variant="contained">ESTIMATE</Button>
-                  </Grid>
-                </Grid>
+              <div className={styles['address-shipping']}>
+                <h2>Address Shipping</h2>
+                <Input type='radio' props={{
+                  data: [
+                    {
+                      label: 'số nhà 74, ấp Thới Hòa, xã Thới Sơn, TP.Mỹ Tho, tỉnh Tiền Giang',
+                      value: 'diachi1'
+                    },
+                    {
+                      label: 'số nhà 75, phường Đông Hòa, thị xã Dĩ An, tỉnh Bình Dương',
+                      value: 'diachi2'
+                    }
+                  ]
+                }} />
+                <div className={styles['new-address']}>
+                  <a href="#">Add new address</a>
+                </div>
                 <h2>Discount Coupon Code</h2>
                 <Grid container spacing={4}>
                   <Grid item xs={12} md={6}>
-                    <input type='text' name='coupon' />
+                    <Input type='text' placeholder='Enter your coupon code' />
                   </Grid>
                   <Grid item xs={12} md={6}>
                   <Button variant="contained">APPLY CODE</Button>

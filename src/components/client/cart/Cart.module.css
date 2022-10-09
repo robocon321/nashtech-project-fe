@@ -60,25 +60,6 @@ table.table-cart .quantity-cart input:focus {
   background-color: black;
 }
 
-/* start calculate shipping */
-
-.calculate-shipping select, .calculate-shipping input {
-  width: 100%;
-  padding: 10px;
-  border: 0.5px solid var(--gray);
-  outline: none;
-}
-
-.calculate-shipping select:focus, .calculate-shipping input:focus {
-  border-color: orange;
-}
-
-.calculate-shipping button {
-  width: 100%;
-}
-
-/* end calculate shipping */
-
 
 /* start cart summary */
 
@@ -103,3 +84,16 @@ table.table-cart .quantity-cart input:focus {
 
 
 /* end total price */
+
+
+.new-address {
+  margin: 20px 0px;
+}
+
+.new-address a {
+  color: var(--green);
+}
+
+.new-address a:hover {
+  color: var(--blue);
+}
