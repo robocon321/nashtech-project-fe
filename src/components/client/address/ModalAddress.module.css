@@ -1,0 +1,27 @@
+.modal-address {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  background-color: white;
+  padding: 20px;
+}
+
+.modal-address label {
+  margin: 20px 0px;
+}
+
+.modal-address select {
+  width: 100%;
+  padding: 10px;
+  border: 0.5px solid var(--gray);
+}
+
+.modal-address .actions {
+  text-align: right;
+}
+
+.modal-address .actions button {
+  margin: 5px;
+}

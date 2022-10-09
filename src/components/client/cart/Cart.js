@@ -99,7 +99,9 @@ const Cart = (props) => {
                       label: 'số nhà 75, phường Đông Hòa, thị xã Dĩ An, tỉnh Bình Dương',
                       value: 'diachi2'
                     }
-                  ]
+                  ],
+                  key: 'label',
+                  value: 'value'
                 }} />
                 <div className={styles['new-address']}>
                   <a href="#">Add new address</a>
