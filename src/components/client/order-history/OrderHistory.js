@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 import styles from "./OrderHistory.module.css";
 
@@ -22,7 +23,7 @@ const OrderHistory = (props) => {
               <tr>
                 <td>1</td>
                 <td>
-                  <a href="#">A2KTS</a>
+                  <Link to="/order-history/1">A2KTS</Link>
                 </td>
                 <td>12/11/2021</td>
                 <td>15/11/2021</td>

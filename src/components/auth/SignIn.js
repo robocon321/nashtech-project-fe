@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Auth.module.css';
 
 const SignIn = (props) => {
@@ -10,14 +11,14 @@ const SignIn = (props) => {
 						Sign In With
 					</span>
 
-					<a href="#" className={styles["btn-face"] + " " +styles["m-b-20"]}>
+					<Link to="#" className={styles["btn-face"] + " " +styles["m-b-20"]}>
 						Facebook
-					</a>
+					</Link>
 
-					<a href="#" className={styles["btn-google"] + " " +styles["m-b-20"]}>
+					<Link to="#" className={styles["btn-google"] + " " +styles["m-b-20"]}>
 						<img src="images/icons/icon-google.png" alt="GOOGLE" />
 						Google
-					</a>
+					</Link>
 					
 					<div className={styles["p-t-31"] + " " +styles["p-b-9"]}>
 						<span className={styles["txt1"]}>
@@ -34,9 +35,9 @@ const SignIn = (props) => {
 							Password
 						</span>
             <span> </span>
-						<a href="#" className={styles["txt2"] + " " +styles["bo1"] + " " +styles["m-l-5"] + " " + styles["pink-hover"]}>
+						<Link to="#" className={styles["txt2"] + " " +styles["bo1"] + " " +styles["m-l-5"] + " " + styles["pink-hover"]}>
 							Forgot?
-						</a>
+						</Link>
 					</div>
 					<div className={styles["wrap-input100"] + " " +styles["validate-input"]} data-validate = "Password is required">
 						<input className={styles["input100"]} type="password" name="pass" />
@@ -54,9 +55,9 @@ const SignIn = (props) => {
 							Not a member?
 						</span>
             <span> </span>
-						<a href="#" className={styles["txt2"] + " " +styles["bo1"] + " " + styles["pink-hover"]}>
+						<Link to="/sign-up" className={styles["txt2"] + " " +styles["bo1"] + " " + styles["pink-hover"]}>
 							Sign up now
-						</a>
+						</Link>
 					</div>
 				</form>
 			</div>

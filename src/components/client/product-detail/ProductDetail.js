@@ -11,6 +11,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { FaShoppingCart, FaRegHeart, FaStar, FaRegEye } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
  
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
@@ -39,7 +40,7 @@ const Product = (item) => {
           <span className={styles["star"]}><FaStar /></span>
         </div>
         <div className={styles["title-product"]}>
-          <a href="#">Sony XB10 Portable Wireless</a>
+          <Link to="/product/1">Sony XB10 Portable Wireless</Link>
         </div>
         <div className={styles["price-product"]}>
           <span className={styles["discount-price-product"]}>$104.00</span>
@@ -124,18 +125,18 @@ const ProductDetail = (props) => {
                   <Rating name="read-only" value={4} readOnly />
                 </span>
                 <span className={styles["link-review-overall"]}>
-                  <a href="#">1 Reviews</a>
+                  <Link to="#">1 Reviews</Link>
                 </span>
                 <span> | </span>
                 <span className={styles["write-review-overall"]}>
-                  <a href="#">Write A Review</a>
+                  <Link to="#">Write A Review</Link>
                 </span>
               </div>
               <p className={styles["description"]}>More room to move. With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go. Cover Flow. Browse thr..</p>
               <p className={styles["info-product"]}>
                 <ul>
                   <li>Ex Tax: $80.00</li>
-                  <li>Brands <a href="#">Apple</a></li>
+                  <li>Brands <Link to="#">Apple</Link></li>
                   <li>Product Code: <b>Product 1</b></li>
                   <li>Availability: <b>In Stock</b></li>
                 </ul>
@@ -149,9 +150,9 @@ const ProductDetail = (props) => {
               </div>
               <div className={styles["tags"]}>
                 <span>Tags:</span>
-                <a href="#"> Sport</a>
+                <Link to="#"> Sport</Link>
                 <span>,</span>
-                <a href="#"> Luxury</a>
+                <Link to="#"> Luxury</Link>
               </div>
             </Grid>
             <Grid item xs={12} md={3}>

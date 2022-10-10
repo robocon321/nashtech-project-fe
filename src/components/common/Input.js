@@ -103,9 +103,7 @@ const Input = ({
               onChange={onChange}
               onClick={onClick}
               name={name}
-              {...props}>
-            {value}
-          </textarea>
+              {...props} />
         </div>
       )
     default :

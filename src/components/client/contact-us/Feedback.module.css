@@ -1,0 +1,16 @@
+.form {
+  margin-bottom: 40px;
+}
+
+.form button {
+  color: white;
+  background-color: var(--green);
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+}
+
+.form button:hover {
+  background-color: var(--blue);
+}
+

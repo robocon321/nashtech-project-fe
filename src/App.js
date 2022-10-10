@@ -37,7 +37,7 @@ function App() {
       </div>
     );
   } else {
-    if(appState.role === 'ADMIN') {
+    if(appState.role === 'CLIENT') {
       return (
         <Routes>     
           <Route path='/admin' element={<LayoutAdmin />}>

@@ -12,6 +12,10 @@
   justify-content: space-between;
 }
 
+.top-header a {
+  color: #adadad;
+}
+
 .col-top-header {
   display: flex;
   align-items: center;
@@ -105,7 +109,6 @@
 
 .btn-cart-header {
   padding: 15px;
-  color: white;
   cursor: pointer;
   text-align: center;
 }
@@ -113,6 +116,11 @@
 .btn-cart-header:hover {
   background-color: var(--green);
 }
+
+.btn-cart-header a {
+  color: white;
+}
+
 
 /* end center header */
 

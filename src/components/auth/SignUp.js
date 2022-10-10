@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Auth.module.css';
 
 const SignUp = (props) => {
@@ -10,14 +11,14 @@ const SignUp = (props) => {
 						Sign Up With
 					</span>
 
-					<a href="#" className={styles["btn-face"] + " " +styles["m-b-20"]}>
+					<Link to="#" className={styles["btn-face"] + " " +styles["m-b-20"]}>
 						Facebook
-					</a>
+					</Link>
 
-					<a href="#" className={styles["btn-google"] + " " +styles["m-b-20"]}>
+					<Link to="#" className={styles["btn-google"] + " " +styles["m-b-20"]}>
 						<img src="images/icons/icon-google.png" alt="GOOGLE" />
 						Google
-					</a>
+					</Link>
 					
 					<div className={styles["p-t-31"] + " " +styles["p-b-9"]}>
 						<span className={styles["txt1"]}>
@@ -107,9 +108,9 @@ const SignUp = (props) => {
 							Have an account?
 						</span>
             <span> </span>
-						<a href="#" className={styles["txt2"] + " " +styles["bo1"] + " " + styles["pink-hover"]}>
+						<Link to="/sign-in" className={styles["txt2"] + " " +styles["bo1"] + " " + styles["pink-hover"]}>
 							Sign in now
-						</a>
+						</Link>
 					</div>
 				</form>
 			</div>

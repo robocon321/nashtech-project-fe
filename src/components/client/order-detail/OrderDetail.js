@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 import styles from "./OrderDetail.module.css";
 
@@ -26,7 +27,7 @@ const OrderDetail = (props) => {
                 </div>
               </td>
               <td>
-                <a href="#">Koss Porta Pro On Ear</a>
+                <Link to="/product/1">Koss Porta Pro On Ear</Link>
               </td>
               <td>Product 12</td>
               <td>10</td>
@@ -40,7 +41,7 @@ const OrderDetail = (props) => {
                 </div>
               </td>
               <td>
-                <a href="#">Koss Porta Pro On Ear</a>
+                <Link to="/product/1">Koss Porta Pro On Ear</Link>
               </td>
               <td>Product 12</td>
               <td>10</td>

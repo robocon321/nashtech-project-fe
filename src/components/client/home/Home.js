@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from '@mui/material';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,6 +16,7 @@ import { TiMessages }  from 'react-icons/ti';
 import { FiMonitor } from 'react-icons/fi';
 import { BsPhone } from 'react-icons/bs';
 import { AiTwotoneAudio } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Product = (item) => {
   return (
@@ -34,7 +35,7 @@ const Product = (item) => {
           <span className={styles["star"]}><FaStar /></span>
         </div>
         <div className={styles["title-product"]}>
-          <a href="#">Sony XB10 Portable Wireless</a>
+          <Link to="/product/1">Sony XB10 Portable Wireless</Link>
         </div>
         <div className={styles["price-product"]}>
           <span className={styles["discount-price-product"]}>$104.00</span>
@@ -391,10 +392,10 @@ const Home = (props) => {
                     ELECTRONICS
                   </h3>
                   <ul>
-                    <li><a href="#">Calculators</a></li>
-                    <li><a href="#">Check Trousers</a></li>
-                    <li><a href="#">Ink & Toner</a></li>
-                    <li><a href="#">Low-Cut Jeans</a></li>
+                    <li><Link to="/product">Calculators</Link></li>
+                    <li><Link to="/product">Check Trousers</Link></li>
+                    <li><Link to="/product">Ink & Toner</Link></li>
+                    <li><Link to="/product">Low-Cut Jeans</Link></li>
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
@@ -409,10 +410,10 @@ const Home = (props) => {
                     PHOTOS & CAMERAS
                   </h3>
                   <ul>
-                    <li><a href="#">Calculators</a></li>
-                    <li><a href="#">Check Trousers</a></li>
-                    <li><a href="#">Ink & Toner</a></li>
-                    <li><a href="#">Low-Cut Jeans</a></li>
+                    <li><Link to="#">Calculators</Link></li>
+                    <li><Link to="#">Check Trousers</Link></li>
+                    <li><Link to="#">Ink & Toner</Link></li>
+                    <li><Link to="#">Low-Cut Jeans</Link></li>
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
@@ -427,10 +428,10 @@ const Home = (props) => {
                     PHONES & TABLETS
                   </h3>
                   <ul>
-                    <li><a href="#">Calculators</a></li>
-                    <li><a href="#">Check Trousers</a></li>
-                    <li><a href="#">Ink & Toner</a></li>
-                    <li><a href="#">Low-Cut Jeans</a></li>
+                    <li><Link to="/product">Calculators</Link></li>
+                    <li><Link to="/product">Check Trousers</Link></li>
+                    <li><Link to="/product">Ink & Toner</Link></li>
+                    <li><Link to="/product">Low-Cut Jeans</Link></li>
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
@@ -445,10 +446,10 @@ const Home = (props) => {
                     TV & CINEMA
                   </h3>
                   <ul>
-                    <li><a href="#">Calculators</a></li>
-                    <li><a href="#">Check Trousers</a></li>
-                    <li><a href="#">Ink & Toner</a></li>
-                    <li><a href="#">Low-Cut Jeans</a></li>
+                    <li><Link to="#">Calculators</Link></li>
+                    <li><Link to="#">Check Trousers</Link></li>
+                    <li><Link to="#">Ink & Toner</Link></li>
+                    <li><Link to="#">Low-Cut Jeans</Link></li>
                   </ul>
                 </div>
                 <div className={styles["image-feature"]}>
@@ -481,7 +482,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>
@@ -497,7 +498,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>
@@ -515,7 +516,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>
@@ -531,7 +532,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>
@@ -565,7 +566,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>
@@ -581,7 +582,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>
@@ -599,7 +600,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>
@@ -615,7 +616,7 @@ const Home = (props) => {
                       <img src="/images/blog-1.jpg" alt="Not found" />
                     </div>
                     <div className={styles["info-blog"]}>
-                      <h4><a href="#">Best Of Hair & Makeup New York Spring/Summer 2016</a></h4>
+                      <h4><Link to="#">Best Of Hair & Makeup New York Spring/Summer 2016</Link></h4>
                       <div className={styles["author-date"]}>
                         <span className={styles["author"]}>
                           <FaRegUser /> <span>by Robocon321</span>

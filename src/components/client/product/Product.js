@@ -4,6 +4,7 @@ import { Grid } from '@mui/material';
 import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaStar, FaRegEye, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import styles from './Product.module.css';
 import Services from "../../common/Service";
@@ -24,7 +25,7 @@ const Product = (item) => {
           <span className={styles["star"]}><FaStar /></span>
         </div>
         <div className={styles["title-product"]}>
-          <a href="#">Sony XB10 Portable Wireless</a>
+          <Link to="/product/1">Sony XB10 Portable Wireless</Link>
         </div>
         <div className={styles["price-product"]}>
           <span className={styles["discount-price-product"]}>$104.00</span>
@@ -52,6 +53,7 @@ const Index = (props) => {
 
   return (
     <>
+      <div className={styles["wrap-main"]}>
       <Container>
         <Grid container spacing={5}>
           <Grid item md={12} lg={3} order={{md: 2, lg: 1}}>
@@ -189,7 +191,7 @@ const Index = (props) => {
                     <span className={styles["star"]}><FaStar /></span>
                     <span className={styles["star"]}><FaStar /></span>
                   </div>
-                  <a href="#"><b>JBL Flip 3 Portable</b></a>
+                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
                   <div className={styles["price-new-product"]}>$602.00</div>
                 </div>
               </div>
@@ -205,7 +207,7 @@ const Index = (props) => {
                     <span className={styles["star"]}><FaStar /></span>
                     <span className={styles["star"]}><FaStar /></span>
                   </div>
-                  <a href="#"><b>JBL Flip 3 Portable</b></a>
+                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
                   <div className={styles["price-new-product"]}>$602.00</div>
                 </div>
               </div>
@@ -221,7 +223,7 @@ const Index = (props) => {
                     <span className={styles["star"]}><FaStar /></span>
                     <span className={styles["star"]}><FaStar /></span>
                   </div>
-                  <a href="#"><b>JBL Flip 3 Portable</b></a>
+                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
                   <div className={styles["price-new-product"]}>$602.00</div>
                 </div>
               </div>
@@ -237,7 +239,7 @@ const Index = (props) => {
                     <span className={styles["star"]}><FaStar /></span>
                     <span className={styles["star"]}><FaStar /></span>
                   </div>
-                  <a href="#"><b>JBL Flip 3 Portable</b></a>
+                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
                   <div className={styles["price-new-product"]}>$602.00</div>
                 </div>
               </div>
@@ -342,6 +344,8 @@ const Index = (props) => {
         </Grid>        
       </Container>
       <Services />
+
+      </div>
     </>
   )
 }

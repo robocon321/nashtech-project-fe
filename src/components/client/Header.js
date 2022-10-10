@@ -1,7 +1,9 @@
 import { Container } from "@mui/material";
-import styles from "./Header.module.css";
+import {  Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-free-solid";
+
+import styles from "./Header.module.css";
 
 const Header = (props) => {
   return (
@@ -38,15 +40,17 @@ const Header = (props) => {
                 <FontAwesomeIcon icon="fa-solid fa-user" /> My Account
               </span>
               <div className="dropdown-content bg-white">
-                <p>Register</p>
-                <p>Login</p>
+                <Link to="/sign-up"><p>Register</p></Link>
+                <Link to="/sign-in"><p>Login</p></Link>
               </div>
             </div>
             <span className={styles["divide-top-header"]}> | </span>
             <div>
-              <span>
-                <FontAwesomeIcon icon="fa-solid fa-heart" /> Wishlist
-              </span>
+              <Link to="/wishlist">
+                <span>
+                  <FontAwesomeIcon icon="fa-solid fa-heart" />  Wishlist
+                </span>
+              </Link>
             </div>
             <span className={styles["divide-top-header"]}> | </span>
             <div className="dropdown">
@@ -99,7 +103,7 @@ const Header = (props) => {
           </div>
           <div className={styles["col-center-header"]}>
             <div className={"bg-blue " + styles["btn-cart-header"]}>
-              <span>CART: 0 item(s)</span>
+              <Link to="/cart">CART: 0 item(s)</Link>
             </div>
           </div>
         </div>
@@ -107,11 +111,11 @@ const Header = (props) => {
       <div className={styles["bottom-header"]}>
         <Container>
         <ul className={styles["menu-bottom-header"]}>
-            <li><a className={styles['active']} href="#">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><Link className={styles['active']} to="/">Home</Link></li>
+            <li><Link to="/product">Shop</Link></li>
+            <li><Link to="/blog">Blog</Link></li>
+            <li><Link to="/about-us">About Us</Link></li>
+            <li><Link to="/contact-us">Contact Us</Link></li>
           </ul>
         </Container>
       </div>

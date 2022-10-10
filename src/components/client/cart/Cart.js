@@ -2,6 +2,7 @@ import { Container, Button, Grid } from '@mui/material';
 import {  FaPlus } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { RiSubtractFill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 import styles from "./Cart.module.css";
 import Input from './../../common/Input';
@@ -30,7 +31,7 @@ const Cart = (props) => {
                 </div>
               </td>
               <td>
-                <a href="#">Koss Porta Pro On Ear</a>
+                <Link to="/product/1">Koss Porta Pro On Ear</Link>
               </td>
               <td>$80.00</td>
               <td>
@@ -58,7 +59,7 @@ const Cart = (props) => {
                 </div>
               </td>
               <td>
-                <a href="#">Koss Porta Pro On Ear</a>
+                <Link to="#">Koss Porta Pro On Ear</Link>
               </td>
               <td>$80.00</td>
               <td>
@@ -104,7 +105,7 @@ const Cart = (props) => {
                   value: 'value'
                 }} />
                 <div className={styles['new-address']}>
-                  <a href="#">Add new address</a>
+                  <Link to="/address">Add new address</Link>
                 </div>
                 <h2>Discount Coupon Code</h2>
                 <Grid container spacing={4}>

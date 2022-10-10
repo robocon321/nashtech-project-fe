@@ -1,6 +1,7 @@
 import { Container, Button } from '@mui/material';
 import {  FaShoppingCart} from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import styles from "./Wishlist.module.css";
 
@@ -30,7 +31,7 @@ const Wishlist = (props) => {
                 </div>
               </td>
               <td>
-                <a href="#">Koss Porta Pro On Ear</a>
+                <Link to="/product/1">Koss Porta Pro On Ear</Link>
               </td>
               <td>
                 Product 12
@@ -53,7 +54,7 @@ const Wishlist = (props) => {
                 </div>
               </td>
               <td>
-                <a href="#">Koss Porta Pro On Ear</a>
+                <Link to="#">Koss Porta Pro On Ear</Link>
               </td>
               <td>
                 Product 12
@@ -76,7 +77,7 @@ const Wishlist = (props) => {
                 </div>
               </td>
               <td>
-                <a href="#">Koss Porta Pro On Ear</a>
+                <Link to="#">Koss Porta Pro On Ear</Link>
               </td>
               <td>
                 Product 12
