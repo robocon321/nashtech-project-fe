@@ -10,22 +10,23 @@ import LayoutAdmin from './pages/admin/LayoutAdmin';
 import LayoutClient from './pages/client/LayoutClient';
 
 import NotFound from './pages/404/NotFoundPage';
+import SignInPage from './pages/auth/SignInPage';
+import SignUpPage from './pages/auth/SignUpPage';
 
 import HomePage from './pages/client/HomePage';
 import ProductPage from './pages/client/ProductPage';
 import AboutUsPage from './pages/client/AboutUsPage';
 import ProductDetailPage from './pages/client/ProductDetailPage'; 
-
-import Dashboard from './pages/admin/DashboardPage';
 import ContactUsPage from './pages/client/ContactUsPage';
-import SignInPage from './pages/auth/SignInPage';
-import SignUpPage from './pages/auth/SignUpPage';
 import WishlistPage from './pages/client/WishlistPage';
 import DetailAccountPage  from './pages/client/DetailAccountPage';
 import CartPage from './pages/client/CartPage';
 import AddressPage from './pages/client/AddressPage';
 import OrderHistoryPage from './pages/client/OrderHistoryPage';
 import OrderDetailPage from './pages/client/OrderDetailPage';
+
+import ProductListPage from './pages/admin/ProductListPage';
+import Dashboard from './pages/admin/DashboardPage';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -42,6 +43,7 @@ function App() {
         <Routes>     
           <Route path='/admin' element={<LayoutAdmin />}>
             <Route path='dashboard' element={<Dashboard />}/>
+            <Route path='products' element={<ProductListPage />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

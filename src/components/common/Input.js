@@ -21,6 +21,39 @@ const Input = ({
   id = ''
 }) => {
   switch(type) {
+    case 'checkbox':
+      return (
+        <div className={styles['field']}>
+          {
+            title &&           
+            <label className={styles['label']}>{title}:{' '} 
+              {
+                required && <span className={styles['required']}>*</span>
+              }
+            </label>
+          }
+          {
+            props.data.map((item, index) => {
+              return (
+                <div key={index} style={{...style}}>
+                  <input 
+                    id={item[props.value]}
+                    type="checkbox" 
+                    value={item[props.value]}                     
+                    name='category' onChange={onChange} />
+                  <label
+                    htmlFor={item[props.value]} 
+                    className={styles["title"]}>
+                    {item[props.key]}
+                  </label>
+                </div>
+              )
+            })
+          }
+          
+        </div>
+      )
+
     case 'select':
       return (
         <div className={styles['field']}>

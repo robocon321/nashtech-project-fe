@@ -1,0 +1,89 @@
+/* start filter */
+
+.filter {
+  padding: 20px;
+  border: 0.5px solid var(--gray);
+}
+
+.title-filter {
+  background-color: var(--gray);
+}
+
+.range-price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.value-rating {
+  margin-left: 20px;
+}
+
+/* end filter */
+
+
+/* start table */
+
+.table {
+  padding: 20px;
+  border: 0.5px solid var(--gray);
+}
+
+.btn-add {
+  color: white;
+}
+
+.row-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 0.5px solid var(--gray);
+  padding: 10px;
+}
+
+.icon-search-box {
+  margin-right: 10px;
+}
+
+.input-search-box {
+  padding: 10px;
+  min-width: 250px;
+  border: none;
+  outline: none;
+}
+
+.action-remove {
+  color: red;
+  text-decoration: underline;
+  margin-left: 10px; 
+  cursor: pointer; 
+}
+
+.image-row-table {
+  width: 100px;
+  height: 100px;
+  margin: 10px
+}
+
+.image-row-table img {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-row-table button {
+  margin: 5px;
+}
+/* end table */
+
+

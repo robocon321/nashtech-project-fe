@@ -12,6 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
 import { FaProductHunt, FaShoppingCart, FaMoneyBillWave, FaHeart, FaUserAlt } from 'react-icons/fa';
 import { AiFillDashboard, AiFillSetting, AiOutlineLogout } from 'react-icons/ai';
+import { MdCategory } from 'react-icons/md';
 
 const drawerWidth = 300;
 
@@ -120,6 +121,29 @@ const Sidebar = (props) => {
       </Link>
     </ListItem>
     <ListItem disablePadding sx={{ display: 'block' }}>
+      <Link to='/admin/categories'>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            justifyContent: props.open ? 'initial' : 'center',
+            px: 2.5,
+          }}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: props.open ? 3 : 'auto',
+              justifyContent: 'center',
+            }}
+          >
+            <MdCategory />
+          </ListItemIcon>
+          <ListItemText primary='Categories' sx={{ opacity: props.open ? 1 : 0 }} />
+        </ListItemButton>
+      </Link>
+    </ListItem>
+
+    <ListItem disablePadding sx={{ display: 'block' }}>
       <Link to='/admin/carts'>
         <ListItemButton
           sx={{
@@ -181,7 +205,7 @@ const Sidebar = (props) => {
           >
             <FaHeart />
           </ListItemIcon>
-          <ListItemText primary='Wishlist' sx={{ opacity: props.open ? 1 : 0 }} />
+          <ListItemText primary='Wishlists' sx={{ opacity: props.open ? 1 : 0 }} />
         </ListItemButton>
       </Link>
     </ListItem>
