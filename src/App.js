@@ -27,6 +27,7 @@ import OrderDetailPage from './pages/client/OrderDetailPage';
 
 import ProductListPage from './pages/admin/ProductListPage';
 import Dashboard from './pages/admin/DashboardPage';
+import CreateProductPage from './pages/admin/CreateProductPage';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -44,6 +45,7 @@ function App() {
           <Route path='/admin' element={<LayoutAdmin />}>
             <Route path='dashboard' element={<Dashboard />}/>
             <Route path='products' element={<ProductListPage />} />
+            <Route path='products/create' element={<CreateProductPage />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

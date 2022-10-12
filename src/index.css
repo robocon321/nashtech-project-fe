@@ -83,3 +83,7 @@ ul {
   justify-content: center;
   align-items: center;
 }
+
+.ck-editor__editable {
+  min-height: 200px;
+}
