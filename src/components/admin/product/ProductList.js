@@ -337,6 +337,7 @@ const ProductList = (props) => {
                 autoHeight 
                 pageSize={7}
                 checkboxSelection
+                disableSelectionOnClick 
                 components={{ Toolbar: GridToolbar }}
                 getRowHeight={() => 'auto'}
               />

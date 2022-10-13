@@ -28,6 +28,7 @@ import OrderDetailPage from './pages/client/OrderDetailPage';
 import ProductListPage from './pages/admin/ProductListPage';
 import Dashboard from './pages/admin/DashboardPage';
 import CreateProductPage from './pages/admin/CreateProductPage';
+import CategoryListPage from './pages/admin/CategoryListPage';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -46,6 +47,7 @@ function App() {
             <Route path='dashboard' element={<Dashboard />}/>
             <Route path='products' element={<ProductListPage />} />
             <Route path='products/create' element={<CreateProductPage />} />
+            <Route path='categories' element={<CategoryListPage />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>
