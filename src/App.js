@@ -30,6 +30,7 @@ import Dashboard from './pages/admin/DashboardPage';
 import CreateProductPage from './pages/admin/CreateProductPage';
 import CategoryListPage from './pages/admin/CategoryListPage';
 import UserListPage from './pages/admin/UserListPage';
+import CreateUserPage from './pages/admin/CreateUserPage';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -50,6 +51,7 @@ function App() {
             <Route path='products/create' element={<CreateProductPage />} />
             <Route path='categories' element={<CategoryListPage />} />
             <Route path='users' element={<UserListPage />} />
+            <Route path='users/create' element={<CreateUserPage />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>
