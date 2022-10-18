@@ -1,16 +1,26 @@
 import axios from 'axios';
-import { setAuthToken } from '../../utils/authToken';
-import { LOCAL_STORAGE_TOKEN, BACKEND_URL } from '../../utils/contant';
+import { BACKEND_URL, LOCAL_STORAGE_TOKEN } from '../../../utils/contant';
+import { setAuthToken } from '../../../utils/authToken';
 
 export const ACTIONS = {
+  CHANGE_FIELD: 'CHANGE_FIELD',
   SET_USER: 'SET_USER',
   SET_STATUS: 'SET_STATUS'
 }
 
-export const loadAccount = () => async (dispatch) => {
-  const token = localStorage[LOCAL_STORAGE_TOKEN];
-  if(token) {
+export const signInAction = (username, password) => async (dispatch) => {
+  // sign in
+  await axios.post(`${BACKEND_URL}/sign-in`, {
+    username,
+    password
+  })
+  .then(async (response) => {
+    const token = response.data.data;
+    localStorage[LOCAL_STORAGE_TOKEN] = token;
+
+    // get user info
     setAuthToken(token);
+
     await axios.get(`${BACKEND_URL}/sign-in`)
     .then(response => {
       dispatch({
@@ -31,20 +41,29 @@ export const loadAccount = () => async (dispatch) => {
         payload: {
           isLoading: false,
           message: error.response.data.message,
-          success: error.response.data.success
+          success: false
         }
       })
-    })
-  
-  } else {
+      })
+  })
+  .catch(function (error) {
     dispatch({
       type: ACTIONS.SET_STATUS,
       payload: {
         isLoading: false,
-        message: '',
-        success: true
+        message: error.response.data.message,
+        success: false
       }
     })
-  
-  }
+  });
+}
+
+export const changeFieldAction = (field, value) => (dispatch) => {
+  dispatch({
+    type: ACTIONS.CHANGE_FIELD,
+    payload: {
+      field,
+      value
+    }
+  })
 }

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Header from '../../components/admin/Header';
 import Sidebar from '../../components/admin/Sidebar';
-import { Outlet } from 'react-router-dom';
+import { AppContext } from '../../contexts/providers/AppProvider';
+
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -16,6 +18,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const  LayoutAdmin = (props) => {
+  const { appState } = useContext(AppContext);
+  const navigation = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -26,16 +30,22 @@ const  LayoutAdmin = (props) => {
     setOpen(false);
   };
 
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-      <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Outlet />
+  if(appState.user.id == null || appState.user.roleDTOs.filter(item => item.name === 'CLIENT').length === 1) {
+    console.log("haha");
+    navigation("/");
+  } else {
+    return (
+      <Box sx={{ display: 'flex' }}>
+        <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+        <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+          <Outlet />
+        </Box>
       </Box>
-    </Box>
-  );
+    );  
+  }
+
 }
 
 export default LayoutAdmin;

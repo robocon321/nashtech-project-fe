@@ -87,3 +87,8 @@ ul {
 .ck-editor__editable {
   min-height: 200px;
 }
+
+.alert {
+  margin: 10px 0px;
+  width: 100%;
+}

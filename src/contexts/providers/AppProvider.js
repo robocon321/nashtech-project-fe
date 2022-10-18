@@ -5,11 +5,11 @@ import { loadAccount } from "../actions/AppAction";
 export const AppContext = createContext();
 
 const initState = {
-  role: 'ADMIN',
+  user: {},
   status: {
     isLoading: true,
     message: '',
-    isSuccess: false
+    success: false
   }
 }
 
@@ -20,16 +20,13 @@ const AppProvider = (props) => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    console.log(appState);
-  }, [appState]);
-
   const loadData = async () => {
     await loadAccount()(dispatch);
   }
 
   const value = {
-    appState
+    appState,
+    loadData
   }
   
   return (

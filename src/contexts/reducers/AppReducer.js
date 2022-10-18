@@ -1,18 +1,21 @@
 import { ACTIONS } from "../actions/AppAction"
 
 const initState = {
-  role: 'ADMIN',
+  user: {},
   status: {
     isLoading: true,
     message: '',
-    isSuccess: false
+    success: false
   }
 }
 
 const reducer = (state = initState, {type, payload}) => {
   switch(type) {
-    case ACTIONS.LOAD_ACCOUNT:
-      state = {...payload}
+    case ACTIONS.SET_USER:
+      state = {...state, user: {...payload}};
+      break;
+    case ACTIONS.SET_STATUS:
+      state = {...state, status: {...payload}};
       break;
     default:
       break;
