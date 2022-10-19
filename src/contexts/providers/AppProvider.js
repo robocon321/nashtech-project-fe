@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
 import AppReducer from "../reducers/AppReducer";
-import { loadAccount } from "../actions/AppAction";
+import { loadAccountAction, logoutAction } from "../actions/AppAction";
 
 export const AppContext = createContext();
 
@@ -21,12 +21,17 @@ const AppProvider = (props) => {
   }, []);
 
   const loadData = async () => {
-    await loadAccount()(dispatch);
+    await loadAccountAction()(dispatch);
+  }
+
+  const logout = () => {
+    logoutAction()(dispatch);
   }
 
   const value = {
     appState,
-    loadData
+    loadData,
+    logout
   }
   
   return (

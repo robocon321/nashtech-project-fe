@@ -7,7 +7,7 @@ export const ACTIONS = {
   SET_STATUS: 'SET_STATUS'
 }
 
-export const loadAccount = () => async (dispatch) => {
+export const loadAccountAction = () => async (dispatch) => {
   const token = localStorage[LOCAL_STORAGE_TOKEN];
   if(token) {
     setAuthToken(token);
@@ -47,4 +47,13 @@ export const loadAccount = () => async (dispatch) => {
     })
   
   }
+}
+
+export const logoutAction = () => (dispatch) => {
+  console.log(1);
+  localStorage.removeItem(LOCAL_STORAGE_TOKEN);
+  dispatch({
+    type: ACTIONS.SET_USER,
+    payload: {}
+  });
 }

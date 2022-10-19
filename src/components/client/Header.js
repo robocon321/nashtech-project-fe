@@ -1,11 +1,15 @@
+import { useContext } from "react";
 import { Container } from "@mui/material";
 import {  Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-free-solid";
 
 import styles from "./Header.module.css";
+import { AppContext } from "../../contexts/providers/AppProvider";
 
 const Header = (props) => {
+  const { appState, logout } = useContext(AppContext);
+  
   return (
     <header className={styles["header"]}>
       <Container>
@@ -36,21 +40,36 @@ const Header = (props) => {
           </div>
           <div className={styles["col-top-header"]}>
             <div className="dropdown">
-              <span>
-                <FontAwesomeIcon icon="fa-solid fa-user" /> My Account
-              </span>
-              <div className="dropdown-content bg-white">
-                <Link to="/sign-up"><p>Register</p></Link>
-                <Link to="/sign-in"><p>Login</p></Link>
-              </div>
-            </div>
-            <span className={styles["divide-top-header"]}> | </span>
-            <div>
-              <Link to="/wishlist">
-                <span>
-                  <FontAwesomeIcon icon="fa-solid fa-heart" />  Wishlist
-                </span>
-              </Link>
+              {
+                appState.user.id ? 
+                (
+                  <>
+                  <span>
+                    <FontAwesomeIcon icon="fa-solid fa-user" /> {appState.user.fullname}
+                  </span>
+                  <div className="dropdown-content bg-white">
+                    <Link to="/detail-account"><p>My account</p></Link>
+                    <Link to="/cart"><p>Cart</p></Link>
+                    <Link to="/wishlist"><p>Wishlist</p></Link>
+                    <Link to="/order-history"><p>Order history</p></Link>
+                    <Link to="/address"><p>My address</p></Link>
+                    <Link to="/"><p onClick={logout}>Logout</p></Link>
+                  </div>
+                  </>
+                )
+                :
+                (
+                  <>
+                    <span>
+                      <FontAwesomeIcon icon="fa-solid fa-user" /> My Account
+                    </span>
+                    <div className="dropdown-content bg-white">
+                      <Link to="/sign-up"><p>Register</p></Link>
+                      <Link to="/sign-in"><p>Login</p></Link>
+                    </div>
+                  </>
+                )
+              }
             </div>
             <span className={styles["divide-top-header"]}> | </span>
             <div className="dropdown">

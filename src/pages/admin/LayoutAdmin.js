@@ -1,23 +1,22 @@
-import { useState, useContext } from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import { Outlet, useNavigate } from "react-router-dom";
 
-import Header from '../../components/admin/Header';
-import Sidebar from '../../components/admin/Sidebar';
-import { AppContext } from '../../contexts/providers/AppProvider';
+import Header from "../../components/admin/Header";
+import Sidebar from "../../components/admin/Sidebar";
+import { AppContext } from "../../contexts/providers/AppProvider";
 
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
-const  LayoutAdmin = (props) => {
+const LayoutAdmin = (props) => {
   const { appState } = useContext(AppContext);
   const navigation = useNavigate();
   const [open, setOpen] = useState(false);
@@ -30,22 +29,26 @@ const  LayoutAdmin = (props) => {
     setOpen(false);
   };
 
-  if(appState.user.id == null || appState.user.roleDTOs.filter(item => item.name === 'CLIENT').length === 1) {
-    console.log("haha");
-    navigation("/");
-  } else {
-    return (
-      <Box sx={{ display: 'flex' }}>
-        <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-        <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <DrawerHeader />
-          <Outlet />
-        </Box>
-      </Box>
-    );  
-  }
+  useEffect(() => {
+    if (
+      appState.user.id == null ||
+      appState.user.roleDTOs.filter((item) => item.name === "CLIENT").length ===
+        1
+    ) {
+      navigation("/");
+    }
+  }, [appState.user]);
 
-}
+  return (
+    <Box sx={{ display: "flex" }}>
+      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+      <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
+        <Outlet />
+      </Box>
+    </Box>
+  );
+};
 
 export default LayoutAdmin;
