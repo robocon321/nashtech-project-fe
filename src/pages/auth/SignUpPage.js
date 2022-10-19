@@ -1,9 +1,12 @@
-import SignUp from "../../components/auth/SignUp"
+import SignUp from "../../components/auth/SignUp";
+import SignUpProvider from "../../contexts/providers/auth/SignUpProvider";
 
 const SignUpPage = props => {
   return (
     <main>
-      <SignUp />
+      <SignUpProvider>
+        <SignUp />
+      </SignUpProvider>
     </main>
   )
 }

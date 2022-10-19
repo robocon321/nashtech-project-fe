@@ -9,6 +9,15 @@ export const ACTIONS = {
 }
 
 export const signInAction = (username, password) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.SET_STATUS,
+    payload: {
+      isLoading: true,
+      message: '',
+      success: false
+    }
+  })
+
   // sign in
   await axios.post(`${BACKEND_URL}/sign-in`, {
     username,

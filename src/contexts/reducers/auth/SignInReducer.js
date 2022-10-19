@@ -5,7 +5,7 @@ const initState = {
   password: "",
   user: {},
   status: {
-    isLoading: true,
+    isLoading: false,
     message: "",
     success: false,
   },
