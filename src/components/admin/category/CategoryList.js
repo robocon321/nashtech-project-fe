@@ -1,134 +1,96 @@
-import { Grid, Button } from "@mui/material";
-import { FaSearch, FaRegEye, FaTrashAlt } from 'react-icons/fa'; 
-import { RiAddLine } from 'react-icons/ri';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-
+import { useContext } from "react";
+import { Grid, Button, Alert, Switch, Snackbar } from "@mui/material";
+import { FaSearch, FaRegEye, FaTrashAlt } from "react-icons/fa";
+import { RiAddLine } from "react-icons/ri";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import Moment from "react-moment";
 
 import Input from "../../common/Input";
 import styles from "./CategoryList.module.css";
-
-
-const rows = [{
-  id: 0,
-  name: 'Category 0',
-  description: 'Nothing',
-  slug: 'slug-0',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 1,
-  name: 'Category 1',
-  description: 'Nothing',
-  slug: 'slug-1',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 2,
-  name: 'Category 2',
-  description: 'Nothing',
-  slug: 'slug-2',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 3,
-  name: 'Category 3',
-  description: 'Nothing',
-  slug: 'slug-3',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 4,
-  name: 'Category 4',
-  description: 'Nothing',
-  slug: 'slug-4',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 5,
-  name: 'Category 5',
-  description: 'Nothing',
-  slug: 'slug-5',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 6,
-  name: 'Category 6',
-  description: 'Nothing',
-  slug: 'slug-6',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 7,
-  name: 'Category 7',
-  description: 'Nothing',
-  slug: 'slug-7',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 8,
-  name: 'Category 8',
-  description: 'Nothing',
-  slug: 'slug-8',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-},{
-  id: 9,
-  name: 'Category 9',
-  description: 'Nothing',
-  slug: 'slug-9',
-  create_time: '01/01/2020',
-  mod_time: '09/10/2020'
-}]
-
-const columns = [
-  {
-    field: 'id',
-    headerName: 'ID',
-    minWidth: 100,
-    flex: 1
-  },
-  { 
-    field: 'name', 
-    headerName: 'Name',
-    minWidth: 100,
-    flex: 2
-  },
-  {
-    field: 'description',
-    headerName: 'Description',
-    minWidth: 100,
-    flex: 3
-  },
-  {
-    field: 'create_time',
-    headerName: 'Create time',
-    minWidth: 150,
-    flex: 1.5
-  },
-  {
-    field: 'mod_time',
-    headerName: 'Modify time',
-    minWidth: 150,
-    flex: 1.5
-  },
-  {
-    headerName: 'Action',
-    minWidth: 200,
-    flex: 2,
-    renderCell: (params) => {
-      return (
-        <div className={styles['btn-row-table']}>
-          <Button variant="contained" color="success"><FaRegEye /></Button>
-          <span>{' '}</span>
-          <Button variant="contained" color="error"><FaTrashAlt /></Button>
-        </div>
-      )
-    }
-  }
-];
-
+import { CategoryAdminContext } from "../../../contexts/providers/admin/CategoryAdminProvider";
 
 const CategoryList = (props) => {
+  const {
+    categoryAdminState,
+    setPage,
+    setSort,
+    setSelected,
+    setSearch,
+    changeField,
+    resetCategory,
+    submitForm,
+    setCategory,
+    switchVisible,
+    deleteCategory,
+    resetStatus
+  } = useContext(CategoryAdminContext);
+
+  const columns = [
+    {
+      field: "id",
+      headerName: "ID",
+      minWidth: 100,
+      flex: 1,
+    },
+    {
+      field: "name",
+      headerName: "Name",
+      minWidth: 100,
+      flex: 2,
+    },
+    {
+      field: "totalProduct",
+      headerName: "Total product",
+      minWidth: 100,
+      flex: 1.5,
+    },
+    {
+      field: "createTime",
+      headerName: "Create time",
+      minWidth: 150,
+      flex: 1.5,
+      renderCell: (params) => {
+        return <Moment format="DD/MM/YYYY">{params.row.createTime}</Moment>;
+      },
+    },
+    {
+      field: "modTime",
+      headerName: "Modify time",
+      minWidth: 150,
+      flex: 1.5,
+      renderCell: (params) => {
+        return <Moment format="DD/MM/YYYY">{params.row.modTime}</Moment>;
+      },
+    },
+    {
+      field: "visibleType",
+      headerName: "Visible",
+      minWidth: 150,
+      flex: 1.5,
+      renderCell: (params) => {
+        return <div className={params.row.visibleType === 'VISIBLE' ? 'visible' : 'invisible'}>{params.row.visibleType}</div>;
+      },
+    },
+    {
+      headerName: "Action",
+      minWidth: 200,
+      flex: 2,
+      renderCell: (params) => {
+        return (
+          <div className={styles["btn-row-table"]}>
+            <Button variant="contained" color="success" onClick={() => setCategory(params.row.id)}>
+              <FaRegEye />
+            </Button>
+            <span> </span>
+            <Button variant="contained" color="error" onClick={() => deleteCategory([params.row.id])}>
+              <FaTrashAlt />
+            </Button>
+          </div>
+        );
+      },
+    },
+  ];
+
   return (
     <>
       <Grid container spacing={4}>
@@ -139,6 +101,8 @@ const CategoryList = (props) => {
               type="text"
               name="name"
               title="Category name"
+              onChange={changeField}
+              value={categoryAdminState.category.name}
               style={{
                 marginBottom: 10,
               }}
@@ -148,18 +112,23 @@ const CategoryList = (props) => {
               type="textarea"
               name="description"
               title="Category description"
+              onChange={changeField}
+              value={categoryAdminState.category.description}
               props={{
                 rows: 5,
               }}
               style={{
                 marginBottom: 10,
               }}
+              required={false}
             />
             <Input
               id="slug"
               type="text"
               name="slug"
               title="Category slug"
+              onChange={changeField}
+              value={categoryAdminState.category.slug}
               style={{
                 marginBottom: 10,
               }}
@@ -167,8 +136,10 @@ const CategoryList = (props) => {
             <Input
               id="meta-title"
               type="text"
-              name="meta_title"
+              name="metaTitle"
               title="Meta title"
+              onChange={changeField}
+              value={categoryAdminState.category.metaTitle}
               required={false}
               style={{
                 marginBottom: 10,
@@ -177,8 +148,10 @@ const CategoryList = (props) => {
             <Input
               id="meta-keyword"
               type="text"
-              name="meta_keyword"
+              name="metaKeyword"
               title="Meta keyword"
+              onChange={changeField}
+              value={categoryAdminState.category.metaKeyword}
               required={false}
               style={{
                 marginBottom: 10,
@@ -187,16 +160,31 @@ const CategoryList = (props) => {
             <Input
               id="meta-description"
               type="textarea"
-              name="meta_description"
+              name="metaDescription"
               title="Meta description"
+              onChange={changeField}
+              value={categoryAdminState.category.metaDescription}
               required={false}
               style={{
                 marginBottom: 10,
               }}
             />
-            <Button variant="contained">SUBMIT</Button>
+            <label>Visible</label>
+            <Switch
+              checked={categoryAdminState.category.visibleType === 'VISIBLE'}
+              onChange={() => switchVisible(categoryAdminState.category.visibleType == 'VISIBLE' ? 'INVISIBLE' : 'VISIBLE')}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+            <br />
+            <Button 
+              variant="contained" 
+              onClick={() => submitForm()}>SUBMIT</Button>
             <span> </span>
-            <Button variant="contained" color="warning">
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={() => resetCategory()}
+            >
               CLEAR
             </Button>
           </div>
@@ -204,7 +192,7 @@ const CategoryList = (props) => {
         <Grid item xs={12} lg={8}>
           <div className={styles["col-category"]}>
             <div className={styles["row-actions"]}>
-              <Button variant="contained" className={styles["btn-add"]}>
+              <Button variant="contained" className={styles["btn-add"]} onClick={() => setCategory(-1)}>
                 <RiAddLine /> NEW CATEGORY
               </Button>
               <div className={styles["search-box"]}>
@@ -214,6 +202,9 @@ const CategoryList = (props) => {
                 <input
                   className={styles["input-search-box"]}
                   type="text"
+                  value={categoryAdminState.conditions.LIKE_name}
+                  onChange={setSearch}
+                  name="LIKE_name"
                   placeholder="Search categories..."
                 />
               </div>
@@ -222,26 +213,46 @@ const CategoryList = (props) => {
               <span></span>
               <span className={styles["select-item"]}>
                 <b>
-                  Select 1 items{" "}
-                  <span className={styles["action-remove"]}>Remove</span>
+                  Select {categoryAdminState.selected.length} items
+                  {categoryAdminState.selected.length ? (
+                    <span className={styles["action-remove"]} onClick={() => deleteCategory(categoryAdminState.selected)}>Remove</span>
+                  ) : (
+                    <span></span>
+                  )}
                 </b>
               </span>
             </div>
+
             <div style={{ width: "100%" }}>
-              <DataGrid
-                columns={columns}
-                rows={rows}
-                autoHeight
-                pageSize={7}
-                checkboxSelection
-                disableSelectionOnClick 
-                components={{ Toolbar: GridToolbar }}
-                getRowHeight={() => "auto"}
-              />
+              {categoryAdminState.categories && (
+                <DataGrid
+                  rows={categoryAdminState.categories.content}
+                  columns={columns}
+                  rowCount={categoryAdminState.categories.totalElements}
+                  pageSize={categoryAdminState.conditions.size}
+                  page={categoryAdminState.categories.number}
+                  onPageChange={setPage}
+                  paginationMode="server"
+                  sortingMode="server"
+                  onSortModelChange={setSort}
+                  onSelectionModelChange={setSelected}
+                  selectionModel={categoryAdminState.selected}
+                  autoHeight
+                  checkboxSelection
+                  disableSelectionOnClick
+                  components={{ Toolbar: GridToolbar }}
+                  getRowHeight={() => "auto"}
+                />
+              )}
             </div>
           </div>
         </Grid>
       </Grid>
+      <Snackbar open={categoryAdminState.status.message} onClose={resetStatus} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert onClose={resetStatus} severity={categoryAdminState.status.success ? "success" : "error"} sx={{ width: '100%' }}>
+          {categoryAdminState.status.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

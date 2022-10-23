@@ -156,6 +156,7 @@ const Input = ({
             onClick={onClick}
             name={name}
             {...props}
+            defaultValue={value}
           />
         </div>
       );

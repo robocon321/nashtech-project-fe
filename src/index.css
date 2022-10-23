@@ -94,3 +94,18 @@ ul {
   margin: 10px 0px;
   width: 100%;
 }
+
+.visible, .invisible {
+  color: white;
+  padding: 10px;
+  width: 100px;
+  text-align: center;
+}
+
+.visible {
+  background-color: green;
+}
+
+.invisible {
+  background-color: orange;
+}

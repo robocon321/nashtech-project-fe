@@ -1,9 +1,12 @@
-import CategoryList from "../../components/admin/category/CategoryList"
+import CategoryList from "../../components/admin/category/CategoryList";
+import CategoryAdminProvider from "../../contexts/providers/admin/CategoryAdminProvider";
 
 const CategoryListPage = props => {
   return (
     <main>
-      <CategoryList />
+      <CategoryAdminProvider>
+        <CategoryList />
+      </CategoryAdminProvider>
     </main>
   )
 }
