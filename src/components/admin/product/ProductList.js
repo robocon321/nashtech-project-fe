@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Slider, Grid, Rating, Button } from "@mui/material";
+import { useState, useContext, useEffect } from 'react';
+import { Slider, Grid, Rating, Button, Snackbar, Alert } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -10,187 +10,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 import styles from "./ProductList.module.css";
 import Input from "../../common/Input";
-
-const rows = [{
-  "id": 1,
-  "product": "Pants Custom Dry Clean",
-  "thumbnail": "http://dummyimage.com/103x100.png/dddddd/000000",
-  "stock": 32,
-  "price": 64,
-  "orders": 85,
-  "rating": 1
-}, {
-  "id": 2,
-  "product": "Wine - German Riesling",
-  "thumbnail": "http://dummyimage.com/156x100.png/5fa2dd/ffffff",
-  "stock": 12,
-  "price": 54,
-  "orders": 34,
-  "rating": 4
-}, {
-  "id": 3,
-  "product": "Avocado",
-  "thumbnail": "http://dummyimage.com/224x100.png/5fa2dd/ffffff",
-  "stock": 4,
-  "price": 59,
-  "orders": 40,
-  "rating": 3
-}, {
-  "id": 4,
-  "product": "Sandwich Wrap",
-  "thumbnail": "http://dummyimage.com/113x100.png/5fa2dd/ffffff",
-  "stock": 100,
-  "price": 14,
-  "orders": 10,
-  "rating": 2
-}, {
-  "id": 5,
-  "product": "Pasta - Ravioli",
-  "thumbnail": "http://dummyimage.com/110x100.png/dddddd/000000",
-  "stock": 90,
-  "price": 31,
-  "orders": 21,
-  "rating": 3
-}, {
-  "id": 6,
-  "product": "Beer - Muskoka Cream Ale",
-  "thumbnail": "http://dummyimage.com/113x100.png/cc0000/ffffff",
-  "stock": 68,
-  "price": 17,
-  "orders": 3,
-  "rating": 4
-}, {
-  "id": 7,
-  "product": "Pears - Fiorelle",
-  "thumbnail": "http://dummyimage.com/182x100.png/5fa2dd/ffffff",
-  "stock": 5,
-  "price": 20,
-  "orders": 7,
-  "rating": 5
-}, {
-  "id": 8,
-  "product": "Flour - Bran, Red",
-  "thumbnail": "http://dummyimage.com/183x100.png/cc0000/ffffff",
-  "stock": 95,
-  "price": 21,
-  "orders": 12,
-  "rating": 1
-}, {
-  "id": 9,
-  "product": "Juice - Tomato, 48 Oz",
-  "thumbnail": "http://dummyimage.com/149x100.png/5fa2dd/ffffff",
-  "stock": 91,
-  "price": 45,
-  "orders": 67,
-  "rating": 3
-}, {
-  "id": 10,
-  "product": "Cocoa Feuilletine",
-  "thumbnail": "http://dummyimage.com/190x100.png/dddddd/000000",
-  "stock": 48,
-  "price": 80,
-  "orders": 46,
-  "rating": 5
-}, {
-  "id": 11,
-  "product": "Beer - Moosehead",
-  "thumbnail": "http://dummyimage.com/239x100.png/dddddd/000000",
-  "stock": 7,
-  "price": 19,
-  "orders": 45,
-  "rating": 2
-}, {
-  "id": 12,
-  "product": "Mcgillicuddy Vanilla Schnap",
-  "thumbnail": "http://dummyimage.com/215x100.png/5fa2dd/ffffff",
-  "stock": 46,
-  "price": 4,
-  "orders": 97,
-  "rating": 4
-}, {
-  "id": 13,
-  "product": "Tarragon - Primerba, Paste",
-  "thumbnail": "http://dummyimage.com/155x100.png/cc0000/ffffff",
-  "stock": 38,
-  "price": 8,
-  "orders": 8,
-  "rating": 3
-}, {
-  "id": 14,
-  "product": "Apron",
-  "thumbnail": "http://dummyimage.com/238x100.png/ff4444/ffffff",
-  "stock": 59,
-  "price": 35,
-  "orders": 59,
-  "rating": 5
-}, {
-  "id": 15,
-  "product": "Lemons",
-  "thumbnail": "http://dummyimage.com/107x100.png/dddddd/000000",
-  "stock": 7,
-  "price": 60,
-  "orders": 84,
-  "rating": 1
-}]
-
-const columns = [
-  {
-    field: 'product',
-    headerName: 'Product',
-    minWidth: 150,
-    flex: 1.5
-  },
-  { 
-    field: 'thumbnail', 
-    headerName: 'Thumbnail',
-    minWidth: 100,
-    flex: 1,
-    renderCell: (params) => {
-      return (
-        <div className={styles['image-row-table']}>
-          <img src={params.value} alt="Not found" />
-        </div>
-      )
-    }
-  },
-  {
-    field: 'stock',
-    headerName: 'Stock',
-    minWidth: 50,
-    flex: 0.5
-  },
-  {
-    field: 'price',
-    headerName: 'Price',
-    minWidth: 100,
-    flex: 1
-  },
-  {
-    field: 'orders',
-    headerName: 'Orders',
-    minWidth: 50,
-    flex: 0.5
-  },
-  {
-    field: 'rating',
-    headerName: 'Rating',
-    minWidth: 50,
-    flex: 0.5
-  },
-  {
-    headerName: 'Action',
-    minWidth: 100,
-    flex: 1,
-    renderCell: (params) => {
-      return (
-        <div className={styles['btn-row-table']}>
-          <Button variant="contained" color="success"><FaRegEye /></Button>
-          <Button variant="contained" color="error"><FaTrashAlt /></Button>
-        </div>
-      )
-    }
-  }
-];
+import { ProductAdminContext } from "../../../contexts/providers/admin/ProductAdminProvider";
 
 function valuetext(value) {
   return `$${value}`;
@@ -199,7 +19,98 @@ function valuetext(value) {
 const minDistance = 10;
 
 const ProductList = (props) => {
-  const [rangePrice, setRangePrice] = useState([20, 37]);
+  const { 
+    productAdminState,    
+    setPage,
+    setSort,
+    setSelected,
+    setSearch,
+    deleteProduct,
+    resetStatus,
+    setRating,
+    setPrice,
+    changeCategory
+  } = useContext(ProductAdminContext);
+
+  const [rangePrice, setRangePrice] = useState([10000, 10000000]);
+
+  useEffect(() => {
+    setPrice(`${rangePrice[0]},${rangePrice[1]}`);
+  }, [rangePrice]);
+  
+  const columns = [
+    {
+      field: 'name',
+      headerName: 'Product',
+      minWidth: 150,
+      flex: 1.5
+    },
+    { 
+      field: 'thumbnail', 
+      headerName: 'Thumbnail',
+      minWidth: 100,
+      flex: 1,
+      renderCell: (params) => {
+        return (
+          <div className={styles['image-row-table']}>
+            <img src={params.value} alt="Not found" />
+          </div>
+        )
+      }
+    },
+    {
+      field: 'stock',
+      headerName: 'Stock',
+      minWidth: 50,
+      flex: 0.5
+    },
+    {
+      field: 'realPrice',
+      headerName: 'Real price',
+      minWidth: 100,
+      flex: 1
+    },
+    {
+      field: 'sellPrice',
+      headerName: 'Sell price',
+      minWidth: 100,
+      flex: 1
+    },
+    {
+      field: 'rating',
+      headerName: 'Rating',
+      minWidth: 50,
+      flex: 0.5,
+      renderCell: (params) => Math.round(params.row.rating * 10) / 10
+    },
+    {
+      field: "visibleType",
+      headerName: "Visible",
+      minWidth: 150,
+      flex: 1.5,
+      renderCell: (params) => {
+        return <div className={params.row.visibleType === 'VISIBLE' ? 'visible' : 'invisible'}>{params.row.visibleType}</div>;
+      },
+    },    
+    {
+      headerName: 'Action',
+      minWidth: 100,
+      flex: 1,
+      renderCell: (params) => {
+        return (
+          <div className={styles['btn-row-table']}>
+              <Button variant="contained" color="success" onClick={() => {}}>
+                <FaRegEye />
+              </Button>
+              <span> </span>
+              <Button variant="contained" color="error" onClick={() => deleteProduct([params.row.id])}>
+                <FaTrashAlt />
+              </Button>
+          </div>
+        )
+      }
+    }
+  ];
 
   const onRangePriceChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -230,28 +141,16 @@ const ProductList = (props) => {
               <AccordionDetails>
                 <Input 
                   type='checkbox'
-                  name='category'
+                  name='product'
                   style={{
                     margin: '10px 0px'
                   }}
                   props={{
-                    data: [
-                      {
-                        title: 'Grocery',
-                        value: 'grocery'
-                      },
-                      {
-                        title: 'Fashion',
-                        value: 'fashion'
-                      },
-                      {
-                        title: 'Watches',
-                        value: 'watches'
-                      }
-                    ],
-                    key: 'title',
-                    value: 'value'
+                    data: productAdminState.categories,
+                    key: 'name',
+                    value: 'id'
                   }}
+                  onChange={(e) => changeCategory()}
                 />
               </AccordionDetails>
             </Accordion>
@@ -267,13 +166,16 @@ const ProductList = (props) => {
               <AccordionDetails>
               <Slider
                   getAriaLabel={() => 'Minimum distance'}
+                  defaultValue={[10000, 10000000]}
                   value={rangePrice}
                   onChange={onRangePriceChange}
                   valueLabelDisplay="auto"
                   getAriaValueText={valuetext}
                   disableSwap
+                  max={10000000}
+                  min={10000}
                 />
-                <div className={styles['range-price']}><span>${rangePrice[0]}</span><span>${rangePrice[1]}</span></div>
+                <div className={styles['range-price']}><span>{rangePrice[0]} VNĐ</span><span>{rangePrice[1]} VNĐ</span></div>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -288,23 +190,23 @@ const ProductList = (props) => {
               <AccordionDetails>
               <AccordionDetails>
                 <div className={styles['rating-filter']}>
-                  <div className={styles['rating-row']}>
+                  <div className={styles['rating-row']} onClick={() => setRating('4,5')}>
                     <Rating name="read-only" value={5} readOnly />
                     <span className={styles['value-rating']}>5 stars</span>
                   </div>
-                  <div className={styles['rating-row']}>
+                  <div className={styles['rating-row']} onClick={() => setRating('3,4')}>
                     <Rating name="read-only" value={4} readOnly />
                     <span className={styles['value-rating']}>4 stars</span>
                   </div>
-                  <div className={styles['rating-row']}>
+                  <div className={styles['rating-row']} onClick={() => setRating('2,3')}>
                     <Rating name="read-only" value={3} readOnly />
                     <span className={styles['value-rating']}>3 stars</span>
                   </div>
-                  <div className={styles['rating-row']}>
+                  <div className={styles['rating-row']} onClick={() => setRating('1,2')}>
                     <Rating name="read-only" value={2} readOnly />
                     <span className={styles['value-rating']}>2 stars</span>
                   </div>
-                  <div className={styles['rating-row']}>
+                  <div className={styles['rating-row']} onClick={() => setRating('0,1')}>
                     <Rating name="read-only" value={1} readOnly />
                     <span className={styles['value-rating']}>1 star</span>
                   </div>
@@ -321,30 +223,55 @@ const ProductList = (props) => {
               <Button variant="contained" className={styles['btn-add']}><RiAddLine /> NEW PRODUCT</Button>
               <div className={styles["search-box"]}>
                 <span className={styles["icon-search-box"]}><FaSearch /></span>
-                <input className={styles["input-search-box"]} type="text" placeholder="Search products..." />
+                <input className={styles["input-search-box"]} 
+                  type="text" placeholder="Search products..." 
+                  value={productAdminState.conditions.LIKE_name}
+                  onChange={setSearch}
+                  name="LIKE_name"
+                  />
               </div>
             </div>
             <div className={styles['row-actions']}>
               <span></span>
-              <span className={styles['select-item']}>
-                <b>Select 1 items <span className={styles['action-remove']}>Remove</span></b>
-              </span>
-            </div>
+              <span className={styles["select-item"]}>
+                <b>
+                  Select {productAdminState.selected.length} items
+                  {productAdminState.selected.length ? (
+                    <span className={styles["action-remove"]} onClick={() => deleteProduct(productAdminState.selected)}>Remove</span>
+                  ) : (
+                    <span></span>
+                  )}
+                </b>
+              </span>            </div>
             <div style={{ width: '100%' }}>
-              <DataGrid
-                columns={columns}
-                rows={rows}
-                autoHeight 
-                pageSize={7}
-                checkboxSelection
-                disableSelectionOnClick 
-                components={{ Toolbar: GridToolbar }}
-                getRowHeight={() => 'auto'}
+              {productAdminState.products && <DataGrid
+                  rows={productAdminState.products.content}
+                  columns={columns}
+                  rowCount={productAdminState.products.totalElements}
+                  pageSize={productAdminState.conditions.size}
+                  page={productAdminState.products.number}
+                  onPageChange={setPage}
+                  paginationMode="server"
+                  sortingMode="server"
+                  onSortModelChange={setSort}
+                  onSelectionModelChange={setSelected}
+                  selectionModel={productAdminState.selected}
+                  autoHeight
+                  checkboxSelection
+                  disableSelectionOnClick
+                  components={{ Toolbar: GridToolbar }}
+                  getRowHeight={() => "auto"}
               />
+              }
             </div>
           </div>
         </Grid>
       </Grid>
+      <Snackbar open={productAdminState.status.message} onClose={resetStatus} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert onClose={resetStatus} severity={productAdminState.status.success ? "success" : "error"} sx={{ width: '100%' }}>
+          {productAdminState.status.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

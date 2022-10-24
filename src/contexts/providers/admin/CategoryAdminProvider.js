@@ -57,10 +57,18 @@ const CategoryAdminProvider = (props) => {
   };
 
   const setSort = (sort) => {
-    setFieldConditionAction({
-      field: "sort",
-      value: sort.length ? sort[0].field + "__" + sort[0].sort : "id__asc",
-    })(dispatch);
+    if(sort[0].field == 'visibleType') {
+      setFieldConditionAction({
+        field: "sort",
+        value: sort.length ? 'status' + "__" + sort[0].sort : "id__asc",
+      })(dispatch);
+        
+    } else {
+      setFieldConditionAction({
+        field: "sort",
+        value: sort.length ? sort[0].field + "__" + sort[0].sort : "id__asc",
+      })(dispatch);  
+    }   
   };
 
   const setSelected = (selected) => {

@@ -1,9 +1,12 @@
-import ProductList from "../../components/admin/product/ProductList"
+import ProductList from "../../components/admin/product/ProductList";
+import ProductAdminProvider from "../../contexts/providers/admin/ProductAdminProvider";
 
 const ProductListPage = (props) => {
   return (
     <main>
-      <ProductList />
+      <ProductAdminProvider>
+        <ProductList />
+      </ProductAdminProvider>
     </main>
   )
 }
