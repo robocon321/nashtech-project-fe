@@ -53,7 +53,7 @@ export const changeFieldAction = ({ field, value }) => (dispatch) => {
       type: ACTIONS.CHANGE_FIELD,
       payload: { field, value },
     });
-  };
+};
 
 export const setStatusAction = (status) => (dispatch) => {
   dispatch({

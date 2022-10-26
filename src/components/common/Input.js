@@ -1,7 +1,6 @@
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import styles from "./Input.module.css";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CustomEditor from "./CustomEditor";
 
 const defaultFunc = () => {};
 
@@ -29,26 +28,13 @@ const Input = ({
             </label>
           )}  
           <div style={{...style}}>
-            <CKEditor
+            <CustomEditor
               id={id}
               name={name}
               placeholder={placeholder}              
               props={{...props}}
-              editor={ClassicEditor}
               data={value}
-              onReady={(editor) => {
-                console.log("Editor is ready to use!", editor);
-              }}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                console.log({ event, editor, data });
-              }}
-              onBlur={(event, editor) => {
-                console.log("Blur.", editor);
-              }}
-              onFocus={(event, editor) => {
-                console.log("Focus.", editor);
-              }}
+              onChange={onChange}
             />
           </div>            
         </div>
@@ -169,20 +155,36 @@ const Input = ({
               {required && <span className={styles["required"]}>*</span>}
             </label>
           )}
-
-          <input
-            className={styles["input"]}
-            type={type}
-            placeholder={placeholder}
-            required={required}
-            id={id}
-            style={{ ...style }}
-            onChange={onChange}
-            onClick={onClick}
-            name={name}
-            value={value}
-            {...props}
-          />
+          {
+            value === '' ? (
+            <input
+              className={styles["input"]}
+              type={type}
+              placeholder={placeholder}
+              required={required}
+              id={id}
+              style={{ ...style }}
+              onChange={onChange}
+              onClick={onClick}
+              name={name}
+              {...props}
+            />
+            ) : (
+            <input
+              className={styles["input"]}
+              type={type}
+              placeholder={placeholder}
+              required={required}
+              id={id}
+              style={{ ...style }}
+              onChange={onChange}
+              onClick={onClick}
+              name={name}
+              value={value}
+              {...props}
+            />
+            )
+          }
         </div>
       );
   }

@@ -68,7 +68,6 @@ const reducer = (state = initState, { type, payload }) => {
       })
       break;
     case ACTIONS.UPDATE_CATEGORY:
-      console.log(payload);
       state.categories.content = state.categories.content.map(item =>  item.id === payload.id ? payload : item);
       break;
     default:

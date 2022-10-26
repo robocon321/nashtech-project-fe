@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^35.2.1",
+    "@ckeditor/ckeditor5-editor-classic": "^35.2.1",
     "@ckeditor/ckeditor5-react": "^5.0.2",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -24,6 +25,7 @@
     "google-map-react": "^2.2.0",
     "moment": "^2.29.4",
     "query-string": "^7.1.1",
+    "raw-loader": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-maps": "^9.4.5",
