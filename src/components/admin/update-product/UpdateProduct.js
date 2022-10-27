@@ -1,20 +1,21 @@
-import { useContext } from 'react';
-import { Grid, Button, Snackbar, Alert } from "@mui/material";
+import { useContext } from "react";
+import { Grid, Button, Snackbar, Alert, Switch } from "@mui/material";
 import Input from "../../common/Input";
-import styles from "./CreateProduct.module.css";
-import { NewProductAdminContext } from '../../../contexts/providers/admin/NewProductAdminProvider';
+import styles from "./UpdateProduct.module.css";
+import { UpdateProductAdminContext } from "../../../contexts/providers/admin/UpdateProductAdminProvider";
 
-const CreateProduct = (props) => {
+const UpdateProduct = (props) => {
   const {
-    newProductAdminState,
+    updateProductAdminState,
     changeField,
     changeThumbnail,
     changeGallery,
     changeRichtext,
     changeCategory,
     resetStatus,
-    submitForm
-  } = useContext(NewProductAdminContext);
+    submitForm,
+    switchVisible
+  } = useContext(UpdateProductAdminContext);
 
   return (
     <>
@@ -28,7 +29,7 @@ const CreateProduct = (props) => {
               title="Product title"
               placeholder="Enter product title"
               onChange={changeField}
-              value={newProductAdminState.product.name}
+              value={updateProductAdminState.product.name}
               style={{
                 marginBottom: 20,
               }}
@@ -40,7 +41,7 @@ const CreateProduct = (props) => {
               title="Short description"
               placeholder="Enter your short description"
               onChange={changeField}
-              value={newProductAdminState.product.description}
+              value={updateProductAdminState.product.description}
               props={{
                 row: 20,
               }}
@@ -54,6 +55,7 @@ const CreateProduct = (props) => {
               name="fullDescription"
               title="Full description"
               onChange={changeRichtext}
+              value={updateProductAdminState.product.fullDescription}
               style={{
                 marginBottom: 20,
               }}
@@ -80,23 +82,23 @@ const CreateProduct = (props) => {
               required={false}
               props={{
                 accept: "image/png, image/jpeg, image/jpg",
-                multiple: true
+                multiple: true,
               }}
               style={{
                 marginBottom: 20,
               }}
             />
             <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6}>
                 <Input
                   id="real-price"
                   type="number"
                   name="realPrice"
                   title="Real price"
                   onChange={changeField}
-                  value={newProductAdminState.product.realPrice}
+                  value={updateProductAdminState.product.realPrice}
                   style={{
-                    marginBottom: 20
+                    marginBottom: 20,
                   }}
                   props={{
                     min: 1,
@@ -105,15 +107,15 @@ const CreateProduct = (props) => {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-              <Input
+                <Input
                   id="sell-price"
                   type="number"
                   name="sellPrice"
                   title="Sell price"
                   onChange={changeField}
-                  value={newProductAdminState.product.sellPrice}
+                  value={updateProductAdminState.product.sellPrice}
                   style={{
-                    marginBottom: 20
+                    marginBottom: 20,
                   }}
                   props={{
                     min: 1,
@@ -121,7 +123,6 @@ const CreateProduct = (props) => {
                   placeholder="$80"
                 />
               </Grid>
-
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={12} md={6} lg={3}>
@@ -131,7 +132,7 @@ const CreateProduct = (props) => {
                   name="width"
                   title="Width(cm)"
                   onChange={changeField}
-                  value={newProductAdminState.product.width}
+                  value={updateProductAdminState.product.width}
                   props={{
                     min: 1,
                   }}
@@ -145,7 +146,7 @@ const CreateProduct = (props) => {
                   name="height"
                   title="Height(cm)"
                   onChange={changeField}
-                  value={newProductAdminState.product.height}
+                  value={updateProductAdminState.product.height}
                   props={{
                     min: 1,
                   }}
@@ -159,7 +160,7 @@ const CreateProduct = (props) => {
                   name="length"
                   title="Length(cm)"
                   onChange={changeField}
-                  value={newProductAdminState.product.length}
+                  value={updateProductAdminState.product.length}
                   props={{
                     min: 1,
                   }}
@@ -173,7 +174,7 @@ const CreateProduct = (props) => {
                   name="weight"
                   title="Weight(gram)"
                   onChange={changeField}
-                  value={newProductAdminState.product.weight}
+                  value={updateProductAdminState.product.weight}
                   props={{
                     min: 1,
                   }}
@@ -185,30 +186,30 @@ const CreateProduct = (props) => {
         </Grid>
         <Grid item xs={12} lg={4}>
           <div className={styles["col-create-product"]}>
-            <Input 
-                title='Categories'                
-                type='checkbox'
-                name='categories'
-                style={{
-                  margin: '10px 0px'
-                }}
-                props={{
-                  data: newProductAdminState.categories,
-                  key: 'name',
-                  value: 'id'
-                }}
-                onChange={(e) => changeCategory()}
-              />
+            <Input
+              title="Categories"
+              type="checkbox"
+              name="categories"
+              style={{
+                margin: "10px 0px",
+              }}
+              props={{
+                data: updateProductAdminState.categories,
+                key: "name",
+                value: "id",
+              }}
+              onChange={(e) => changeCategory()}
+            />
             <Input
               id="stock"
               type="number"
               name="stock"
               title="Stock"
               onChange={changeField}
-              value={newProductAdminState.product.stock}
+              value={updateProductAdminState.product.stock}
               placeholder="Enter Stock"
               style={{
-                marginBottom: 20
+                marginBottom: 20,
               }}
             />
 
@@ -219,10 +220,10 @@ const CreateProduct = (props) => {
               title="Slug"
               required={true}
               onChange={changeField}
-              value={newProductAdminState.product.slug}
+              value={updateProductAdminState.product.slug}
               placeholder="Enter slug"
               style={{
-                marginBottom: 20
+                marginBottom: 20,
               }}
             />
             <Input
@@ -232,10 +233,10 @@ const CreateProduct = (props) => {
               title="Meta Title"
               placeholder="Enter meta title"
               onChange={changeField}
-              value={newProductAdminState.product.metaTitle}
+              value={updateProductAdminState.product.metaTitle}
               required={false}
               style={{
-                marginBottom: 20
+                marginBottom: 20,
               }}
             />
             <Input
@@ -246,9 +247,9 @@ const CreateProduct = (props) => {
               placeholder="Enter meta keyword"
               required={false}
               onChange={changeField}
-              value={newProductAdminState.product.metaKeyword}
+              value={updateProductAdminState.product.metaKeyword}
               style={{
-                marginBottom: 20
+                marginBottom: 20,
               }}
             />
             <Input
@@ -259,25 +260,52 @@ const CreateProduct = (props) => {
               placeholder="Enter meta description"
               required={false}
               onChange={changeField}
-              value={newProductAdminState.product.metaDescription}
+              value={updateProductAdminState.product.metaDescription}
               style={{
-                marginBottom: 20
+                marginBottom: 20,
               }}
               props={{
-                rows: 5
+                rows: 5,
               }}
             />
-            <Button variant="contained" onClick={submitForm}>Submit</Button>
+            <label>Visible</label>
+            <Switch
+              checked={
+                updateProductAdminState.product.visibleType === "VISIBLE"
+              }
+              onChange={() =>
+                switchVisible(
+                  updateProductAdminState.product.visibleType == "VISIBLE"
+                    ? "INVISIBLE"
+                    : "VISIBLE"
+                )
+              }
+              inputProps={{ "aria-label": "controlled" }}
+            />
+            <br />
+            <Button variant="contained" onClick={submitForm}>
+              Submit
+            </Button>
           </div>
         </Grid>
       </Grid>
-      <Snackbar open={newProductAdminState.status.message} onClose={resetStatus} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-        <Alert onClose={resetStatus} severity={newProductAdminState.status.success ? "success" : "error"} sx={{ width: '100%' }}>
-          {newProductAdminState.status.message}
+      <Snackbar
+        open={updateProductAdminState.status.message}
+        onClose={resetStatus}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={resetStatus}
+          severity={
+            updateProductAdminState.status.success ? "success" : "error"
+          }
+          sx={{ width: "100%" }}
+        >
+          {updateProductAdminState.status.message}
         </Alert>
-      </Snackbar>    
+      </Snackbar>
     </>
   );
 };
 
-export default CreateProduct;
+export default UpdateProduct;
