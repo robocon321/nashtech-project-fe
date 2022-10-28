@@ -80,6 +80,10 @@ ul {
   display: block;
 }
 
+.dropdown-content a {
+  color: black;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;

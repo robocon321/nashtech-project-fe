@@ -6,9 +6,11 @@ import "@fortawesome/fontawesome-free-solid";
 
 import styles from "./Header.module.css";
 import { AppContext } from "../../contexts/providers/AppProvider";
+import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayoutProvider";
 
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);
+  const { clientState } = useContext(ClientLayoutContext);
   
   return (
     <header className={styles["header"]}>
@@ -106,11 +108,12 @@ const Header = (props) => {
             <div className={styles["filterbox-center-header"]}>
               <div className={`dropdown ${styles["category-center-header"]}`}>
                 <span>All categories</span>
-                <div className="dropdown-content bg-white">
-                  <p>Category 1</p>
-                  <p>Category 2</p>
-                  <p>Category 3</p>
-                  <p>Category 4</p>
+                <div className={`dropdown-content bg-white ${styles["dropdown-content"]}`}>
+                  {
+                    clientState.categories.map(item => (
+                      <a href="#" key={item.id}><p>{item.name}</p></a>                      
+                    ))
+                  }
                 </div>
               </div>
               <div className={styles["divide-center-header"]}> | </div>

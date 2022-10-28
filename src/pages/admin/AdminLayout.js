@@ -16,7 +16,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const LayoutAdmin = (props) => {
+const AdminLayout = (props) => {
   const { appState } = useContext(AppContext);
   const navigation = useNavigate();
   const [open, setOpen] = useState(false);
@@ -51,4 +51,4 @@ const LayoutAdmin = (props) => {
   );
 };
 
-export default LayoutAdmin;
+export default AdminLayout;

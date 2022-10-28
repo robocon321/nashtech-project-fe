@@ -4,8 +4,8 @@ import { AppContext } from "./contexts/providers/AppProvider";
 import Loading from "./components/common/Loading";
 import { Routes, Route } from "react-router-dom";
 
-import LayoutAdmin from "./pages/admin/LayoutAdmin";
-import LayoutClient from "./pages/client/LayoutClient";
+import AdminLayout from "./pages/admin/AdminLayout";
+import ClientLayout from "./pages/client/ClientLayout";
 
 import NotFound from "./pages/404/NotFoundPage";
 import SignInPage from "./pages/auth/SignInPage";
@@ -43,7 +43,7 @@ function App() {
   } else {
     return (
       <Routes>
-        <Route path="/" element={<LayoutClient />}>
+        <Route path="/" element={<ClientLayout />}>
           <Route path="" element={<HomePage />} />
           <Route path="product" element={<ProductPage />} />
           <Route path="product/:id" element={<ProductDetailPage />} />
@@ -56,7 +56,7 @@ function App() {
           <Route path="order-history" element={<OrderHistoryPage />} />
           <Route path="order-history/:id" element={<OrderDetailPage />} />
         </Route>
-        <Route path="/admin" element={<LayoutAdmin />}>
+        <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<ProductListPage />} />
           <Route path="products/create" element={<CreateProductPage />} />

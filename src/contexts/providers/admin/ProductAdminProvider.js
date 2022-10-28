@@ -103,7 +103,7 @@ const ProductAdminProvider = (props) => {
       if(categoryEles[i].checked) listCategorySelected.push(categoryEles[i].value);
     }
     setFieldConditionAction({
-      field: 'OR_categories.id',
+      field: 'IN_categories.id',
       value: listCategorySelected.join(',')
     })(dispatch);
   }

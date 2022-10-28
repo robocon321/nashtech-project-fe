@@ -121,6 +121,9 @@
   color: white;
 }
 
+.category-center-header .dropdown-content {
+  width: 300px;
+}
 
 /* end center header */
 

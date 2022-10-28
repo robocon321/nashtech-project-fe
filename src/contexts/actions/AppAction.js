@@ -50,7 +50,6 @@ export const loadAccountAction = () => async (dispatch) => {
 }
 
 export const logoutAction = () => (dispatch) => {
-  console.log(1);
   localStorage.removeItem(LOCAL_STORAGE_TOKEN);
   dispatch({
     type: ACTIONS.SET_USER,

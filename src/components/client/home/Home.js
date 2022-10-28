@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Container } from '@mui/material';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,43 +17,59 @@ import { FiMonitor } from 'react-icons/fi';
 import { BsPhone } from 'react-icons/bs';
 import { AiTwotoneAudio } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { HomeContext } from "../../../contexts/providers/client/HomeProvider";
 
-const Product = (item) => {
+const Product = ({item}) => {
+  const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  });
+  const stars = [];
+  for(var i = 1; i <= 5; i ++) {
+    if(i <= item.rating) {
+      stars.push(<span className={styles["star"] + " " + styles["active"]} key={i}><FaStar /></span>);
+    } else {
+      stars.push(<span className={styles["star"]} key={i}><FaStar /></span>);
+    }
+  }
+
   return (
     <div className={styles["product"]}>
-      <div className={styles["top-product"]}>
-        <img src="/images/product_1.jpg" alt="Not found" />
-        <div className={"flex-center " + styles["counter-product"]}><span>615 : 10 : 31 : 38</span></div>
-        <div className={styles["discount-product"]}>-2%</div>
+    <div className={styles["top-product"]}>
+      <img src={item.thumbnail} alt="Not found" />
+      <div className={"flex-center " + styles["counter-product"]}><span>615 : 10 : 31 : 38</span></div>
+      <div className={styles["discount-product"]}>-{Math.ceil((item.realPrice - item.sellPrice) * 100 / item.realPrice)}%</div>
+    </div>
+    <div className={styles["bottom-product"]}>
+      <div className={styles["stars"]}>
+        {
+          stars.map((item) => item)
+        }
       </div>
-      <div className={styles["bottom-product"]}>
-        <div className={styles["stars"]}>
-          <span className={styles["star"] + " " + styles["active"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-        </div>
-        <div className={styles["title-product"]}>
-          <Link to="/product/1">Sony XB10 Portable Wireless</Link>
-        </div>
-        <div className={styles["price-product"]}>
-          <span className={styles["discount-price-product"]}>$104.00</span>
-          <span className={styles["real-price-product"]}>
-            $80.00
-          </span>
-        </div>
-        <div className={styles["action-links"]}>
-          <span className={"flex-center " + styles["action-link"]}><FaShoppingCart /></span>
-          <span className={"flex-center " + styles["action-link"]}><FaRegHeart /></span>
-          <span className={"flex-center " + styles["action-link"]}><FaRegEye /></span>
-        </div>
+      <div className={styles["title-product"]}>
+        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+      </div>
+      <div className={styles["price-product"]}>
+        <span className={styles["discount-price-product"]}>{formatter.format(item.sellPrice)}</span>
+        <span className={styles["real-price-product"]}>
+          {formatter.format(item.realPrice)}
+        </span>
+      </div>
+      <div className={styles["action-links"]}>
+        <span className={"flex-center " + styles["action-link"]}><FaShoppingCart /></span>
+        <span className={"flex-center " + styles["action-link"]}><FaRegHeart /></span>
+        <span className={"flex-center " + styles["action-link"]}><FaRegEye /></span>
       </div>
     </div>
+  </div>      
   )
+
 }
 
 const Home = (props) => {
+  const { homeState } = useContext(HomeContext);
+  const [tab, setTab] = useState(0);
+
   return (
     <>
       <div className="banners">
@@ -127,9 +143,9 @@ const Home = (props) => {
       <div className={styles["tabproducts"]}>
           <Container>
             <div className={styles["tabs"]}>
-              <div className={styles["tab"] + " " + styles["active"]}>FEATURED</div>
-              <div className={styles["tab"]}>BESTSELLER</div>
-              <div className={styles["tab"]}>SPECIALS</div>
+              <div className={tab === 0 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(0)}>FEATURED</div>
+              <div className={tab === 1 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(1)}>BESTSELLER</div>
+              <div className={tab === 2 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(2)}>NEWEST</div>
             </div>
             <Swiper 
               slidesPerView={1}
@@ -154,30 +170,27 @@ const Home = (props) => {
               modules={[Pagination, Navigation]}
               className="mySwiper"        
               >
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product />
-              </SwiperSlide>
+              {
+                tab === 0 ? homeState.feature_products.map(item => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <Product item={item} />
+                    </SwiperSlide>
+                  )
+                }) : tab === 1 ? homeState.best_seller_products.map(item => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <Product item={item} />
+                    </SwiperSlide>
+                  )
+                }) : homeState.newest_products.map(item => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <Product item={item} />
+                    </SwiperSlide>
+                  )
+                })
+              }
             </Swiper>
           </Container>
       </div>
@@ -239,30 +252,15 @@ const Home = (props) => {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"        
                 >
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
+              {
+                homeState.phone_computer_products.map(item => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <Product item={item} />
+                    </SwiperSlide>
+                  )
+                })
+              }
               </Swiper>
         </Container>
       </div>
@@ -319,30 +317,15 @@ const Home = (props) => {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"        
                 >
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Product />
-                </SwiperSlide>
+               {
+                homeState.tv_camera_products.map(item => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <Product item={item} />
+                    </SwiperSlide>
+                  )
+                })
+              }
               </Swiper>
         </Container>
       </div>

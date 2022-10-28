@@ -4,8 +4,9 @@ import { useContext, useEffect } from "react";
 import HeaderClient from "../../components/client/Header";
 import FooterClient from "../../components/client/Footer";
 import { AppContext } from "../../contexts/providers/AppProvider";
+import ClientLayoutProvider from "../../contexts/providers/client/ClientLayoutProvider";
 
-const LayoutClient = (props) => {
+const ClientLayout = (props) => {
   const { appState } = useContext(AppContext);
   const navigation = useNavigate();
 
@@ -21,11 +22,13 @@ const LayoutClient = (props) => {
 
   return (
     <>
-      <HeaderClient />
-      <Outlet />
-      <FooterClient />
+      <ClientLayoutProvider>
+        <HeaderClient />
+        <Outlet />
+        <FooterClient />
+      </ClientLayoutProvider>
     </>
   );
 };
 
-export default LayoutClient;
+export default ClientLayout;
