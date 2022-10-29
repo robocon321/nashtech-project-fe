@@ -46,10 +46,6 @@ const UpdateProductAdminProvider = props => {
     }
   }, [updateProductAdminState.product.categories])
 
-  useEffect(() => {
-    console.log(updateProductAdminState);
-  }, [updateProductAdminState]);
-
   const loadData = async () => {
     setLoadingAction(true)(dispatch);
 

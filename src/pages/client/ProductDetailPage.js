@@ -1,9 +1,12 @@
 import ProductDetail from '../../components/client/product-detail/ProductDetail';
+import ProductDetailProvider from '../../contexts/providers/client/ProductDetailProvider';
 
 const ProductDetailPage = (props) => {
   return (
     <main>
-      <ProductDetail />
+      <ProductDetailProvider>
+        <ProductDetail />
+      </ProductDetailProvider>
     </main>
   )
 }

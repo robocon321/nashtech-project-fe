@@ -46,7 +46,7 @@ function App() {
         <Route path="/" element={<ClientLayout />}>
           <Route path="" element={<HomePage />} />
           <Route path="product" element={<ProductPage />} />
-          <Route path="product/:id" element={<ProductDetailPage />} />
+          <Route path="product/:slug" element={<ProductDetailPage />} />
           <Route path="about-us" element={<AboutUsPage />} />
           <Route path="contact-us" element={<ContactUsPage />} />
           <Route path="wishlist" element={<WishlistPage />} />
