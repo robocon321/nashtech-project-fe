@@ -92,7 +92,7 @@ const ProductAdminProvider = (props) => {
   }
 
   const validateForm = () => {
-        if(!newProductAdminState.product.name || newProductAdminState.product.name.trim().length === 0) {
+    if(!newProductAdminState.product.name || newProductAdminState.product.name.trim().length === 0) {
       setStatusAction({
         isLoading: false,
         message: 'Product name not blank',

@@ -7,7 +7,7 @@ export const ClientLayoutContext = createContext();
 const initState = {
   categories: [],
   status: {
-    isLoading: false,
+    isLoading: true,
     message: "",
     success: true,
   },

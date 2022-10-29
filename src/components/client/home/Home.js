@@ -11,60 +11,15 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Grid } from '@mui/material';
 import styles from "./Home.module.css";
-import { FaRegUser, FaRegCalendarAlt, FaRegEye, FaRegHeart, FaShoppingCart, FaShippingFast, FaDropbox, FaRegCalendar, FaStar } from 'react-icons/fa';
+import { FaRegUser, FaRegCalendarAlt, FaShippingFast, FaDropbox, FaRegCalendar } from 'react-icons/fa';
 import { TiMessages }  from 'react-icons/ti';
 import { FiMonitor } from 'react-icons/fi';
 import { BsPhone } from 'react-icons/bs';
 import { AiTwotoneAudio } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+
 import { HomeContext } from "../../../contexts/providers/client/HomeProvider";
-
-const Product = ({item}) => {
-  const formatter = new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-  });
-  const stars = [];
-  for(var i = 1; i <= 5; i ++) {
-    if(i <= item.rating) {
-      stars.push(<span className={styles["star"] + " " + styles["active"]} key={i}><FaStar /></span>);
-    } else {
-      stars.push(<span className={styles["star"]} key={i}><FaStar /></span>);
-    }
-  }
-
-  return (
-    <div className={styles["product"]}>
-    <div className={styles["top-product"]}>
-      <img src={item.thumbnail} alt="Not found" />
-      <div className={"flex-center " + styles["counter-product"]}><span>615 : 10 : 31 : 38</span></div>
-      <div className={styles["discount-product"]}>-{Math.ceil((item.realPrice - item.sellPrice) * 100 / item.realPrice)}%</div>
-    </div>
-    <div className={styles["bottom-product"]}>
-      <div className={styles["stars"]}>
-        {
-          stars.map((item) => item)
-        }
-      </div>
-      <div className={styles["title-product"]}>
-        <Link to={`/product/${item.slug}`}>{item.name}</Link>
-      </div>
-      <div className={styles["price-product"]}>
-        <span className={styles["discount-price-product"]}>{formatter.format(item.sellPrice)}</span>
-        <span className={styles["real-price-product"]}>
-          {formatter.format(item.realPrice)}
-        </span>
-      </div>
-      <div className={styles["action-links"]}>
-        <span className={"flex-center " + styles["action-link"]}><FaShoppingCart /></span>
-        <span className={"flex-center " + styles["action-link"]}><FaRegHeart /></span>
-        <span className={"flex-center " + styles["action-link"]}><FaRegEye /></span>
-      </div>
-    </div>
-  </div>      
-  )
-
-}
+import ProductCard from '../../common/ProductCard';
 
 const Home = (props) => {
   const { homeState } = useContext(HomeContext);
@@ -174,19 +129,19 @@ const Home = (props) => {
                 tab === 0 ? homeState.feature_products.map(item => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <Product item={item} />
+                      <ProductCard item={item} />
                     </SwiperSlide>
                   )
                 }) : tab === 1 ? homeState.best_seller_products.map(item => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <Product item={item} />
+                      <ProductCard item={item} />
                     </SwiperSlide>
                   )
                 }) : homeState.newest_products.map(item => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <Product item={item} />
+                      <ProductCard item={item} />
                     </SwiperSlide>
                   )
                 })
@@ -256,7 +211,7 @@ const Home = (props) => {
                 homeState.phone_computer_products.map(item => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <Product item={item} />
+                      <ProductCard item={item} />
                     </SwiperSlide>
                   )
                 })
@@ -321,7 +276,7 @@ const Home = (props) => {
                 homeState.tv_camera_products.map(item => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <Product item={item} />
+                      <ProductCard item={item} />
                     </SwiperSlide>
                   )
                 })

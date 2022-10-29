@@ -12,9 +12,9 @@ const initState = {
   password: '',
   user: {},
   status: {
-    isLoading: false,
+    isLoading: true,
     message: '',
-    success: false
+    success: true
   }
 }
 
@@ -27,7 +27,7 @@ const SignInProvider = (props) => {
   useEffect(() => {
     if(signInState.user.id != null) {
       loadData();
-      if(signInState.user.roleDTOs.filter(item => item.name === 'ADMIN').length === 1) {
+      if(signInState.user.roles.filter(item => item.name === 'ADMIN').length === 1) {
         navigation("/admin/dashboard");
       } else {
         navigation("/");

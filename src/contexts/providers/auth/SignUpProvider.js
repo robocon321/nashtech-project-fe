@@ -17,9 +17,9 @@ const initState = {
     retype_password: ''  
   }, 
   status: {
-    isLoading: false,
+    isLoading: true,
     message: '',
-    success: false
+    success: true
   }
 }
 

@@ -2,9 +2,9 @@ import { ACTIONS } from "../../actions/admin/ProductAdminAction";
 
 const initState = {
   status: {
-    isLoading: false,
+    isLoading: true,
     message: '',
-    success: false
+    success: true
   },
   products: null,
   conditions: {

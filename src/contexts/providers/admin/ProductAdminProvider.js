@@ -12,9 +12,9 @@ import ProductAdminReducer from "../../reducers/admin/ProductAdminReducer";
 
 const initState = {
   status: {
-    isLoading: false,
+    isLoading: true,
     message: "",
-    success: false,
+    success: true,
   },
   products: null,
   conditions: {

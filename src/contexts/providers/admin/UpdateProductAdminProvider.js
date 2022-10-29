@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 
 const initState = {
   status: {
-    isLoading: false,
+    isLoading: true,
     message: "",
     success: true,
   },

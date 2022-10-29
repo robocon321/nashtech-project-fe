@@ -3,7 +3,7 @@ import { convertToSlug } from "../../../utils/convert";
 
 const initState = {
   status: {
-    isLoading: false,
+    isLoading: true,
     message: "",
     success: true,
   },

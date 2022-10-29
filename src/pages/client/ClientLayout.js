@@ -13,7 +13,7 @@ const ClientLayout = (props) => {
   useEffect(() => {
     if (
       appState.user.id != null &&
-      appState.user.roleDTOs.filter((item) => item.name === "ADMIN").length ===
+      appState.user.roles.filter((item) => item.name === "ADMIN").length ===
         1
     ) {
       navigation("/admin/dashboard");

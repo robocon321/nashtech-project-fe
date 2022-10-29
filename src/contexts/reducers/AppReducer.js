@@ -5,7 +5,7 @@ const initState = {
   status: {
     isLoading: true,
     message: '',
-    success: false
+    success: true
   }
 }
 

@@ -4,9 +4,9 @@ import { convertToSlug } from "../../../utils/convert";
 const initState = {
   category: {},
   status: {
-    isLoading: false,
+    isLoading: true,
     message: '',
-    success: false
+    success: true
   },
   categories: null,
   conditions: {

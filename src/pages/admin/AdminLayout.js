@@ -32,7 +32,7 @@ const AdminLayout = (props) => {
   useEffect(() => {
     if (
       appState.user.id == null ||
-      appState.user.roleDTOs.filter((item) => item.name === "CLIENT").length ===
+      appState.user.roles.filter((item) => item.name === "CLIENT").length ===
         1
     ) {
       navigation("/");

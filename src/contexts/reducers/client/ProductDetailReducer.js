@@ -10,14 +10,25 @@ const initState = {
     sort: 'createTime__desc'
   },
   status: {
-    isLoading: false,
+    isLoading: true,
     message: '',
     success: true
-  }
+  },
+  rating_form: {
+    star: 5,
+    content: ''
+  },
+  open_modal: false
 }
 
 const reducer = (state = initState, {type, payload}) => {
   switch (type) {
+    case ACTIONS.TOGGLE_MODAL:
+      state = { ...state, open_modal: !state.open_modal}
+      break;
+    case ACTIONS.SET_RATING_FORM: 
+      state = { ...state, rating_form: { ...state.rating_form, [payload.field]: payload.value}}
+      break;
     case ACTIONS.SET_RELATED_PRODUCTS:
       state = { ...state, related_products: payload};
       break;
@@ -27,7 +38,7 @@ const reducer = (state = initState, {type, payload}) => {
     case ACTIONS.SET_RATING_CONDITIONS:
       state = { ...state, rating_conditions: { ...state.rating_conditions, [payload.field]: payload.value}};
       break;
-    case ACTIONS.SET_RATING:
+    case ACTIONS.SET_RATINGS:
       state = { ...state, ratings: payload};
       break;
     case ACTIONS.SET_STATUS:
