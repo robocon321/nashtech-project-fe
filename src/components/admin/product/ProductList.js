@@ -12,11 +12,10 @@ import styles from "./ProductList.module.css";
 import Input from "../../common/Input";
 import { ProductAdminContext } from "../../../contexts/providers/admin/ProductAdminProvider";
 
-function valuetext(value) {
-  return `$${value}`;
-}
-
-const minDistance = 10;
+const formatter = new Intl.NumberFormat("vi-VN", {
+  style: "currency",
+  currency: "VND",
+});
 
 const ProductList = (props) => {
   const { 
@@ -32,11 +31,15 @@ const ProductList = (props) => {
     changeCategory
   } = useContext(ProductAdminContext);
 
-  const [rangePrice, setRangePrice] = useState([10000, 10000000]);
+  const [value, setValue] = useState([10000, 10000000]);
 
-  useEffect(() => {
-    setPrice(`${rangePrice[0]},${rangePrice[1]}`);
-  }, [rangePrice]);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleMouseUp = (e) => {
+    setPrice(`${value[0]},${value[1]}`);
+  };
   
   const columns = [
     {
@@ -68,13 +71,19 @@ const ProductList = (props) => {
       field: 'realPrice',
       headerName: 'Real price',
       minWidth: 100,
-      flex: 1
+      flex: 1,
+      renderCell: (params) => {
+        return formatter.format(params.value);
+      }
     },
     {
       field: 'sellPrice',
       headerName: 'Sell price',
       minWidth: 100,
-      flex: 1
+      flex: 1,
+      renderCell: (params) => {
+        return formatter.format(params.value);
+      }
     },
     {
       field: 'rating',
@@ -111,18 +120,6 @@ const ProductList = (props) => {
       }
     }
   ];
-
-  const onRangePriceChange = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (activeThumb === 0) {
-      setRangePrice([Math.min(newValue[0], rangePrice[1] - minDistance), rangePrice[1]]);
-    } else {
-      setRangePrice([rangePrice[0], Math.max(newValue[1], rangePrice[0] + minDistance)]);
-    }
-  };
 
   return (
     <>
@@ -166,16 +163,15 @@ const ProductList = (props) => {
               <AccordionDetails>
               <Slider
                   getAriaLabel={() => 'Minimum distance'}
-                  defaultValue={[10000, 10000000]}
-                  value={rangePrice}
-                  onChange={onRangePriceChange}
+                  value={value}
+                  onChange={handleChange}
+                  onMouseUp={handleMouseUp}
                   valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
                   disableSwap
                   max={10000000}
                   min={10000}
                 />
-                <div className={styles['range-price']}><span>{rangePrice[0]} VNĐ</span><span>{rangePrice[1]} VNĐ</span></div>
+                <div className={styles['range-price']}><span>{formatter.format(value[0])}</span><span>{formatter.format(value[1])}</span></div>
               </AccordionDetails>
             </Accordion>
             <Accordion>

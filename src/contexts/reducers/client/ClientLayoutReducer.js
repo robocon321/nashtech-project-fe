@@ -11,6 +11,9 @@ const initState = {
 
 const reducer = (state = initState, { type, payload }) => {
   switch (type) {
+    case ACTIONS.SET_SEARCH:
+      state = { ...state, search: payload};
+      break;
     case ACTIONS.SET_CATEGORIES:
       state = { ...state, categories: payload };
       break;

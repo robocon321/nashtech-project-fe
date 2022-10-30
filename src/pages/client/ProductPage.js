@@ -1,9 +1,12 @@
 import Product from "../../components/client/product/Product";
+import ProductProvider from "../../contexts/providers/client/ProductProvider";
 
 const ProductPage = (props) => {
   return (
     <main>
-      <Product />
+      <ProductProvider>
+        <Product />
+      </ProductProvider>
     </main>
   )
 }

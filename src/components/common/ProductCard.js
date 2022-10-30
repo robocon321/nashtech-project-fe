@@ -7,6 +7,7 @@ const ProductCard = ({ item }) => {
     style: "currency",
     currency: "VND",
   });
+  
   const stars = [];
   for (var i = 1; i <= 5; i++) {
     if (i <= item.rating) {
@@ -28,9 +29,9 @@ const ProductCard = ({ item }) => {
     <div className={styles["product"]}>
       <div className={styles["top-product"]}>
         <img src={item.thumbnail} alt="Not found" />
-        <div className={"flex-center " + styles["counter-product"]}>
+        {/* <div className={"flex-center " + styles["counter-product"]}>
           <span>615 : 10 : 31 : 38</span>
-        </div>
+        </div> */}
         <div className={styles["discount-product"]}>
           -
           {Math.ceil(

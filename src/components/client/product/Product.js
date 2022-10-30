@@ -1,353 +1,269 @@
-import React, { useState } from "react";
-import { Container, Slider, Pagination } from '@mui/material';
-import { Grid } from '@mui/material';
-import { BsGrid3X3GapFill } from 'react-icons/bs';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { FaStar, FaRegEye, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { Container, Slider, Pagination } from "@mui/material";
+import { Grid } from "@mui/material";
+import { BsGrid3X3GapFill } from "react-icons/bs";
+import { AiOutlineMenu } from "react-icons/ai";
+import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import ProductCard from "../../common/ProductCard";
 
-import styles from './Product.module.css';
+import styles from "./Product.module.css";
 import Services from "../../common/Service";
+import { ProductContext } from "../../../contexts/providers/client/ProductProvider";
+import Input from "../../common/Input";
 
-const Product = (item) => {
-  return (
-    <div className={styles["product"]}>
-      <div className={styles["top-product"]}>
-        <img src="/images/product_1.jpg" alt="Not found" />
-        <div className={styles["discount-product"]}>-2%</div>
-      </div>
-      <div className={styles["bottom-product"]}>
-        <div className={styles["stars"]}>
-          <span className={styles["star"] + " " + styles["active"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-          <span className={styles["star"]}><FaStar /></span>
-        </div>
-        <div className={styles["title-product"]}>
-          <Link to="/product/1">Sony XB10 Portable Wireless</Link>
-        </div>
-        <div className={styles["price-product"]}>
-          <span className={styles["discount-price-product"]}>$104.00</span>
-          <span className={styles["real-price-product"]}>
-            $80.00
-          </span>
-        </div>
-        <div className={styles["action-links"]}>
-          <span className={"flex-center " + styles["action-link"]}><FaShoppingCart /></span>
-          <span className={"flex-center " + styles["action-link"]}><FaRegHeart /></span>
-          <span className={"flex-center " + styles["action-link"]}><FaRegEye /></span>
-        </div>
-      </div>
-    </div>
-  )
-}
+const formatter = new Intl.NumberFormat("vi-VN", {
+  style: "currency",
+  currency: "VND",
+});
 
 const Index = (props) => {
-  const [value, setValue] = useState([20, 37]);
+  const {
+    productState,
+    changePageCondition,
+    changeFieldCondition,
+    setField,
+    changeCategory,
+    categories,
+  } = useContext(ProductContext);
+  const [value, setValue] = useState([10000, 10000000]);
   const [layout, setLayout] = useState(3);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const handleMouseUp = (e) => {
+    setField({field: "BT_sellPrice", value: `${value[0]},${value[1]}`});
+  };
+
   return (
     <>
       <div className={styles["wrap-main"]}>
-      <Container>
-        <Grid container spacing={5}>
-          <Grid item md={12} lg={3} order={{md: 2, lg: 1}}>
-            <div className={styles["categories"]}>
-              <h3>Categories</h3>
-              <div className={styles["name-filter"]}>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-              </div>
-            </div>
-            <div className={styles["navigation"]}>
-              <h3>Layered Navigation</h3>
-              <div className={styles["name-filter"]}>
-                <h4>Filter By Price</h4>
-                <hr />
-                <div className={styles["filter-price"]}>
-                  <Slider
-                    getAriaLabel={() => 'Temperature range'}
-                    value={value}
-                    onChange={handleChange}
-                    valueLabelDisplay="auto"
+        <Container>
+          <Grid container spacing={5}>
+            <Grid item md={12} lg={3} order={{ md: 2, lg: 1 }}>
+              <div className={styles["categories"]}>
+                <h3>Categories</h3>
+                <div className={styles["name-filter"]}>
+                  <Input
+                    type="checkbox"
+                    name="product"
+                    style={{
+                      margin: "10px 0px",
+                    }}
+                    props={{
+                      data: categories,
+                      key: "name",
+                      value: "id",
+                    }}
+                    onChange={(e) => changeCategory()}
                   />
-                  <div className={styles["price-filter"]}>
-                    <span className={styles["from-price-filter"]}>${value[0]}</span>
-                    <span>-</span>
-                    <span className={styles["to-price-filter"]}>${value[1]}</span>
-                  </div>
                 </div>
               </div>
-              <div className={styles["name-filter"]}>
-                <h4>Manufacturer</h4>
-                <hr />
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-              </div>              
-              <div className={styles["name-filter"]}>
-                <h4>Select By Color</h4>
-                <hr />
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-                <div className={styles["category"]}>
-                  <input type="checkbox" />
-                  <label>Appliances (18)</label>
-                </div>
-              </div>             
-            </div>
-            <div className={styles["banner"]}>
-              <img src="/images/big-sale-banner.jpg" alt="Not found" />
-            </div>
-            <div className={styles["new-products"]}>
-              <h2>NEW PRODUCTS</h2>
-              <div className={styles["new-product"]}>
-                <div className={styles["image-new-product"]}>
-                  <img src="/images/new-product-1.jpg" alt="Not found" />
-                </div>
-                <div className={styles["info-new-product"]}>
-                  <div className={styles["stars"]}>
-                    <span className={styles["star"] + " " + styles["active"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
+              <div className={styles["navigation"]}>
+                <h3>Layered Navigation</h3>
+                <div className={styles["name-filter"]}>
+                  <h4>Filter By Price</h4>
+                  <hr />
+                  <div className={styles["filter-price"]}>
+                    <Slider
+                      getAriaLabel={() => "Temperature range"}
+                      value={value}
+                      min={10000}
+                      max={10000000}
+                      onChange={handleChange}
+                      onMouseUp={handleMouseUp}
+                      valueLabelDisplay="auto"
+                    />
+                    <div className={styles["price-filter"]}>
+                      <span className={styles["from-price-filter"]}>
+                        {formatter.format(value[0])}
+                      </span>
+                      <span>-</span>
+                      <span className={styles["to-price-filter"]}>
+                        {formatter.format(value[1])}
+                      </span>
+                    </div>
                   </div>
-                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
-                  <div className={styles["price-new-product"]}>$602.00</div>
+                </div>
+                {/* <div className={styles["name-filter"]}>
+                  <h4>Manufacturer</h4>
+                  <hr />
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                </div>
+                <div className={styles["name-filter"]}>
+                  <h4>Select By Color</h4>
+                  <hr />
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                  <div className={styles["category"]}>
+                    <input type="checkbox" />
+                    <label>Appliances (18)</label>
+                  </div>
+                </div> */}
+              </div>
+              <div className={styles["banner"]}>
+                <img src="/images/big-sale-banner.jpg" alt="Not found" />
+              </div>
+              <div className={styles["new-products"]}>
+                <h2>POPULAR PRODUCTS</h2>
+                {productState.popular_products.map((item) => (
+                  <div className={styles["new-product"]}>
+                    <div className={styles["image-new-product"]}>
+                      <img src={item.thumbnail} alt="Not found" />
+                    </div>
+                    <div className={styles["info-new-product"]}>
+                      <div className={styles["stars"]}>
+                        <span
+                          className={item.rating > 0 ? styles["star"] + " " + styles["active"] : styles["star"]}
+                        >
+                          <FaStar />
+                        </span>
+                        <span className={item.rating > 1 ? styles["star"] + " " + styles["active"] : styles["star"]}>
+                          <FaStar />
+                        </span>
+                        <span className={item.rating > 2 ? styles["star"] + " " + styles["active"] : styles["star"]}>
+                          <FaStar />
+                        </span>
+                        <span className={item.rating > 3 ? styles["star"] + " " + styles["active"] : styles["star"]}>
+                          <FaStar />
+                        </span>
+                        <span className={item.rating > 4 ? styles["star"] + " " + styles["active"] : styles["star"]}>
+                          <FaStar />
+                        </span>
+                      </div>
+                      <Link to={item.slug}>
+                        <b>{item.name}</b>
+                      </Link>
+                      <div className={styles["price-new-product"]}>
+                        {formatter.format(item.sellPrice)}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Grid>
+            <Grid item md={12} lg={9} order={{ md: 1, lg: 2 }}>
+              <div className={styles["banner"]}>
+                <img src="/images/save-big-banner.jpg" alt="Not found" />
+              </div>
+              <div className={styles["toolbar"]}>
+                <div className={styles["grid-layout"]}>
+                  <span onClick={() => setLayout(3)}>
+                    <BsGrid3X3GapFill />
+                  </span>
+                  <span onClick={() => setLayout(4)}>
+                    <BsGrid3X3GapFill />
+                  </span>
+                  <span onClick={() => setLayout(2)}>
+                    <AiOutlineMenu />
+                  </span>
+                </div>
+                <div className={styles["range-product"]}>
+                  Showing{" "}
+                  {productState.products.number * productState.products.size} to{" "}
+                  {productState.products.number * productState.products.size +
+                    productState.products.numberOfElements}{" "}
+                  of {productState.products.totalPages} Pages
+                </div>
+                <div className={styles["dropdown-option"]}>
+                  <label>
+                    <b>Show: </b>
+                  </label>
+                  <select name="size" onChange={changeFieldCondition}>
+                    <option value={12}>12</option>
+                    <option value={24}>24</option>
+                    <option value={30}>30</option>
+                  </select>
+                  <label>
+                    <b>Sort by: </b>
+                  </label>
+                  <select name="sort" onChange={changeFieldCondition}>
+                    <option value="createTime__desc">Default</option>
+                    <option value="name__asc">Name (A - Z)</option>
+                    <option value="name__desc">Name (Z - A)</option>
+                    <option value="sellPrice__asc">Price lowest</option>
+                    <option value="sellPrice__desc">Price biggest</option>
+                  </select>
                 </div>
               </div>
-              <div className={styles["new-product"]}>
-                <div className={styles["image-new-product"]}>
-                  <img src="/images/new-product-1.jpg" alt="Not found" />
-                </div>
-                <div className={styles["info-new-product"]}>
-                  <div className={styles["stars"]}>
-                    <span className={styles["star"] + " " + styles["active"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                  </div>
-                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
-                  <div className={styles["price-new-product"]}>$602.00</div>
-                </div>
+              <div className={styles["products"]}>
+                <Grid container spacing={3}>
+                  {productState.products.content &&
+                    productState.products.content.map((item) => (
+                      <Grid item md={12 / layout} key={item.id}>
+                        <ProductCard item={item} />
+                      </Grid>
+                    ))}
+                </Grid>
               </div>
-              <div className={styles["new-product"]}>
-                <div className={styles["image-new-product"]}>
-                  <img src="/images/new-product-1.jpg" alt="Not found" />
-                </div>
-                <div className={styles["info-new-product"]}>
-                  <div className={styles["stars"]}>
-                    <span className={styles["star"] + " " + styles["active"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                  </div>
-                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
-                  <div className={styles["price-new-product"]}>$602.00</div>
-                </div>
+              <div className={styles["pagination"]}>
+                {productState.products.content && (
+                  <Pagination
+                    count={productState.products.totalPages}
+                    page={productState.products.number + 1}
+                    onChange={changePageCondition}
+                    size="large"
+                  />
+                )}
               </div>
-              <div className={styles["new-product"]}>
-                <div className={styles["image-new-product"]}>
-                  <img src="/images/new-product-1.jpg" alt="Not found" />
-                </div>
-                <div className={styles["info-new-product"]}>
-                  <div className={styles["stars"]}>
-                    <span className={styles["star"] + " " + styles["active"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                    <span className={styles["star"]}><FaStar /></span>
-                  </div>
-                  <Link to="/product/1"><b>JBL Flip 3 Portable</b></Link>
-                  <div className={styles["price-new-product"]}>$602.00</div>
-                </div>
-              </div>
-
-            </div>
+            </Grid>
           </Grid>
-          <Grid item md={12} lg={9} order={{md: 1, lg: 2}}>
-            <div className={styles["banner"]}>
-              <img src="/images/save-big-banner.jpg" alt="Not found" />              
-            </div>
-            <div className={styles["toolbar"]}>
-              <div className={styles["grid-layout"]}>
-                <span onClick={() => setLayout(3)}>
-                  <BsGrid3X3GapFill />
-                </span>
-                <span onClick={() => setLayout(4)}>
-                  <BsGrid3X3GapFill />
-                </span>
-                <span onClick={() => setLayout(5)}>
-                  <BsGrid3X3GapFill />
-                </span>
-                <span onClick={() => setLayout(2)}>
-                  <AiOutlineMenu />
-                </span>
-              </div>
-              <div className={styles["range-product"]}>
-                Showing 1 to 12 of 14 (2 Pages)
-              </div>
-              <div className={styles["dropdown-option"]}>
-                <label><b>Show: </b></label>
-                <select>
-                  <option value={12}>12</option>
-                  <option value={24}>24</option>
-                  <option value={50}>50</option>
-                </select>
-                <label><b>Sort by: </b></label>
-                <select>
-                  <option value={12}>Default</option>
-                  <option value={24}>Name (A - Z)</option>
-                  <option value={50}>Name (Z - A)</option>
-                  <option value={50}>Price lowest</option>
-                  <option value={50}>Price biggest</option>
-                </select>
-              </div>
-            </div>
-            <div className={styles["products"]}>
-              <Grid container spacing={3}>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-                <Grid item md={12 / layout}>
-                  <Product />
-                </Grid>
-              </Grid>
-            </div>
-            <div className={styles["pagination"]}>
-              <Pagination count={10} size="large" />
-            </div>
-          </Grid>
-        </Grid>        
-      </Container>
-      <Services />
-
+        </Container>
+        <Services />
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Index;

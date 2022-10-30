@@ -6,7 +6,15 @@ export const ACTIONS = {
   SET_STATUS: 'SET_STATUS',
   SET_LOADING: 'SET_LOADING',
   SET_MESSAGE: 'SET_MESSAGE',
-  SET_SUCCESS: 'SET_SUCCESS'
+  SET_SUCCESS: 'SET_SUCCESS',
+  SET_SEARCH: 'SET_SEARCH'
+}
+
+export const setSearchAction = (search) => dispatch => {
+  dispatch({
+    type: ACTIONS.SET_SEARCH,
+    payload: search
+  })
 }
 
 export const setCategoryAction = () => async dispatch => {

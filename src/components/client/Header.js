@@ -10,7 +10,7 @@ import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayou
 
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);
-  const { clientState } = useContext(ClientLayoutContext);
+  const { clientState, onSearch } = useContext(ClientLayoutContext);
   
   return (
     <header className={styles["header"]}>
@@ -117,9 +117,9 @@ const Header = (props) => {
                 </div>
               </div>
               <div className={styles["divide-center-header"]}> | </div>
-              <input type="text" placeholder="Search entire store here" />
+              <input type="text" placeholder="Search entire store here" id="search" />
             </div>
-            <button className={"bg-green " + styles["btn-search"]}>
+            <button className={"bg-green " + styles["btn-search"]} onClick={onSearch}>
               Search
             </button>
           </div>
