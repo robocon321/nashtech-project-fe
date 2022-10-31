@@ -6,8 +6,17 @@ import { Link } from 'react-router-dom';
 
 import styles from "./Cart.module.css";
 import Input from './../../common/Input';
+import { useContext } from 'react';
+import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
 
 const Cart = (props) => {
+  const { clientState, updateCartItem, deleteCartItem } = useContext(ClientLayoutContext);
+
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+
   return (
     <>
       <Container>
@@ -24,63 +33,38 @@ const Cart = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+          {
+            clientState.cart.cartItems && clientState.cart.cartItems.map(item => (
+              <tr>
               <td>
                 <div className={styles["image-row"]}>
-                  <img src="/images/wishlist-1.jpg" alt="Not found" />                  
+                  <img src={item.product.thumbnail} alt="Not found" />                  
                 </div>
               </td>
               <td>
-                <Link to="/product/1">Koss Porta Pro On Ear</Link>
+                <Link to={'/product/'+item.product.slug}>{item.product.name}</Link>
               </td>
-              <td>$80.00</td>
+              <td>{formatter.format(item.product.sellPrice)}</td>
               <td>
                 <div className={styles['quantity-cart']}>
-                  <input type='number' min={1} /> 
-                  <Button variant="contained" color='success'>
+                  <input type='number' min={1} max={10} value={item.quantity} onChange={(e) => updateCartItem({...item, quantity: e.target.value})} /> 
+                  <Button variant="contained" color='success' onClick={() => updateCartItem({...item, quantity: parseInt(item.quantity) + 1})}>
                     <FaPlus />
                   </Button>
-                  <Button variant="contained" color='warning'>
+                  <Button variant="contained" color='warning' onClick={() => updateCartItem({...item, quantity: parseInt(item.quantity) - 1})}>
                     <RiSubtractFill />
                   </Button>
                 </div>
               </td>
-              <td>$80.00</td>
+              <td>{formatter.format(item.product.sellPrice * item.quantity)}</td>
               <td>
-              <Button variant="contained" color="error">
+              <Button variant="contained" color="error" onClick={() => deleteCartItem([item.id])}>
                 <MdDelete />
               </Button>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div className={styles["image-row"]}>
-                  <img src="/images/wishlist-1.jpg" alt="Not found" />                  
-                </div>
-              </td>
-              <td>
-                <Link to="#">Koss Porta Pro On Ear</Link>
-              </td>
-              <td>$80.00</td>
-              <td>
-                <div className={styles['quantity-cart']}>
-                  <input type='number' min={1} /> 
-                  <Button variant="contained" color='success'>
-                    <FaPlus />
-                  </Button>
-                  <Button variant="contained" color='warning'>
-                    <RiSubtractFill />
-                  </Button>
-                </div>
-              </td>
-              <td>$80.00</td>
-              <td>
-              <Button variant="contained" color="error">
-                <MdDelete />
-              </Button>
-              </td>
-            </tr>
-
+            ))
+          }
           </tbody>
         </table>
       </Container>

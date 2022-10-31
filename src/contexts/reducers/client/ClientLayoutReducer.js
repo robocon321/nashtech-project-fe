@@ -7,10 +7,26 @@ const initState = {
     message: "",
     success: true,
   },
+  cart: {}
 };
 
 const reducer = (state = initState, { type, payload }) => {
   switch (type) {
+    case ACTIONS.UPDATE_CART_ITEM:      
+      state = { ...state, cart: { ...state.cart, cartItems: state.cart.cartItems.map(item => {
+        if(item.id === payload.id) return payload;
+        else return item;
+      })}};
+      break;
+    case ACTIONS.ADD_CART_ITEM:
+      state = { ...state, cart: {...state.cart, cartItems: [...state.cart.cartItems, payload]}}
+      break;
+    case ACTIONS.DELETE_CART_ITEM:
+      state = { ...state, cart: {...state.cart, cartItems: state.cart.cartItems.filter(item => !payload.includes(item.id))}}
+      break;
+    case ACTIONS.SET_CART:
+      state = { ...state, cart: payload};
+      break;
     case ACTIONS.SET_SEARCH:
       state = { ...state, search: payload};
       break;

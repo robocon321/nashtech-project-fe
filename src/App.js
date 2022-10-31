@@ -41,8 +41,34 @@ function App() {
       </div>
     );
   } else {
-    return (
-      <Routes>
+    if (
+      appState.user.id != null &&
+      appState.user.roles.filter((item) => item.name === "ADMIN").length ===
+        1
+    ) { 
+      return (
+        <Routes>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="products" element={<ProductListPage />} />
+            <Route path="products/create" element={<CreateProductPage />} />
+            <Route path="products/:slug" element={<UpdateProductPage />} />
+            <Route path="categories" element={<CategoryListPage />} />
+            <Route path="users" element={<UserListPage />} />
+            <Route path="users/create" element={<CreateUserPage />} />
+          </Route>
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      );      
+    } else if (
+      appState.user.id != null &&
+      appState.user.roles.filter((item) => item.name === "CLIENT").length ===
+        1
+    ) { 
+      return (
+        <Routes>
         <Route path="/" element={<ClientLayout />}>
           <Route path="" element={<HomePage />} />
           <Route path="product" element={<ProductPage />} />
@@ -56,20 +82,28 @@ function App() {
           <Route path="order-history" element={<OrderHistoryPage />} />
           <Route path="order-history/:id" element={<OrderDetailPage />} />
         </Route>
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="products" element={<ProductListPage />} />
-          <Route path="products/create" element={<CreateProductPage />} />
-          <Route path="products/:slug" element={<UpdateProductPage />} />
-          <Route path="categories" element={<CategoryListPage />} />
-          <Route path="users" element={<UserListPage />} />
-          <Route path="users/create" element={<CreateUserPage />} />
-        </Route>
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    );
+      ) 
+    } else {
+      return (
+        <Routes>
+          <Route path="/" element={<ClientLayout />}>
+            <Route path="" element={<HomePage />} />
+            <Route path="product" element={<ProductPage />} />
+            <Route path="product/:slug" element={<ProductDetailPage />} />
+            <Route path="about-us" element={<AboutUsPage />} />
+            <Route path="contact-us" element={<ContactUsPage />} />
+          </Route>
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      );
+  
+    }
   }
 }
 

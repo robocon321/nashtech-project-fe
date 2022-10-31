@@ -1,11 +1,13 @@
-import { useState, useContext, useEffect } from "react";
+// import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import { Outlet, useNavigate } from "react-router-dom";
+// import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import Header from "../../components/admin/Header";
 import Sidebar from "../../components/admin/Sidebar";
-import { AppContext } from "../../contexts/providers/AppProvider";
+// import { AppContext } from "../../contexts/providers/AppProvider";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -17,8 +19,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const AdminLayout = (props) => {
-  const { appState } = useContext(AppContext);
-  const navigation = useNavigate();
+  // const { appState } = useContext(AppContext);
+  // const navigation = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -29,15 +31,15 @@ const AdminLayout = (props) => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    if (
-      appState.user.id == null ||
-      appState.user.roles.filter((item) => item.name === "CLIENT").length ===
-        1
-    ) {
-      navigation("/");
-    }
-  }, [appState.user]);
+  // useEffect(() => {
+  //   if (
+  //     appState.user.id == null ||
+  //     appState.user.roles.filter((item) => item.name === "CLIENT").length ===
+  //       1
+  //   ) {
+  //     navigation("/");
+  //   }
+  // }, [appState.user]);
 
   return (
     <Box sx={{ display: "flex" }}>

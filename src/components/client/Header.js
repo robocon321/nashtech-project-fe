@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Container } from "@mui/material";
+import { Alert, Container, Snackbar } from "@mui/material";
 import {  Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-free-solid";
@@ -10,10 +10,23 @@ import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayou
 
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);
-  const { clientState, onSearch } = useContext(ClientLayoutContext);
+  const { clientState, onSearch, resetStatus } = useContext(ClientLayoutContext);
   
   return (
     <header className={styles["header"]}>
+      <Snackbar
+        open={clientState.status.message !== ""}
+        onClose={resetStatus}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={resetStatus}
+          severity={clientState.status.success ? "success" : "error"}
+          sx={{ width: "100%" }}
+        >
+          {clientState.status.message}
+        </Alert>
+      </Snackbar>
       <Container>
         <div className={styles["top-header"]}>
           <div className={styles["col-top-header"]}>
@@ -125,7 +138,7 @@ const Header = (props) => {
           </div>
           <div className={styles["col-center-header"]}>
             <div className={"bg-blue " + styles["btn-cart-header"]}>
-              <Link to="/cart">CART: 0 item(s)</Link>
+              <Link to="/cart">CART: {clientState.cart.cartItems ? clientState.cart.cartItems.length : 0} item(s)</Link>
             </div>
           </div>
         </div>

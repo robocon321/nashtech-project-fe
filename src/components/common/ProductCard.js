@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { FaShoppingCart, FaRegHeart, FaStar, FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayoutProvider";
 import styles from './ProductCard.module.css';
 
 const ProductCard = ({ item }) => {
+  const { saveCartItem, deleteCartItem, clientState } = useContext(ClientLayoutContext);
+
   const formatter = new Intl.NumberFormat("vi-VN", {
     style: "currency",
     currency: "VND",
@@ -24,6 +28,13 @@ const ProductCard = ({ item }) => {
       );
     }
   }
+
+  const checkSelectedCart = () => {
+    if(!clientState.cart.cartItems) return null;
+    else return clientState.cart.cartItems.find(i => i.product.id == item.id);
+  }
+
+  const selectedCartItem = checkSelectedCart();
 
   return (
     <div className={styles["product"]}>
@@ -54,9 +65,20 @@ const ProductCard = ({ item }) => {
           </span>
         </div>
         <div className={styles["action-links"]}>
-          <span className={"flex-center " + styles["action-link"]}>
-            <FaShoppingCart />
-          </span>
+            {
+              selectedCartItem ? (
+                <span onClick={() => deleteCartItem([selectedCartItem.id])} className={"flex-center " + styles["action-link"] + " " + styles["active"]}>
+                  <FaShoppingCart />
+                </span>
+              ) : (
+                <span onClick={() => saveCartItem({
+                  quantity: 1,
+                  productId: item.id
+                })} className={"flex-center " + styles["action-link"]}>
+                  <FaShoppingCart />
+                </span>
+              )
+            }
           <span className={"flex-center " + styles["action-link"]}>
             <FaRegHeart />
           </span>

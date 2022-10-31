@@ -221,3 +221,27 @@
 .brands {
   margin: 40px 0px;
 }
+
+
+
+/* start tab products */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tab {
+  padding: 20px;
+  margin: 0px 20px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: #d0ecff;
+}
+
+/* end tab products */
