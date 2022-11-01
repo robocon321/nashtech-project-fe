@@ -1,9 +1,12 @@
 import Cart from "../../components/client/cart/Cart";
+import CartProvider from "../../contexts/providers/client/CartProvider";
 
 const CartPage = (props) => {
   return (
     <main>
-      <Cart />
+      <CartProvider>
+        <Cart />
+      </CartProvider>
     </main>
   )
 }

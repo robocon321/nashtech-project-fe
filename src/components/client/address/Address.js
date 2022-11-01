@@ -10,7 +10,7 @@ import styles from "./Address.module.css";
 import ModalAddress from "./ModalAddress";
 
 const Address = (props) => {
-  const { addressState, resetStatus, setShowModal, getProvinceById } =
+  const { addressState, resetStatus, setShowModal } =
     useContext(AddressContext);  
 
   return (
