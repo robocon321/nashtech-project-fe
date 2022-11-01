@@ -81,12 +81,13 @@ const Input = ({
             required={required}
             style={{ ...style }}
             className={styles["input"]}
+            onChange={onChange}
           >
             <option value="" selected disabled hidden>
               {placeholder}
             </option>
             {props.data.map((item) => {
-              return <option value={props[value]}>{item[props.key]}</option>;
+              return <option value={item[props.value]}>{item[props.key]}</option>;
             })}
           </select>
         </div>

@@ -3,84 +3,125 @@ import { Modal, Button } from "@mui/material";
 
 import styles from "./ModalAddress.module.css";
 import Input from "../../common/Input";
+import { AddressContext } from "../../../contexts/providers/client/AddressProvider";
+import { useContext } from "react";
 
 const ModalAddress = (props) => {
-  const [open, setOpen] = useState(true);
-  const handleClose = () => setOpen(false);
-
+  const { addressState, setShowModal, setFieldContact, submit } =
+    useContext(AddressContext);
   return (
     <div>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={addressState.isShowModal}
+        onClose={() => setShowModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <div className={styles["modal-address"]}>
-          <Input 
-            type="text" 
-            title="Full name" 
-            name="full_name"
-            id="full_name"
-            required={true} />
-          <Input 
-            type="text" 
-            title="Phone" 
+          <Input
+            type="text"
+            title="Full name"
+            name="fullname"
+            id="fullname"
+            onChange={(e) =>
+              setFieldContact({ field: e.target.name, value: e.target.value })
+            }
+            required={true}
+          />
+          <Input
+            type="text"
+            title="Phone"
             name="phone"
             id="phone"
-            required={true} />
-          <Input 
-            type="select" 
-            title="Province" 
-            name='province' 
-            id='province'
-            required={true} 
-            placeholder='Choose Province'
+            onChange={(e) =>
+              setFieldContact({ field: e.target.name, value: e.target.value })
+            }
+            required={true}
+          />
+          <Input
+            type="text"
+            title="Email"
+            name="email"
+            id="email"
+            onChange={(e) =>
+              setFieldContact({ field: e.target.name, value: e.target.value })
+            }
+            required={true}
+          />          
+          <Input
+            type="select"
+            title="Province"
+            name="province"
+            id="province"
+            required={true}
+            placeholder="Choose Province"
+            onChange={(e) =>
+              setFieldContact({ field: e.target.name, value: e.target.value })
+            }
             props={{
-              data: []
+              data: addressState.provinces,
+              key: "ProvinceName",
+              value: "ProvinceID",
             }}
-            />
-          <Input 
-            type="select" 
-            title="District" 
-            name='district'
-            id='district'
+          />
+          <Input
+            type="select"
+            title="District"
+            name="district"
+            id="district"
             placeholder="Choose District"
-            required={true} 
+            required={true}
+            onChange={(e) =>
+              setFieldContact({ field: e.target.name, value: e.target.value })
+            }
             props={{
-              data: [],
-              key: 'label',
-              value: 'value'
+              data: addressState.districts,
+              key: "DistrictName",
+              value: "DistrictID",
             }}
-            />
-          <Input 
-            type="select" 
-            title="Street" 
-            name='street'
-            id='street'
-            placeholder="Choose Street"
-            required={true} 
+          />
+          <Input
+            type="select"
+            title="Ward"
+            name="ward"
+            id="ward"
+            placeholder="Choose Ward"
+            required={true}
+            onChange={(e) =>
+              setFieldContact({ field: e.target.name, value: e.target.value })
+            }
             props={{
-              data: [],
-              key: 'label',
-              value: 'value'
+              data: addressState.wards,
+              key: "WardName",
+              value: "WardCode",
             }}
-            />
-          <Input 
-            type="textarea" 
-            title="Detail address" 
-            name='detail'
-            id='detail'
+          />
+          <Input
+            type="textarea"
+            title="Detail address"
+            name="detail"
+            id="detail"
             placeholder="Enter your detail address"
-            required={true} 
+            required={true}
+            onChange={(e) =>
+              setFieldContact({ field: e.target.name, value: e.target.value })
+            }
             props={{
-              rows: 5
+              rows: 5,
             }}
-            />
-            <div className={styles['actions']}>
-              <Button variant="contained">Save</Button>
-              <Button variant="contained" color='error'>Close</Button>
-            </div>
+          />
+          <div className={styles["actions"]}>
+            <Button variant="contained" onClick={submit}>
+              Save
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => setShowModal(false)}
+            >
+              Close
+            </Button>
+          </div>
         </div>
       </Modal>
     </div>

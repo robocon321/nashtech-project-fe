@@ -1,80 +1,87 @@
-import { Container } from "@mui/material";
+import { Alert, Container, Snackbar } from "@mui/material";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useContext } from "react";
 import { FaPlus, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { AddressContext } from "../../../contexts/providers/client/AddressProvider";
 
 import styles from "./Address.module.css";
 import ModalAddress from "./ModalAddress";
 
 const Address = (props) => {
+  const { addressState, resetStatus, setShowModal, getProvinceById } =
+    useContext(AddressContext);  
+
   return (
     <>
       <ModalAddress />
-      <Container>      
+      <Container>
         <div className={styles["addresses"]}>
           <h1>My Addresses</h1>
-          <a className={styles["new-address"]} href="#">
+          <a
+            className={styles["new-address"]}
+            href="#"
+            onClick={() => setShowModal(true)}
+          >
             <FaPlus /> Add new address
           </a>
-          <div className={styles["address"]}>
-            <div className={styles["address-col"]}>
-              <p className={styles["address-row"]}>
-                <span className={styles["value-address-row"]}>
-                  NGUYỄN THANH NHẬT
-                </span>
-              </p>
-              <p>
-                <span className={styles["title-address-row"]}>Address: </span>
-                <span className={styles["value-address-row"]}>
-                  Ktx Khu B ĐHQG, Phường Đông Hòa, Thị xã Dĩ An, Bình Dương
-                </span>
-              </p>
-              <p>
-                <span className={styles["title-address-row"]}>Phone: </span>
-                <span className={styles["value-address-row"]}>
-                  0354.512.411
-                </span>
-              </p>
-            </div>
-            <div className={styles["address-col"]}>
-              <button className={styles["btn-edit"]}>
-                <FaEdit />
-              </button>
-              <button className={styles["btn-delete"]}>
-                <MdDelete />
-              </button>
-            </div>
-          </div>
-          <div className={styles["address"]}>
-            <div className={styles["address-col"]}>
-              <p className={styles["address-row"]}>
-                <span className={styles["value-address-row"]}>
-                  NGUYỄN THANH NHẬT
-                </span>
-              </p>
-              <p>
-                <span className={styles["title-address-row"]}>Address: </span>
-                <span className={styles["value-address-row"]}>
-                  Ktx Khu B ĐHQG, Phường Đông Hòa, Thị xã Dĩ An, Bình Dương
-                </span>
-              </p>
-              <p>
-                <span className={styles["title-address-row"]}>Phone: </span>
-                <span className={styles["value-address-row"]}>
-                  0354.512.411
-                </span>
-              </p>
-            </div>
-            <div className={styles["address-col"]}>
-              <button className={styles["btn-edit"]}>
-                <FaEdit />
-              </button>
-              <button className={styles["btn-delete"]}>
-                <MdDelete />
-              </button>
-            </div>
-          </div>
+          {addressState.contacts.map((item) => {
+            return (
+              <div className={styles["address"]} key={item.id}>
+                <div className={styles["address-col"]}>
+                  <p className={styles["address-row"]}>
+                    <span className={styles["value-address-row"]}>
+                      <b>{item.fullname}</b>
+                    </span>
+                  </p>
+                  <p>
+                    <span className={styles["title-address-row"]}>
+                      Address:{" "}
+                    </span>
+                    <span className={styles["value-address-row"]}>
+                      {item.detail}, {item.wardName}, {item.districtName}, {item.provinceName}
+                    </span>
+                  </p>
+                  <p>
+                    <span className={styles["title-address-row"]}>Phone: </span>
+                    <span className={styles["value-address-row"]}>
+                      {item.phone}
+                    </span>
+                  </p>
+                  <p>
+                    <span className={styles["title-address-row"]}>Email: </span>
+                    <span className={styles["value-address-row"]}>
+                      {item.email}
+                    </span>
+                  </p>
+                </div>
+                <div className={styles["address-col"]}>
+                  <button className={styles["btn-edit"]}>
+                    <FaEdit />
+                  </button>
+                  <button className={styles["btn-delete"]}>
+                    <MdDelete />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Container>
+      <Snackbar
+        open={addressState.status.message}
+        onClose={resetStatus}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={resetStatus}
+          severity={addressState.status.success ? "success" : "error"}
+          sx={{ width: "100%" }}
+        >
+          {addressState.status.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

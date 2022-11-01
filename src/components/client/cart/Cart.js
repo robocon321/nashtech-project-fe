@@ -17,6 +17,10 @@ const Cart = (props) => {
     currency: "VND",
   });
 
+  const subTotal = clientState.cart.cartItems ? clientState.cart.cartItems.reduce((previousValue, currentValue) => {
+    return previousValue + currentValue.quantity * currentValue.product.sellPrice;
+  }, 0) : 0;
+
   return (
     <>
       <Container>
@@ -35,8 +39,8 @@ const Cart = (props) => {
           <tbody>
           {
             clientState.cart.cartItems && clientState.cart.cartItems.map(item => (
-              <tr>
-              <td>
+              <tr key={item.id}>
+              <td className="flex-center">
                 <div className={styles["image-row"]}>
                   <img src={item.product.thumbnail} alt="Not found" />                  
                 </div>
@@ -107,16 +111,16 @@ const Cart = (props) => {
                 <h3>Cart Summary</h3>
                 <div className={styles['row-cart-summary']}>
                   <span>Sub Total</span>
-                  <span>$1250.00</span>
+                  <span>{formatter.format(subTotal)}</span>
                 </div>
                 <div className={styles['row-cart-summary']}>
                   <span>Shipping Cost</span>
-                  <span>$0.00</span>
+                  <span>{formatter.format(0)}</span>
                 </div>
                 <hr />
                 <div className={styles['row-cart-summary']}>
-                  <span><b>Shipping Cost</b></span>
-                  <span><b>$0.00</b></span>
+                  <span><b>Total Cost</b></span>
+                  <span><b>{formatter.format(subTotal)}</b></span>
                 </div>                
               </div>
               <div className={styles['btn-cart-summary']}>

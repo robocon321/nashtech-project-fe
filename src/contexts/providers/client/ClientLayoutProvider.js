@@ -33,10 +33,6 @@ const ClientLayoutProvider = (props) => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    console.log(clientState);
-  }, [clientState]);
-
   const onSearch = () => {
     const searchStr = document.getElementById("search").value;
     navigate("/product?LIKE_name=" + searchStr);
