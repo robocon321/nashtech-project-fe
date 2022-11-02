@@ -156,7 +156,7 @@ const Input = ({
               {required && <span className={styles["required"]}>*</span>}
             </label>
           )}
-          {
+          {/* {
             value === '' ? (
             <input
               className={styles["input"]}
@@ -170,7 +170,7 @@ const Input = ({
               name={name}
               {...props}
             />
-            ) : (
+            ) : ( */}
             <input
               className={styles["input"]}
               type={type}
@@ -184,8 +184,8 @@ const Input = ({
               value={value}
               {...props}
             />
-            )
-          }
+            {/* )
+          } */}
         </div>
       );
   }
