@@ -30,6 +30,7 @@ import CategoryListPage from "./pages/admin/CategoryListPage";
 import UserListPage from "./pages/admin/UserListPage";
 import CreateUserPage from "./pages/admin/CreateUserPage";
 import UpdateProductPage from "./pages/admin/UpdateProductPage";
+import UpdateUserPage from "./pages/admin/UpdateUserPage";
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -56,6 +57,7 @@ function App() {
             <Route path="categories" element={<CategoryListPage />} />
             <Route path="users" element={<UserListPage />} />
             <Route path="users/create" element={<CreateUserPage />} />
+            <Route path="users/:id" element={<UpdateUserPage />} />
           </Route>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
