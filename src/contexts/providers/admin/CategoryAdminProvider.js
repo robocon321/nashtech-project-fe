@@ -15,7 +15,9 @@ import CategoryAdminReducer from "../../reducers/admin/CategoryAdminReducer";
 import { validateSlug } from '../../../utils/validate';
 
 const initState = {
-  category: {},
+  category: {
+    status: 1
+  },
   status: {
     isLoading: true,
     message: "",
@@ -37,6 +39,10 @@ const CategoryAdminProvider = (props) => {
     CategoryAdminReducer,
     initState
   );
+
+  useEffect(() => {
+    console.log(categoryAdminState);
+  }, [categoryAdminState]);
 
   useEffect(() => {
     loadCategoryAction(categoryAdminState.conditions)(dispatch);
@@ -87,7 +93,7 @@ const CategoryAdminProvider = (props) => {
   };
 
   const switchVisible = (value) => {
-    changeFieldAction({field: 'visibleType', value})(dispatch);
+    changeFieldAction({field: 'status', value})(dispatch);
   }
 
   const resetCategory = () => {

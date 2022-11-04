@@ -1,4 +1,5 @@
 import { createContext, useReducer, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   loadProductAction,
@@ -33,6 +34,8 @@ const ProductAdminProvider = (props) => {
     ProductAdminReducer,
     initState
   );
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadCategoriesAction()(dispatch);
@@ -122,6 +125,7 @@ const ProductAdminProvider = (props) => {
 
   const value = {
     productAdminState,
+    navigate,
     setPage,
     setSize,
     setSort,

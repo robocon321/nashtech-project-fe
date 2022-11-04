@@ -219,7 +219,7 @@ const UpdateProductAdminProvider = props => {
   }
 
   const switchVisible = (value) => {
-    changeFieldAction({field: 'visibleType', value})(dispatch);
+    changeFieldAction({field: 'status', value})(dispatch);
   }
   
   const value = {

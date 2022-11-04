@@ -41,7 +41,7 @@ const reducer = (state = initState, { type, payload }) => {
 
       state.products.content.forEach(item => {
         if(payload.includes(item.id)) {
-          item.visibleType = 'INVISIBLE'
+          item.status = 0
         }
       })
       break;

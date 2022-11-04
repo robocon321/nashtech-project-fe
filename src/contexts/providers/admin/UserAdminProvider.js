@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { createContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   deleteUserAction,
   loadUserAction,
@@ -29,6 +30,7 @@ export const UserAdminContext = createContext();
 
 const UserAdminProvider = (props) => {
   const [userState, dispatch] = useReducer(UserAdminReducer, initState);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadData();
@@ -100,7 +102,8 @@ const UserAdminProvider = (props) => {
     setSearch,
     resetStatus,
     deleteUser,
-    setPage
+    setPage,
+    navigate
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Slider, Grid, Rating, Button, Snackbar, Alert } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -20,6 +20,7 @@ const formatter = new Intl.NumberFormat("vi-VN", {
 const ProductList = (props) => {
   const {
     productAdminState,
+    navigate,
     setPage,
     setSort,
     setSelected,
@@ -93,7 +94,7 @@ const ProductList = (props) => {
       renderCell: (params) => Math.round(params.row.rating * 10) / 10,
     },
     {
-      field: "visibleType",
+      field: "status",
       headerName: "Visible",
       minWidth: 150,
       flex: 1.5,
@@ -101,10 +102,10 @@ const ProductList = (props) => {
         return (
           <div
             className={
-              params.row.visibleType === "VISIBLE" ? "visible" : "invisible"
+              params.row.status ? "visible" : "invisible"
             }
           >
-            {params.row.visibleType}
+            {params.row.status ? 'VISIBLE' : 'INVISIBLE'}
           </div>
         );
       },
@@ -116,7 +117,7 @@ const ProductList = (props) => {
       renderCell: (params) => {
         return (
           <div className={styles["btn-row-table"]}>
-            <Button variant="contained" color="success" onClick={() => {}}>
+            <Button variant="contained" color="success" onClick={() => navigate(`/admin/products/${params.row.slug}`)}>
               <FaRegEye />
             </Button>
             <span> </span>

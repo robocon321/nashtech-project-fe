@@ -271,14 +271,10 @@ const UpdateProduct = (props) => {
             <label>Visible</label>
             <Switch
               checked={
-                updateProductAdminState.product.visibleType === "VISIBLE"
+                updateProductAdminState.product.status == 1
               }
               onChange={() =>
-                switchVisible(
-                  updateProductAdminState.product.visibleType == "VISIBLE"
-                    ? "INVISIBLE"
-                    : "VISIBLE"
-                )
+                switchVisible(1 - updateProductAdminState.product.status)
               }
               inputProps={{ "aria-label": "controlled" }}
             />

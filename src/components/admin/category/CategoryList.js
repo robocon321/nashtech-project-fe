@@ -63,12 +63,12 @@ const CategoryList = (props) => {
       },
     },
     {
-      field: "visibleType",
+      field: "status",
       headerName: "Visible",
       minWidth: 150,
       flex: 1.5,
       renderCell: (params) => {
-        return <div className={params.row.visibleType === 'VISIBLE' ? 'visible' : 'invisible'}>{params.row.visibleType}</div>;
+        return <div className={params.row.status ? 'visible' : 'invisible'}>{params.row.status ? 'VISIBLE' : 'INVISIBLE'}</div>;
       },
     },
     {
@@ -171,8 +171,8 @@ const CategoryList = (props) => {
             />
             <label>Visible</label>
             <Switch
-              checked={categoryAdminState.category.visibleType === 'VISIBLE'}
-              onChange={() => switchVisible(categoryAdminState.category.visibleType == 'VISIBLE' ? 'INVISIBLE' : 'VISIBLE')}
+              checked={categoryAdminState.category.status == 1}
+              onChange={() => switchVisible(1 - categoryAdminState.category.status)}
               inputProps={{ 'aria-label': 'controlled' }}
             />
             <br />

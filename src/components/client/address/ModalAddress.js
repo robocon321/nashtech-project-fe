@@ -23,6 +23,7 @@ const ModalAddress = (props) => {
             title="Full name"
             name="fullname"
             id="fullname"
+            value={addressState.contact.fullname}
             onChange={(e) =>
               setFieldContact({ field: e.target.name, value: e.target.value })
             }
@@ -33,6 +34,7 @@ const ModalAddress = (props) => {
             title="Phone"
             name="phone"
             id="phone"
+            value={addressState.contact.phone}
             onChange={(e) =>
               setFieldContact({ field: e.target.name, value: e.target.value })
             }
@@ -43,6 +45,7 @@ const ModalAddress = (props) => {
             title="Email"
             name="email"
             id="email"
+            value={addressState.contact.email}
             onChange={(e) =>
               setFieldContact({ field: e.target.name, value: e.target.value })
             }
@@ -101,6 +104,7 @@ const ModalAddress = (props) => {
             title="Detail address"
             name="detail"
             id="detail"
+            value={addressState.contact.detail}
             placeholder="Enter your detail address"
             required={true}
             onChange={(e) =>

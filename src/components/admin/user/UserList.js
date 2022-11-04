@@ -16,6 +16,7 @@ const UserList = (props) => {
     resetStatus,
     deleteUser,
     setPage,
+    navigate
   } = useContext(UserAdminContext);
 
   const columns = [
@@ -69,7 +70,7 @@ const UserList = (props) => {
       renderCell: (params) => {
         return (
           <div className={styles["btn-row-table"]}>
-              <Button variant="contained" color="success" onClick={() => {}}>
+              <Button variant="contained" color="success" onClick={() => navigate(`/admin/users/${params.row.id}`)}>
                 <FaRegEye />
               </Button>
               <span> </span>

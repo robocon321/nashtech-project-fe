@@ -2,7 +2,9 @@ import { ACTIONS } from "../../actions/admin/CategoryAdminAction";
 import { convertToSlug } from "../../../utils/convert";
 
 const initState = {
-  category: {},
+  category: {
+    status: 1
+  },
   status: {
     isLoading: true,
     message: '',
@@ -56,14 +58,21 @@ const reducer = (state = initState, { type, payload }) => {
       state = { ...state, selected: payload};
       break;
     case ACTIONS.RESET_CATEGORY:
-      state = { ...state, category: {
-        id: state.category.id
-      }};
+      if(state.category.id) {
+        state = { ...state, category: {
+          id: state.category.id,
+          status: 1
+        }};  
+      } else {
+        state = { ...state, category: {
+          status: 1
+        }};          
+      }
       break;
     case ACTIONS.DELETE_CATEGORY: 
       state.categories.content.forEach(item => {
         if(payload.includes(item.id)) {
-          item.visibleType = 'INVISIBLE'
+          item.status = 0
         }
       })
       break;

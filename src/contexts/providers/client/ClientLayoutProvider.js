@@ -11,6 +11,8 @@ import {
   updateCartItemAction,
 } from "../../actions/client/ClientLayoutAction";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from '../AppProvider';
 
 export const ClientLayoutContext = createContext();
 
@@ -28,6 +30,7 @@ const initState = {
 const ClientLayoutProvider = (props) => {
   const navigate = useNavigate();
   const [clientState, dispatch] = useReducer(ClientLayoutReducer, initState);
+  const { appState } = useContext(AppContext);  
 
   useEffect(() => {
     loadData();
@@ -42,7 +45,9 @@ const ClientLayoutProvider = (props) => {
   const loadData = async () => {
     setLoadingAction(true)(dispatch);
     await loadCategoryAction()(dispatch);
-    await loadCartItemAction()(dispatch);
+    if(appState.user.id != null) {
+      await loadCartItemAction()(dispatch);
+    }
     setLoadingAction(false)(dispatch);
   };
 
