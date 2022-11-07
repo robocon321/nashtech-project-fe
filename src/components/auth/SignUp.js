@@ -1,5 +1,6 @@
 import { Alert } from "@mui/material";
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 import { SignUpContext } from "../../contexts/providers/auth/SignUpProvider";
@@ -10,7 +11,12 @@ const SignUp = (props) => {
   const { signUpState, changeField, signUp } = useContext(SignUpContext);
 
   return (
-    <div className={styles["limiter"]}>
+    <>
+      <Helmet>
+        <title>Sign Up</title>
+        <meta name="description" content="Sign Up TienDa Store" />
+      </Helmet>
+      <div className={styles["limiter"]}>
       <div className={styles["container-login100"]}>
         <div
           className={
@@ -212,6 +218,8 @@ const SignUp = (props) => {
         </div>
       </div>
     </div>
+
+    </>
   );
 };
 

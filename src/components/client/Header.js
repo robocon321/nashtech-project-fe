@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Alert, Container, Snackbar } from "@mui/material";
-import {  Link } from "react-router-dom";
+import {  Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-free-solid";
 
@@ -11,6 +11,7 @@ import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayou
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);
   const { clientState, onSearch, resetStatus } = useContext(ClientLayoutContext);
+  const location = useLocation();
   
   return (
     <header className={styles["header"]}>
@@ -146,11 +147,11 @@ const Header = (props) => {
       <div className={styles["bottom-header"]}>
         <Container>
         <ul className={styles["menu-bottom-header"]}>
-            <li><Link className={styles['active']} to="/">Home</Link></li>
-            <li><Link to="/product">Shop</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
-            <li><Link to="/about-us">About Us</Link></li>
-            <li><Link to="/contact-us">Contact Us</Link></li>
+            <li><Link className={location.pathname == '/' ? styles['active'] : ''} to="/">Home</Link></li>
+            <li><Link className={location.pathname == '/product' ? styles['active'] : ''} to="/product">Shop</Link></li>
+            <li><Link className={location.pathname == '/blog' ? styles['active'] : ''} to="/blog">Blog</Link></li>
+            <li><Link className={location.pathname == '/about-us' ? styles['active'] : ''} to="/about-us">About Us</Link></li>
+            <li><Link className={location.pathname == '/contact-us' ? styles['active'] : ''} to="/contact-us">Contact Us</Link></li>
           </ul>
         </Container>
       </div>

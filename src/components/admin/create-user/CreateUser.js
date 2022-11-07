@@ -4,13 +4,19 @@ import styles from "./CreateUser.module.css";
 import Input from "../../common/Input";
 import { useContext } from "react";
 import { NewUserAdminContext } from "../../../contexts/providers/admin/NewUserAdminProvider";
+import { Helmet } from "react-helmet";
 
 const CreateUser = (props) => {
   const { newUserState, changeField, clearAllField, resetStatus, submit } =
     useContext(NewUserAdminContext);
 
   return (
-    <div className={styles["wrap-field"]}>
+    <>
+      <Helmet>
+        <title>Create User</title>
+        <meta name="description" content="Create User TienDa Store" />
+      </Helmet>
+      <div className={styles["wrap-field"]}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6} lg={4}>
           <Input
@@ -140,6 +146,8 @@ const CreateUser = (props) => {
         </Alert>
       </Snackbar>
     </div>
+
+    </>
   );
 };
 

@@ -74,6 +74,7 @@ const UpdateUserAdminProvider = (props) => {
     }
 
     if (!updateUserState.user.fullname || !validateFullname(updateUserState.user.fullname)) {
+      console.log(updateUserState.user.fullname ,validateFullname(updateUserState.user.fullname));
       setStatusAction({
         isLoading: false,
         success: false,

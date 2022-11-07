@@ -17,6 +17,7 @@ import { FiMonitor } from 'react-icons/fi';
 import { BsPhone } from 'react-icons/bs';
 import { AiTwotoneAudio } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 import { HomeContext } from "../../../contexts/providers/client/HomeProvider";
 import ProductCard from '../../common/ProductCard';
@@ -27,6 +28,10 @@ const Home = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>Home</title>
+        <meta name="description" content="Welcome to TienDa Store" />
+      </Helmet>
       <div className="banners">
         <Swiper
           spaceBetween={30}

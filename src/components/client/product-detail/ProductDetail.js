@@ -30,6 +30,7 @@ import Loading from "../../common/Loading";
 import Moment from "react-moment";
 import RequiredLoginModal from "../../common/RequiredLoginModal";
 import ProductCard from "../../common/ProductCard";
+import { Helmet } from "react-helmet";
 
 const ProductDetail = (props) => {
   const {
@@ -49,6 +50,21 @@ const ProductDetail = (props) => {
 
   return (
     <>
+      {
+        productDetailState.product.id ? 
+        (
+          <Helmet>
+            <title>{productDetailState.product.metaTitle ? productDetailState.product.metaTitle : productDetailState.product.name}</title>
+            <meta name="description" content={productDetailState.product.metaDescription ? productDetailState.product.metaDescription : productDetailState.product.description} />
+          </Helmet>
+        ) : 
+        (
+          <Helmet>
+            <title>Detail Product</title>
+            <meta name="description" content="Detail Product TienDa Store" />
+          </Helmet>
+        )
+      }
       <RequiredLoginModal toggleModal={toggleModal} open={productDetailState.open_modal} />
       {productDetailState.status.isLoading && <Loading />}
       <div className={styles["top-info"]}>

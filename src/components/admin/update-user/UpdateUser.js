@@ -4,6 +4,7 @@ import styles from "./UpdateUser.module.css";
 import Input from "../../common/Input";
 import { useContext } from "react";
 import { UpdateUserAdminContext } from "../../../contexts/providers/admin/UpdateUserAdminProvider";
+import { Helmet } from "react-helmet";
 
 const UpdateUser = (props) => {
   const {
@@ -16,7 +17,12 @@ const UpdateUser = (props) => {
   } = useContext(UpdateUserAdminContext);
 
   return (
-    <div className={styles["wrap-field"]}>
+    <>
+      <Helmet>
+        <title>Update User</title>
+        <meta name="description" content="Update User TienDa Store" />
+      </Helmet>
+      <div className={styles["wrap-field"]}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6} lg={4}>
           <Input
@@ -158,6 +164,8 @@ const UpdateUser = (props) => {
         </Alert>
       </Snackbar>
     </div>
+
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 
 import styles from "./OrderDetail.module.css";
@@ -6,6 +7,10 @@ import styles from "./OrderDetail.module.css";
 const OrderDetail = (props) => {
   return (
     <>
+      <Helmet>
+        <title>My Order</title>
+        <meta name="description" content="My Order TienDa Store" />
+      </Helmet>
       <Container>
         <h1>My Order Detail</h1>
         <table className={styles["table-order-detail"]}>

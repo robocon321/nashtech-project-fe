@@ -5,6 +5,7 @@ import {
   loadCartItemAction,
   loadCategoryAction,
   saveCartItemAction,
+  setCartAction,
   setLoadingAction,
   setSearchAction,
   setStatusAction,
@@ -34,7 +35,7 @@ const ClientLayoutProvider = (props) => {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [appState.user]);
 
   const onSearch = () => {
     const searchStr = document.getElementById("search").value;
@@ -47,6 +48,8 @@ const ClientLayoutProvider = (props) => {
     await loadCategoryAction()(dispatch);
     if(appState.user.id != null) {
       await loadCartItemAction()(dispatch);
+    } else {
+      setCartAction({})(dispatch);
     }
     setLoadingAction(false)(dispatch);
   };
@@ -77,7 +80,7 @@ const ClientLayoutProvider = (props) => {
     saveCartItem,
     deleteCartItem,
     updateCartItem,
-    resetStatus,
+    resetStatus
   };
 
   return (

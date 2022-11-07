@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet";
 import styles from "./NotFound.module.css";
 
 const NotFound = (props) => {
   return (
     <div className={styles["wrapper"]}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
-        <title>404</title>
+      <Helmet>
+        <title>404 Not Found</title>
+        <meta name="description" content="404 Not Found" />
+      </Helmet>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">        
         <g id={styles["Layer_12"] + " " + styles["yellow-back-fig"]} data-name="Layer 12">
           <path
             className={styles["cls-1"]}

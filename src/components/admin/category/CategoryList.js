@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { Grid, Button, Alert, Switch, Snackbar } from "@mui/material";
 import { FaSearch, FaRegEye, FaTrashAlt } from "react-icons/fa";
-import { RiAddLine } from "react-icons/ri";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Moment from "react-moment";
 
 import Input from "../../common/Input";
 import styles from "./CategoryList.module.css";
 import { CategoryAdminContext } from "../../../contexts/providers/admin/CategoryAdminProvider";
+import { Helmet } from "react-helmet";
 
 const CategoryList = (props) => {
   const {
@@ -93,6 +93,10 @@ const CategoryList = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>List category</title>
+        <meta name="description" content="List Category TienDa Store" />
+      </Helmet>    
       <Grid container spacing={4}>
         <Grid item xs={12} lg={4}>
           <div className={styles["col-category"]}>
@@ -192,9 +196,6 @@ const CategoryList = (props) => {
         <Grid item xs={12} lg={8}>
           <div className={styles["col-category"]}>
             <div className={styles["row-actions"]}>
-              <Button variant="contained" className={styles["btn-add"]} onClick={() => setCategory(-1)}>
-                <RiAddLine /> NEW CATEGORY
-              </Button>
               <div className={styles["search-box"]}>
                 <span className={styles["icon-search-box"]}>
                   <FaSearch />
@@ -208,9 +209,6 @@ const CategoryList = (props) => {
                   placeholder="Search categories..."
                 />
               </div>
-            </div>
-            <div className={styles["row-actions"]}>
-              <span></span>
               <span className={styles["select-item"]}>
                 <b>
                   Select {categoryAdminState.selected.length} items

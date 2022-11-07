@@ -1,7 +1,6 @@
 import { Alert, Container, Snackbar } from "@mui/material";
-import { useEffect } from "react";
-import { useState } from "react";
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { FaPlus, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { AddressContext } from "../../../contexts/providers/client/AddressProvider";
@@ -15,6 +14,10 @@ const Address = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>My Address</title>
+        <meta name="description" content="My Address TienDa Store" />
+      </Helmet>
       <ModalAddress />
       <Container>
         <div className={styles["addresses"]}>

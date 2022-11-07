@@ -1,4 +1,5 @@
 import { createContext, useReducer, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   loadCategoryAction,
@@ -39,6 +40,8 @@ const CategoryAdminProvider = (props) => {
     CategoryAdminReducer,
     initState
   );
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(categoryAdminState);
@@ -172,7 +175,8 @@ const CategoryAdminProvider = (props) => {
     setCategory,
     switchVisible,
     deleteCategory,
-    resetStatus
+    resetStatus,
+    navigate
   };
 
   return (

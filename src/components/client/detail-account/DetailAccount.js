@@ -6,10 +6,15 @@ import {
 
 import styles from './DetailAccount.module.css';
 import Input from '../../common/Input';
+import { Helmet } from 'react-helmet';
 
 const DetailAccount = props => {
   return (
     <>
+      <Helmet>
+        <title>My Account</title>
+        <meta name="description" content="My Account TienDa Store" />
+      </Helmet>
       <div className={styles['detail-account']}>
         <Container>
           <h1>Your personal detail</h1>

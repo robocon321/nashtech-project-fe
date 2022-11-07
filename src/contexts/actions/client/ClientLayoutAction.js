@@ -149,3 +149,10 @@ export const updateCartItemAction = (cartItem) => async dispatch => {
   }) 
 
 }
+
+export const setCartAction = (cart) => dispatch => {
+  dispatch({
+    type: ACTIONS.SET_CART,
+    payload: {}
+  })
+} 

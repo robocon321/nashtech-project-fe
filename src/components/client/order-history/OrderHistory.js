@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 
 import styles from "./OrderHistory.module.css";
@@ -6,6 +7,10 @@ import styles from "./OrderHistory.module.css";
 const OrderHistory = (props) => {
   return (
     <>
+      <Helmet>
+        <title>My Order History</title>
+        <meta name="description" content="My Order History TienDa Store" />
+      </Helmet>
       <Container>
         <div className={styles["order-history"]}>
           <h1>ORDER HISTORY</h1>

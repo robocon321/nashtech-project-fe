@@ -1,7 +1,15 @@
+import { Helmet } from "react-helmet";
+
 const DashboardPage = (props) => {
   return (
-    <div>Dashboard Page</div>
-  )
-}
+    <>
+      <Helmet>
+        <title>Dashboard</title>
+        <meta name="description" content="Dashboard TienDa Store" />
+      </Helmet>
+      <div>Dashboard Page</div>
+    </>
+  );
+};
 
 export default DashboardPage;

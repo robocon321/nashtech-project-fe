@@ -11,6 +11,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import styles from "./ProductList.module.css";
 import Input from "../../common/Input";
 import { ProductAdminContext } from "../../../contexts/providers/admin/ProductAdminProvider";
+import { Helmet } from "react-helmet";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -136,6 +137,10 @@ const ProductList = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>List Product</title>
+        <meta name="description" content="List Product TienDa Store" />
+      </Helmet>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={4}>
           <div className={styles["filter"]}>
@@ -246,7 +251,7 @@ const ProductList = (props) => {
         <Grid item xs={12} lg={8}>
           <div className={styles["table"]}>
             <div className={styles["row-actions"]}>
-              <Button variant="contained" className={styles["btn-add"]}>
+              <Button variant="contained" className={styles["btn-add"]} onClick={() => navigate('/admin/products/create')}>
                 <RiAddLine /> NEW PRODUCT
               </Button>
               <div className={styles["search-box"]}>

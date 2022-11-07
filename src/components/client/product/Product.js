@@ -11,6 +11,7 @@ import styles from "./Product.module.css";
 import Services from "../../common/Service";
 import { ProductContext } from "../../../contexts/providers/client/ProductProvider";
 import Input from "../../common/Input";
+import { Helmet } from "react-helmet";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -39,6 +40,10 @@ const Index = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>Shop</title>
+        <meta name="description" content="Shop TienDa Store" />
+      </Helmet>
       <div className={styles["wrap-main"]}>
         <Container>
           <Grid container spacing={5}>
@@ -158,7 +163,7 @@ const Index = (props) => {
               <div className={styles["new-products"]}>
                 <h2>POPULAR PRODUCTS</h2>
                 {productState.popular_products.map((item) => (
-                  <div className={styles["new-product"]}>
+                  <div className={styles["new-product"]} key={item.id}>
                     <div className={styles["image-new-product"]}>
                       <img src={item.thumbnail} alt="Not found" />
                     </div>

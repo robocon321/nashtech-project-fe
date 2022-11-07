@@ -1,10 +1,15 @@
-import { Container, Grid } from "@mui/material";
+import { Container } from "@mui/material";
 import styles from "./AboutUs.module.css";
-import Input from "../../common/Input";
+import { Helmet } from "react-helmet";
 
 const AboutUs = (props) => {
   return (
     <>
+        <Helmet>
+          <title>About Us</title>
+          <meta name="description" content="About TienDa Store" />
+        </Helmet>
+
       <div className={styles["content"]}>
         <Container>
           <h1>ABOUT US</h1>

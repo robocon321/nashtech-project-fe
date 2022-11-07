@@ -8,6 +8,7 @@ import styles from "./Cart.module.css";
 import Input from "./../../common/Input";
 import { useContext } from "react";
 import { CartContext } from "../../../contexts/providers/client/CartProvider";
+import { Helmet } from "react-helmet";
 
 const Cart = (props) => {
   const {
@@ -34,6 +35,10 @@ const Cart = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>My Cart</title>
+        <meta name="description" content="My Cart TienDa Store" />
+      </Helmet>
       <Container>
         <h1>My Cart</h1>
         <table className={styles["table-cart"]}>

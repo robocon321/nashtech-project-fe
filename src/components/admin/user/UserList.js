@@ -1,6 +1,7 @@
 import { Alert, Button, Snackbar } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { FaSearch, FaRegEye, FaTrashAlt } from "react-icons/fa";
 import { RiAddLine } from "react-icons/ri";
 import { UserAdminContext } from "../../../contexts/providers/admin/UserAdminProvider";
@@ -89,8 +90,13 @@ const UserList = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>List User</title>
+        <meta name="description" content="List User TienDa Store" />
+      </Helmet>
+
       <div className={styles["row-actions"]}>
-        <Button variant="contained" className={styles["btn-add"]}>
+        <Button variant="contained" className={styles["btn-add"]} onClick={() => navigate('/admin/users/create')}>
           <RiAddLine /> NEW USER
         </Button>
         <div className={styles["search-box"]}>

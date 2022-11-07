@@ -3,6 +3,7 @@ import { Grid, Button, Snackbar, Alert, Switch } from "@mui/material";
 import Input from "../../common/Input";
 import styles from "./UpdateProduct.module.css";
 import { UpdateProductAdminContext } from "../../../contexts/providers/admin/UpdateProductAdminProvider";
+import { Helmet } from "react-helmet";
 
 const UpdateProduct = (props) => {
   const {
@@ -19,6 +20,10 @@ const UpdateProduct = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>Update Product</title>
+        <meta name="description" content="Update Product TienDa Store" />
+      </Helmet>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={8}>
           <div className={styles["col-create-product"]}>

@@ -3,6 +3,7 @@ import { Grid, Button, Snackbar, Alert } from "@mui/material";
 import Input from "../../common/Input";
 import styles from "./CreateProduct.module.css";
 import { NewProductAdminContext } from '../../../contexts/providers/admin/NewProductAdminProvider';
+import { Helmet } from 'react-helmet';
 
 const CreateProduct = (props) => {
   const {
@@ -18,6 +19,10 @@ const CreateProduct = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>Create Product</title>
+        <meta name="description" content="Create Product TienDa Store" />
+      </Helmet>    
       <Grid container spacing={4}>
         <Grid item xs={12} lg={8}>
           <div className={styles["col-create-product"]}>

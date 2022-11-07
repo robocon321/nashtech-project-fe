@@ -1,4 +1,5 @@
 import { Container, Button } from '@mui/material';
+import { Helmet } from 'react-helmet';
 import {  FaShoppingCart} from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,11 @@ import styles from "./Wishlist.module.css";
 const Wishlist = (props) => {
   return (
     <>
+      <Helmet>
+        <title>My Wishlist History</title>
+        <meta name="description" content="My Order History TienDa Store" />
+      </Helmet>
+
       <Container>
         <h1>My Wish List</h1>
         <table className={styles["table-wishlist"]}>

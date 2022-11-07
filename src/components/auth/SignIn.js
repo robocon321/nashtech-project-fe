@@ -5,12 +5,18 @@ import { Link } from "react-router-dom";
 import styles from "./Auth.module.css";
 import { SignInContext } from "../../contexts/providers/auth/SignInProvider";
 import Loading from "../common/Loading";
+import { Helmet } from "react-helmet";
 
 const SignIn = (props) => {
   const { signInState, changeField, signIn } = useContext(SignInContext);
 
   return (
-    <div className={styles["limiter"]}>
+    <>
+      <Helmet>
+        <title>Sign In</title>
+        <meta name="description" content="Sign In TienDa Store" />
+      </Helmet>
+      <div className={styles["limiter"]}>
       <div className={styles["container-login100"]}>
         <div
           className={
@@ -150,6 +156,7 @@ const SignIn = (props) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
