@@ -21,16 +21,20 @@ import {Helmet} from "react-helmet";
 
 import { HomeContext } from "../../../contexts/providers/client/HomeProvider";
 import ProductCard from '../../common/ProductCard';
+import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
 
 const Home = (props) => {
   const { homeState } = useContext(HomeContext);
-  const [tab, setTab] = useState(0);
+  const { changeLang, t, lang } =
+    useContext(ClientLayoutContext);
+
+    const [tab, setTab] = useState(0);
 
   return (
     <>
       <Helmet>
-        <title>Home</title>
-        <meta name="description" content="Welcome to TienDa Store" />
+        <title>{t('home')}</title>
+        <meta name="description" content={t('welcome_to')} />
       </Helmet>
       <div className="banners">
         <Swiper
@@ -65,8 +69,8 @@ const Home = (props) => {
                 <div className={styles["service"]}>
                   <div className={"flex-center " + styles["icon-service"]}><FaShippingFast /></div>
                   <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>Free Shipping</div>
-                    <div className={styles["detail-service"]}>One order over $99</div>
+                    <div className={styles["title-service"]}>{t('free_shipping')}</div>
+                    <div className={styles["detail-service"]}>{t('one_order_over')}</div>
                   </div>
                 </div>
               </Grid>
@@ -74,8 +78,8 @@ const Home = (props) => {
                 <div className={styles["service"]}>
                   <div className={"flex-center " + styles["icon-service"]}><FaDropbox /></div>
                   <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>Special Gift Cards</div>
-                    <div className={styles["detail-service"]}>Give the perfect gift</div>
+                    <div className={styles["title-service"]}>{t('special_gift')}</div>
+                    <div className={styles["detail-service"]}>{t('give_special_gift')}</div>
                   </div>
                 </div>
               </Grid>
@@ -83,8 +87,8 @@ const Home = (props) => {
                 <div className={styles["service"]}>
                   <div className={"flex-center " + styles["icon-service"]}><FaRegCalendar /></div>
                   <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>Daily Promotion</div>
-                    <div className={styles["detail-service"]}>Set up perspiciatis unde</div>
+                    <div className={styles["title-service"]}>{t('daily_promotion')}</div>
+                    <div className={styles["detail-service"]}>{t('setup_unde')}</div>
                   </div>
                 </div>
               </Grid>
@@ -92,8 +96,8 @@ const Home = (props) => {
                 <div className={styles["service"]}>
                   <div className={"flex-center " + styles["icon-service"]}><TiMessages /></div>
                   <div className={styles["info-service"]}>
-                    <div className={styles["title-service"]}>24/7 Customer Care</div>
-                    <div className={styles["detail-service"]}>Hours: 04.0987 654 321</div>
+                    <div className={styles["title-service"]}>{t('24/7_care')}</div>
+                    <div className={styles["detail-service"]}>{t('phone')}: 04.0987 654 321</div>
                   </div>
                 </div>
               </Grid>           
@@ -103,9 +107,9 @@ const Home = (props) => {
       <div className={styles["tabproducts"]}>
           <Container>
             <div className={styles["tabs"]}>
-              <div className={tab === 0 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(0)}>FEATURED</div>
-              <div className={tab === 1 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(1)}>BESTSELLER</div>
-              <div className={tab === 2 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(2)}>NEWEST</div>
+              <div className={tab === 0 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(0)}>{t('featured')}</div>
+              <div className={tab === 1 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(1)}>{t('bestseller')}</div>
+              <div className={tab === 2 ? styles["tab"] + " " + styles["active"] : styles["tab"]} onClick={() => setTab(2)}>{t('newest')}</div>
             </div>
             <Swiper 
               slidesPerView={1}
@@ -326,7 +330,7 @@ const Home = (props) => {
       </div>
       <div className={styles["features-category"]}>
         <Container>
-          <h2>FEATURED CATEGORIES</h2>
+          <h2>{t('feature_category')}</h2>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <div className={styles["feature"]}>
@@ -407,7 +411,7 @@ const Home = (props) => {
         <Container>
           <Grid container spacing={5}>
             <Grid item xs={12} md={6}>
-              <h3>LATEST BLOGS</h3>
+              <h3>{t('latest_blog')}</h3>
               <div className={styles["blogs"]}>
               <Swiper
                 spaceBetween={30}
@@ -491,7 +495,7 @@ const Home = (props) => {
               </div>
             </Grid>
             <Grid item xs={12} md={6}>
-              <h3>TESTIMONIALS</h3>
+              <h3>{t('testimonials')}</h3>
               <div className={styles["blogs"]}>
               <Swiper
                 spaceBetween={30}

@@ -1,5 +1,9 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
+import { withNamespaces } from 'react-i18next';
+import i18n from '../../../i18n';
+
+
 import HomeReducer from "../../reducers/client/HomeReducer";
 import {
   setBestSellerProductAction,
@@ -49,7 +53,11 @@ const HomeProvider = (props) => {
     setLoadingAction(false);
   }
 
-  const value = {homeState};
+  const value = {
+    homeState,
+    t: props.t,
+    lang: i18n.language    
+  };
 
   return (
     <HomeContext.Provider value={value}>{props.children}</HomeContext.Provider>

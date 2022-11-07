@@ -9,6 +9,7 @@ import Input from "./../../common/Input";
 import { useContext } from "react";
 import { CartContext } from "../../../contexts/providers/client/CartProvider";
 import { Helmet } from "react-helmet";
+import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
 
 const Cart = (props) => {
   const {
@@ -19,6 +20,9 @@ const Cart = (props) => {
     changeAddressShipping,
     resetStatus
   } = useContext(CartContext);
+  const { changeLang, t, lang } =
+  useContext(ClientLayoutContext);
+
 
   const formatter = new Intl.NumberFormat("vi-VN", {
     style: "currency",
@@ -36,7 +40,7 @@ const Cart = (props) => {
   return (
     <>
       <Helmet>
-        <title>My Cart</title>
+        <title>{t('cart')}</title>
         <meta name="description" content="My Cart TienDa Store" />
       </Helmet>
       <Container>

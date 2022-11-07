@@ -1,18 +1,23 @@
 import { Container, Button } from '@mui/material';
+import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import {  FaShoppingCart} from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
 
 import styles from "./Wishlist.module.css";
 
 
 
 const Wishlist = (props) => {
+  const { changeLang, t, lang } =
+  useContext(ClientLayoutContext);
+
   return (
     <>
       <Helmet>
-        <title>My Wishlist History</title>
+        <title>{t('wishlist')}</title>
         <meta name="description" content="My Order History TienDa Store" />
       </Helmet>
 

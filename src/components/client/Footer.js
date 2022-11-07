@@ -9,8 +9,13 @@ import {
   FaLocationArrow,
   FaPhoneAlt
 } from "react-icons/fa";
+import { useContext } from "react";
+import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayoutProvider";
 
 const Footer = (props) => {
+  const { changeLang, t, lang } =
+  useContext(ClientLayoutContext);
+
   return (
     <footer>
       <div className={styles["top-footer"]}>
@@ -20,15 +25,15 @@ const Footer = (props) => {
               <span className={"flex-center " + styles["icon-top-footer"]}>
                 <FaEnvelope />
               </span>
-              <span>Sign Up For Newsletter</span>
+              <span>{t('sign_up_for')}</span>
             </div>
             <div className={styles["col-top-footer"]}>
               <div className={styles["mailbox-top-footer"]}>
                 <input
                   type="text"
-                  placeholder="Enter your email address here..."
+                  placeholder={t('placeholder_enter_email')}
                 />
-                <button>SUBSCRIBE !</button>
+                <button>{t('subscribe')}</button>
               </div>
             </div>
             <div className={styles["col-top-footer"]}>
@@ -62,33 +67,33 @@ const Footer = (props) => {
         <Container>
           <Grid container>
             <Grid item md={3} sm={6} xs={12}>
-              <h3>Information</h3>
+              <h3>{t('information')}</h3>
               <ul>
-                <li><a href="#"><span>- </span><span>About Us</span></a></li>
-                <li><a href="#"><span>- </span><span>Delivery Information</span></a></li>
-                <li><a href="#"><span>- </span><span>Privacy Policy</span></a></li>
-                <li><a href="#"><span>- </span><span>Terms & Conditions</span></a></li>
-                <li><a href="#"><span>- </span><span>Contact Us</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('about_us')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('delivery_information')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('privacy_policy')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('terms_conditions')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('contact_us')}</span></a></li>
               </ul>
             </Grid>
             <Grid item md={3} sm={6} xs={12}>
-              <h3>Extras</h3>
+              <h3>{t('extras')}</h3>
               <ul>
-                <li><a href="#"><span>- </span><span>Brands</span></a></li>
-                <li><a href="#"><span>- </span><span>Gift Certificates</span></a></li>
-                <li><a href="#"><span>- </span><span>Affiliate</span></a></li>
-                <li><a href="#"><span>- </span><span>Specials</span></a></li>
-                <li><a href="#"><span>- </span><span>Site Map</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('brands')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('sign_up_for')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('affiliate')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('specials')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('site_map')}</span></a></li>
               </ul>
             </Grid>
             <Grid item md={3} sm={6} xs={12}>
-              <h3>My Account</h3>
+              <h3>{t('my_account')}</h3>
               <ul>
-                <li><a href="#"><span>- </span><span>My Account</span></a></li>
-                <li><a href="#"><span>- </span><span>Order History</span></a></li>
-                <li><a href="#"><span>- </span><span>Wish List</span></a></li>
-                <li><a href="#"><span>- </span><span>Newsletter</span></a></li>
-                <li><a href="#"><span>- </span><span>Returns</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('my_account')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('order_history')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('wishlist')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('newsletter')}</span></a></li>
+                <li><a href="#"><span>- </span><span>{t('return')}</span></a></li>
               </ul>
             </Grid>
             <Grid item md={3} sm={6} xs={12}>
@@ -97,7 +102,7 @@ const Footer = (props) => {
                 <li>
                   <div className={"flex-center " + styles["icon-center-footer"]}><FaLocationArrow /></div>
                   <div className={styles["contact-center-footer"]}>
-                    <span className={styles["title-center-footer"]}>Address: </span>
+                    <span className={styles["title-center-footer"]}>{t('address')}: </span>
                     <span className={styles["content-center-footer"]}>123 Main Street, Anytown,CA 12345 USA.</span>
                   </div>
                 </li>
@@ -111,7 +116,7 @@ const Footer = (props) => {
                 <li>
                   <div className={"flex-center " + styles["icon-center-footer"]}><FaPhoneAlt /></div>
                   <div className={styles["contact-center-footer"]}>
-                    <span className={styles["title-center-footer"]}>Phone: </span>
+                    <span className={styles["title-center-footer"]}>{t('phone')}: </span>
                     <span className={styles["content-center-footer"]}>0354512411</span>
                   </div>
                 </li>
@@ -125,13 +130,13 @@ const Footer = (props) => {
           <div className={styles["wrap-bottom-footer"]}>
             <div className={"flex-center" + styles["col-bottom-footer"]}>
               <div className={styles["service-bottom-footer"]}>
-                <span>Site Map</span>
+                <span>{t('site_map')}</span>
                 <span> | </span>
-                <span>Returns</span>
+                <span>{t('return')}</span>
                 <span> | </span>
-                <span>Order History</span>
+                <span>{t('order_history')}</span>
                 <span> | </span>
-                <span>Affiliate</span>              
+                <span>{t('affiliate')}</span>              
               </div>
               <div className={styles["copyright-bottom-footer"]}>
                 <p>Copyright © 2018 PlazaThemes. All Right Reserved.</p>

@@ -1,14 +1,19 @@
 import { Container } from "@mui/material";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 
 import styles from "./OrderHistory.module.css";
+import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
 
 const OrderHistory = (props) => {
+  const { changeLang, t, lang } =
+  useContext(ClientLayoutContext);
+
   return (
     <>
       <Helmet>
-        <title>My Order History</title>
+        <title>{t('order_history')}</title>
         <meta name="description" content="My Order History TienDa Store" />
       </Helmet>
       <Container>

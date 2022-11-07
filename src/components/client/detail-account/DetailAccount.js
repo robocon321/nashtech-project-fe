@@ -7,12 +7,17 @@ import {
 import styles from './DetailAccount.module.css';
 import Input from '../../common/Input';
 import { Helmet } from 'react-helmet';
+import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
+import { useContext } from 'react';
 
 const DetailAccount = props => {
+  const { changeLang, t, lang } =
+  useContext(ClientLayoutContext);
+
   return (
     <>
       <Helmet>
-        <title>My Account</title>
+        <title>{t('my_account')}</title>
         <meta name="description" content="My Account TienDa Store" />
       </Helmet>
       <div className={styles['detail-account']}>

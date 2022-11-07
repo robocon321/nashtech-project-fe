@@ -1,4 +1,8 @@
 import React, { createContext, useEffect, useReducer } from "react";
+
+import { withNamespaces } from 'react-i18next';
+import i18n from '../../../i18n';
+
 import ClientLayoutReducer from "../../reducers/client/ClientLayoutReducer";
 import {
   deleteCartItemAction,
@@ -74,13 +78,20 @@ const ClientLayoutProvider = (props) => {
     })(dispatch);
   };
 
+  const changeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  }
+
   const value = {
     clientState,
     onSearch,
     saveCartItem,
     deleteCartItem,
     updateCartItem,
-    resetStatus
+    resetStatus,
+    changeLang,
+    t: props.t,
+    lang: i18n.language  
   };
 
   return (
@@ -90,4 +101,4 @@ const ClientLayoutProvider = (props) => {
   );
 };
 
-export default ClientLayoutProvider;
+export default withNamespaces()(ClientLayoutProvider);

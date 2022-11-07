@@ -12,6 +12,7 @@ import Services from "../../common/Service";
 import { ProductContext } from "../../../contexts/providers/client/ProductProvider";
 import Input from "../../common/Input";
 import { Helmet } from "react-helmet";
+import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -27,6 +28,10 @@ const Index = (props) => {
     changeCategory,
     categories,
   } = useContext(ProductContext);
+  const { changeLang, t, lang } =
+  useContext(ClientLayoutContext);
+
+
   const [value, setValue] = useState([10000, 10000000]);
   const [layout, setLayout] = useState(3);
 
@@ -41,7 +46,7 @@ const Index = (props) => {
   return (
     <>
       <Helmet>
-        <title>Shop</title>
+        <title>{t('shop')}</title>
         <meta name="description" content="Shop TienDa Store" />
       </Helmet>
       <div className={styles["wrap-main"]}>

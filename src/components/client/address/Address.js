@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { FaPlus, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { AddressContext } from "../../../contexts/providers/client/AddressProvider";
+import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
 
 import styles from "./Address.module.css";
 import ModalAddress from "./ModalAddress";
@@ -11,11 +12,13 @@ import ModalAddress from "./ModalAddress";
 const Address = (props) => {
   const { addressState, resetStatus, setShowModal } =
     useContext(AddressContext);  
+    const { changeLang, t, lang } =
+    useContext(ClientLayoutContext);
 
   return (
     <>
       <Helmet>
-        <title>My Address</title>
+        <title>{t('my_address')}</title>
         <meta name="description" content="My Address TienDa Store" />
       </Helmet>
       <ModalAddress />

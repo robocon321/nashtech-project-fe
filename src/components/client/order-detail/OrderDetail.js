@@ -1,14 +1,19 @@
 import { Container } from "@mui/material";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
+import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
 
 import styles from "./OrderDetail.module.css";
 
 const OrderDetail = (props) => {
+  const { changeLang, t, lang } =
+  useContext(ClientLayoutContext);
+
   return (
     <>
       <Helmet>
-        <title>My Order</title>
+        <title>{t('my_order')}</title>
         <meta name="description" content="My Order TienDa Store" />
       </Helmet>
       <Container>
