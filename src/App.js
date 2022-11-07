@@ -10,6 +10,7 @@ import ClientLayout from "./pages/client/ClientLayout";
 import NotFound from "./pages/404/NotFoundPage";
 import SignInPage from "./pages/auth/SignInPage";
 import SignUpPage from "./pages/auth/SignUpPage";
+import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
 
 import HomePage from "./pages/client/HomePage";
 import ProductPage from "./pages/client/ProductPage";
@@ -61,6 +62,7 @@ function App() {
           </Route>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       );      
@@ -86,6 +88,7 @@ function App() {
         </Route>
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       ) 
@@ -101,6 +104,7 @@ function App() {
           </Route>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       );
