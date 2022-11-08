@@ -7,11 +7,15 @@ const initState = {
     message: "",
     success: true,
   },
-  cart: {}
+  cart: {},
+  isShowModal: false
 };
 
 const reducer = (state = initState, { type, payload }) => {
   switch (type) {
+    case ACTIONS.SET_SHOW_MODAL:
+      state = { ...state, isShowModal: payload};
+      break;
     case ACTIONS.UPDATE_CART_ITEM:      
       state = { ...state, cart: { ...state.cart, cartItems: state.cart.cartItems.map(item => {
         if(item.id === payload.id) return payload;

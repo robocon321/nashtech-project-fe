@@ -11,7 +11,8 @@ export const ACTIONS = {
   SET_CART: 'SET_CART',
   ADD_CART_ITEM: 'ADD_CART_ITEM',
   DELETE_CART_ITEM: 'DELETE_CART_ITEM',
-  UPDATE_CART_ITEM: 'UPDATE_CART_ITEM'
+  UPDATE_CART_ITEM: 'UPDATE_CART_ITEM',
+  SET_SHOW_MODAL: 'SET_SHOW_MODAL'
 };
 
 export const loadCartItemAction = () => async dispatch => {
@@ -156,3 +157,10 @@ export const setCartAction = (cart) => dispatch => {
     payload: {}
   })
 } 
+
+export const setShowModalAction = (isShow) => dispatch => {
+  dispatch({
+    type: ACTIONS.SET_SHOW_MODAL,
+    payload: isShow
+  })
+}

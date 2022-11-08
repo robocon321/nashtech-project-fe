@@ -12,6 +12,7 @@ import {
   setCartAction,
   setLoadingAction,
   setSearchAction,
+  setShowModalAction,
   setStatusAction,
   updateCartItemAction,
 } from "../../actions/client/ClientLayoutAction";
@@ -30,6 +31,7 @@ const initState = {
   },
   search: "",
   cart: {},
+  isShowModal: false
 };
 
 const ClientLayoutProvider = (props) => {
@@ -59,7 +61,11 @@ const ClientLayoutProvider = (props) => {
   };
 
   const saveCartItem = async (cartItem) => {
-    saveCartItemAction(cartItem)(dispatch);
+    if(appState.user.id) {
+      saveCartItemAction(cartItem)(dispatch);
+    } else {
+      setShowModal(true); 
+    }
   };
 
   const deleteCartItem = async (ids) => {
@@ -82,6 +88,10 @@ const ClientLayoutProvider = (props) => {
     i18n.changeLanguage(lang);
   }
 
+  const setShowModal = (isShow) => {
+    setShowModalAction(isShow)(dispatch);
+  }
+
   const value = {
     clientState,
     onSearch,
@@ -91,7 +101,8 @@ const ClientLayoutProvider = (props) => {
     resetStatus,
     changeLang,
     t: props.t,
-    lang: i18n.language  
+    lang: i18n.language,
+    setShowModal
   };
 
   return (

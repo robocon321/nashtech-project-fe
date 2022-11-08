@@ -7,15 +7,17 @@ import "@fortawesome/fontawesome-free-solid";
 import styles from "./Header.module.css";
 import { AppContext } from "../../contexts/providers/AppProvider";
 import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayoutProvider";
+import RequiredLoginModal from "../common/RequiredLoginModal";
 
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);
-  const { clientState, onSearch, resetStatus, changeLang, t, lang } =
+  const { clientState, onSearch, resetStatus, changeLang, t, lang, setShowModal } =
     useContext(ClientLayoutContext);
   const location = useLocation();
 
   return (
     <header className={styles["header"]}>
+      <RequiredLoginModal open={clientState.isShowModal} toggleModal={() => setShowModal(!clientState.isShowModal)}  />
       <Snackbar
         open={clientState.status.message !== ""}
         onClose={resetStatus}
