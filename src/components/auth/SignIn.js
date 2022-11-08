@@ -53,20 +53,20 @@ const SignIn = (props) => {
               )}
             </div>
 
-            <Link
-              to="#"
+            <a
+              href={`http://localhost:8080/oauth2/authorization/facebook`}
               className={styles["btn-face"] + " " + styles["m-b-20"]}
             >
               Facebook
-            </Link>
+            </a>
 
-            <Link
-              to="#"
+            <a
+              href={`http://localhost:8080/oauth2/authorization/google`}
               className={styles["btn-google"] + " " + styles["m-b-20"]}
             >
               <img src="images/icons/icon-google.png" alt="GOOGLE" />
               Google
-            </Link>
+            </a>
             <div className={styles["p-t-31"] + " " + styles["p-b-9"]}>
               <span className={styles["txt1"]}>Username</span>
             </div>

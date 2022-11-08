@@ -32,6 +32,7 @@ import UserListPage from "./pages/admin/UserListPage";
 import CreateUserPage from "./pages/admin/CreateUserPage";
 import UpdateProductPage from "./pages/admin/UpdateProductPage";
 import UpdateUserPage from "./pages/admin/UpdateUserPage";
+import OAuth2RedirectPage from "./pages/auth/OAuth2RedirectPage";
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -63,6 +64,7 @@ function App() {
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/social-redirect" element={<OAuth2RedirectPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       );      
@@ -89,6 +91,7 @@ function App() {
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/social-redirect" element={<OAuth2RedirectPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       ) 
@@ -103,8 +106,9 @@ function App() {
             <Route path="contact-us" element={<ContactUsPage />} />
           </Route>
           <Route path="/sign-in" element={<SignInPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />          
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/social-redirect" element={<OAuth2RedirectPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       );
