@@ -3,8 +3,8 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { FaPlus, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { AddressContext } from "../../../contexts/providers/client/AddressProvider";
-import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
+import { AddressContext } from "@providers/client/AddressProvider";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 import styles from "./Address.module.css";
 import ModalAddress from "./ModalAddress";

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Grid, Button, Snackbar, Alert, Switch } from "@mui/material";
-import Input from "../../common/Input";
+import Input from "@components/common/Input";
 import styles from "./UpdateProduct.module.css";
-import { UpdateProductAdminContext } from "../../../contexts/providers/admin/UpdateProductAdminProvider";
+import { UpdateProductAdminContext } from "@providers/admin/UpdateProductAdminProvider";
 import { Helmet } from "react-helmet";
 
 const UpdateProduct = (props) => {

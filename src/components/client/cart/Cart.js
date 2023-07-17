@@ -5,11 +5,11 @@ import { RiSubtractFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 import styles from "./Cart.module.css";
-import Input from "./../../common/Input";
+import Input from "@components/common/Input";
 import { useContext } from "react";
-import { CartContext } from "../../../contexts/providers/client/CartProvider";
+import { CartContext } from "@providers/client/CartProvider";
 import { Helmet } from "react-helmet";
-import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 const Cart = (props) => {
   const {

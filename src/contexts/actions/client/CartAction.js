@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BACKEND_URL, DISTRICT_API, PROVINCE_API, SHIPPING_API, WARD_API } from '../../../utils/contant';
+import { BACKEND_URL, DISTRICT_API, PROVINCE_API, SHIPPING_API, WARD_API } from '@utils/contant';
 
 export const ACTIONS = {
   SET_STATUS: 'SET_STATUS',

@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/auth/ForgotPasswordAction";
+import { ACTIONS } from "@contexts/actions/auth/ForgotPasswordAction";
 
 const initState = {
   email: '',

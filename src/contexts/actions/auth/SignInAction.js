@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BACKEND_URL, LOCAL_STORAGE_TOKEN } from '../../../utils/contant';
-import { setAuthToken } from '../../../utils/authToken';
+import { BACKEND_URL, LOCAL_STORAGE_TOKEN } from '@utils/contant';
+import { setAuthToken } from '@utils/authToken';
 
 export const ACTIONS = {
   CHANGE_FIELD: 'CHANGE_FIELD',

@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/client/HomeAction";
+import { ACTIONS } from "@contexts/actions/client/HomeAction";
 
 const initState = {
   feature_products: [],

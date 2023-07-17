@@ -8,8 +8,8 @@ import {
   setStatusAction,
   deleteProductAction,
   loadCategoriesAction
-} from "../../actions/admin/ProductAdminAction";
-import ProductAdminReducer from "../../reducers/admin/ProductAdminReducer";
+} from "@contexts/actions/admin/ProductAdminAction";
+import ProductAdminReducer from "@contexts/reducers/admin/ProductAdminReducer";
 
 const initState = {
   status: {

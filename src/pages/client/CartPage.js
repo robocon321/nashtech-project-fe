@@ -1,5 +1,5 @@
-import Cart from "../../components/client/cart/Cart";
-import CartProvider from "../../contexts/providers/client/CartProvider";
+import Cart from "@components/client/cart/Cart";
+import CartProvider from "@providers/client/CartProvider";
 
 const CartPage = (props) => {
   return (

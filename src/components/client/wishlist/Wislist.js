@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import {  FaShoppingCart} from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
+import { ClientLayoutContext } from '@providers/client/ClientLayoutProvider';
 
 import styles from "./Wishlist.module.css";
 

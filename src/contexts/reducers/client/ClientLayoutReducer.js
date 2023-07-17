@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/client/ClientLayoutAction";
+import { ACTIONS } from "@contexts/actions/client/ClientLayoutAction";
 
 const initState = {
   categories: [],

@@ -3,8 +3,7 @@ import { Alert } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import styles from "./Auth.module.css";
-import { SignInContext } from "../../contexts/providers/auth/SignInProvider";
-import Loading from "../common/Loading";
+import { SignInContext } from "@providers/auth/SignInProvider";
 import { Helmet } from "react-helmet";
 
 const SignIn = (props) => {

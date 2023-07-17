@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/client/ProductAction";
+import { ACTIONS } from "@contexts/actions/client/ProductAction";
 
 const initState = {
   products: {},

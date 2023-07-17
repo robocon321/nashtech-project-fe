@@ -1,5 +1,4 @@
-import OAuth2Redirect from "../../components/auth/OAuth2Redirect";
-// import OAuth2RedirectProvider from '../../contexts/providers/auth/OAuth2RedirectProvider';
+import OAuth2Redirect from "@components/auth/OAuth2Redirect";
 
 const OAuth2RedirectPage = props => {
   return (

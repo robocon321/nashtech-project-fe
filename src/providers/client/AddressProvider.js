@@ -3,7 +3,7 @@ import {
   validateEmail,
   validateFullname,
   validatePhone,
-} from "../../../utils/validate";
+} from "@utils/validate";
 import {
   loadContactAction,
   loadDistrictAction,
@@ -14,8 +14,8 @@ import {
   setShowModalAction,
   setStatusAction,
   submitAction
-} from "../../actions/client/AddressAction";
-import AddressReducer from "../../reducers/client/AddressReducer";
+} from "@contexts/actions/client/AddressAction";
+import AddressReducer from "@contexts/reducers/client/AddressReducer";
 
 const initState = {
   contact: {},

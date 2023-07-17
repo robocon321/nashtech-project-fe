@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import { useContext } from 'react';
-import { loadPopularProductAction, loadProductAction, setConditionAction, setFieldAction, setLoadingAction } from '../../actions/client/ProductAction';
-import ProductReducer from '../../reducers/client/ProductReducer';
-import { ClientLayoutContext } from '../../providers/client/ClientLayoutProvider'
+import { loadPopularProductAction, loadProductAction, setConditionAction, setFieldAction, setLoadingAction } from '@contexts/actions/client/ProductAction';
+import ProductReducer from '@contexts/reducers/client/ProductReducer';
+import { ClientLayoutContext } from './ClientLayoutProvider'
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 
 const initState = {

@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/client/AddressAction";
+import { ACTIONS } from "@contexts/actions/client/AddressAction";
 
 const initState = {
   contact: {},

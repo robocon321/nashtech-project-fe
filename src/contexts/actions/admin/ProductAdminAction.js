@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BACKEND_URL } from "../../../utils/contant";
+import { BACKEND_URL } from "@utils/contant";
 
 export const ACTIONS = {
   SET_PRODUCTS: "SET_PRODUCTS",

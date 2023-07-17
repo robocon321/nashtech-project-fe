@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BACKEND_URL } from "../../../utils/contant";
+import { BACKEND_URL } from "@utils/contant";
 
 export const ACTIONS = {
   RESET_ALL_FIELD: "RESET_ALL_FIELD",

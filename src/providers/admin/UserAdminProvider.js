@@ -8,8 +8,8 @@ import {
   setLoadingAction,
   setSelectedAction,
   setStatusAction,
-} from "../../actions/admin/UserAdminAction";
-import UserAdminReducer from "../../reducers/admin/UserAdminReducer";
+} from "@contexts/actions/admin/UserAdminAction";
+import UserAdminReducer from "@contexts/reducers/admin/UserAdminReducer";
 
 const initState = {
   status: {

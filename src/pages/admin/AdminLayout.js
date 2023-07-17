@@ -1,13 +1,10 @@
-// import { useState, useContext, useEffect } from "react";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-// import { Outlet, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-import Header from "../../components/admin/Header";
-import Sidebar from "../../components/admin/Sidebar";
-// import { AppContext } from "../../contexts/providers/AppProvider";
+import Header from "@components/admin/Header";
+import Sidebar from "@components/admin/Sidebar";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",

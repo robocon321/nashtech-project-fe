@@ -1,8 +1,8 @@
 import React, {useReducer, createContext} from 'react';
 
-import { setEmailAction, setLoadingAction, setStatusAction, submitAction } from '../../actions/auth/ForgotPasswordAction';
-import ForgotPasswordReducer from '../../reducers/auth/ForgotPasswordReducer';
-import { validateEmail } from '../../../utils/validate';
+import { setEmailAction, setLoadingAction, setStatusAction, submitAction } from '@contexts/actions/auth/ForgotPasswordAction';
+import ForgotPasswordReducer from '@contexts/reducers/auth/ForgotPasswordReducer';
+import { validateEmail } from '@utils/validate';
 import { useEffect } from 'react';
 
 export const ForgotPasswordContext = createContext();

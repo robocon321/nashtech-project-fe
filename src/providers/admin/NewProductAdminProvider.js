@@ -5,9 +5,9 @@ import {
   loadCategoriesAction,
   submitAction,
   setStatusAction
-} from "../../actions/admin/NewProductAdminAction";
-import NewProductAdminReducer from "../../reducers/admin/NewProductAdminReducer";
-import { validateSlug } from '../../../utils/validate';
+} from "@contexts/actions/admin/NewProductAdminAction";
+import NewProductAdminReducer from "@contexts/reducers/admin/NewProductAdminReducer";
+import { validateSlug } from '@utils/validate';
 
 const initState = {
   status: {

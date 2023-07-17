@@ -1,38 +1,38 @@
 import "./App.css";
 import { useContext } from "react";
-import { AppContext } from "./contexts/providers/AppProvider";
-import Loading from "./components/common/Loading";
+import { AppContext } from "@providers/AppProvider";
+import Loading from "@components/common/Loading";
 import { Routes, Route } from "react-router-dom";
 
-import AdminLayout from "./pages/admin/AdminLayout";
-import ClientLayout from "./pages/client/ClientLayout";
+import AdminLayout from "@pages/admin/AdminLayout";
+import ClientLayout from "@pages/client/ClientLayout";
 
-import NotFound from "./pages/404/NotFoundPage";
-import SignInPage from "./pages/auth/SignInPage";
-import SignUpPage from "./pages/auth/SignUpPage";
-import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
+import NotFound from "@pages/404/NotFoundPage";
+import SignInPage from "@pages/auth/SignInPage";
+import SignUpPage from "@pages/auth/SignUpPage";
+import ForgotPasswordPage from "@pages/auth/ForgotPasswordPage";
 
-import HomePage from "./pages/client/HomePage";
-import ProductPage from "./pages/client/ProductPage";
-import AboutUsPage from "./pages/client/AboutUsPage";
-import ProductDetailPage from "./pages/client/ProductDetailPage";
-import ContactUsPage from "./pages/client/ContactUsPage";
-import WishlistPage from "./pages/client/WishlistPage";
-import DetailAccountPage from "./pages/client/DetailAccountPage";
-import CartPage from "./pages/client/CartPage";
-import AddressPage from "./pages/client/AddressPage";
-import OrderHistoryPage from "./pages/client/OrderHistoryPage";
-import OrderDetailPage from "./pages/client/OrderDetailPage";
+import HomePage from "@pages/client/HomePage";
+import ProductPage from "@pages/client/ProductPage";
+import AboutUsPage from "@pages/client/AboutUsPage";
+import ProductDetailPage from "@pages/client/ProductDetailPage";
+import ContactUsPage from "@pages/client/ContactUsPage";
+import WishlistPage from "@pages/client/WishlistPage";
+import DetailAccountPage from "@pages/client/DetailAccountPage";
+import CartPage from "@pages/client/CartPage";
+import AddressPage from "@pages/client/AddressPage";
+import OrderHistoryPage from "@pages/client/OrderHistoryPage";
+import OrderDetailPage from "@pages/client/OrderDetailPage";
 
-import ProductListPage from "./pages/admin/ProductListPage";
-import Dashboard from "./pages/admin/DashboardPage";
-import CreateProductPage from "./pages/admin/CreateProductPage";
-import CategoryListPage from "./pages/admin/CategoryListPage";
-import UserListPage from "./pages/admin/UserListPage";
-import CreateUserPage from "./pages/admin/CreateUserPage";
-import UpdateProductPage from "./pages/admin/UpdateProductPage";
-import UpdateUserPage from "./pages/admin/UpdateUserPage";
-import OAuth2RedirectPage from "./pages/auth/OAuth2RedirectPage";
+import ProductListPage from "@pages/admin/ProductListPage";
+import Dashboard from "@pages/admin/DashboardPage";
+import CreateProductPage from "@pages/admin/CreateProductPage";
+import CategoryListPage from "@pages/admin/CategoryListPage";
+import UserListPage from "@pages/admin/UserListPage";
+import CreateUserPage from "@pages/admin/CreateUserPage";
+import UpdateProductPage from "@pages/admin/UpdateProductPage";
+import UpdateUserPage from "@pages/admin/UpdateUserPage";
+import OAuth2RedirectPage from "@pages/auth/OAuth2RedirectPage";
 
 function App() {
   const { appState } = useContext(AppContext);

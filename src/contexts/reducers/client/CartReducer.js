@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/client/CartAction";
+import { ACTIONS } from "@contexts/actions/client/CartAction";
 
 const initState = {
   status: {

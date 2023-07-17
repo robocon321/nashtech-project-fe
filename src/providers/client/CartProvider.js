@@ -6,9 +6,9 @@ import {
   setContactSelectedAction,
   setLoadingAction,
   setStatusAction,
-} from "../../actions/client/CartAction";
-import CartReducer from "../../reducers/client/CartReducer";
-import { ClientLayoutContext } from "../../providers/client/ClientLayoutProvider";
+} from "@contexts/actions/client/CartAction";
+import CartReducer from "@contexts/reducers/client/CartReducer";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 const initState = {
   status: {

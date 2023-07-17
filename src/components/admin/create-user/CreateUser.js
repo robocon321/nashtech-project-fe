@@ -1,9 +1,9 @@
 import { Grid, Button, Alert, Snackbar } from "@mui/material";
 
 import styles from "./CreateUser.module.css";
-import Input from "../../common/Input";
+import Input from "@components/common/Input";
 import { useContext } from "react";
-import { NewUserAdminContext } from "../../../contexts/providers/admin/NewUserAdminProvider";
+import { NewUserAdminContext } from "@providers/admin/NewUserAdminProvider";
 import { Helmet } from "react-helmet";
 
 const CreateUser = (props) => {

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FaShoppingCart, FaRegHeart, FaStar, FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayoutProvider";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 import styles from './ProductCard.module.css';
 
 const ProductCard = ({ item }) => {

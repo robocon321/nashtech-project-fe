@@ -1,9 +1,9 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
 import { withNamespaces } from 'react-i18next';
-import i18n from '../../../i18n';
+import i18n from '../../i18n';
 
-import ClientLayoutReducer from "../../reducers/client/ClientLayoutReducer";
+import ClientLayoutReducer from "@contexts/reducers/client/ClientLayoutReducer";
 import {
   deleteCartItemAction,
   loadCartItemAction,
@@ -15,10 +15,10 @@ import {
   setShowModalAction,
   setStatusAction,
   updateCartItemAction,
-} from "../../actions/client/ClientLayoutAction";
+} from "@contexts/actions/client/ClientLayoutAction";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AppContext } from '../AppProvider';
+import { AppContext } from '@providers/AppProvider';
 
 export const ClientLayoutContext = createContext();
 

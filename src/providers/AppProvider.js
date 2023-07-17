@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
-import AppReducer from "../reducers/AppReducer";
-import { loadAccountAction, logoutAction } from "../actions/AppAction";
+import AppReducer from "@contexts/reducers/AppReducer";
+import { loadAccountAction, logoutAction } from "@contexts/actions/AppAction";
 
 export const AppContext = createContext();
 

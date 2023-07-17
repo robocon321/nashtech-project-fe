@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { setAuthToken } from '../../utils/authToken';
-import { LOCAL_STORAGE_TOKEN, BACKEND_URL } from '../../utils/contant';
+import { setAuthToken } from '@utils/authToken';
+import { LOCAL_STORAGE_TOKEN, BACKEND_URL } from '@utils/contant';
 
 export const ACTIONS = {
   SET_USER: 'SET_USER',

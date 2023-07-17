@@ -1,4 +1,4 @@
-import DetailAccount from "../../components/client/detail-account/DetailAccount";
+import DetailAccount from "@components/client/detail-account/DetailAccount";
 
 const DetailAccountPage = (props) => {
   return (

@@ -1,5 +1,5 @@
-import Address from '../../components/client/address/Address';
-import AddressProvider from '../../contexts/providers/client/AddressProvider';
+import Address from '@components/client/address/Address';
+import AddressProvider from '@providers/client/AddressProvider';
 
 const AddressPage = props => {
   return (

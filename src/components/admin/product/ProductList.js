@@ -9,8 +9,8 @@ import { RiAddLine } from "react-icons/ri";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 import styles from "./ProductList.module.css";
-import Input from "../../common/Input";
-import { ProductAdminContext } from "../../../contexts/providers/admin/ProductAdminProvider";
+import Input from "@components/common/Input";
+import { ProductAdminContext } from "@providers/admin/ProductAdminProvider";
 import { Helmet } from "react-helmet";
 
 const formatter = new Intl.NumberFormat("vi-VN", {

@@ -5,9 +5,9 @@ import {
 } from '@mui/material';
 
 import styles from './DetailAccount.module.css';
-import Input from '../../common/Input';
+import Input from '@components/common/Input';
 import { Helmet } from 'react-helmet';
-import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
+import { ClientLayoutContext } from '@providers/client/ClientLayoutProvider';
 import { useContext } from 'react';
 
 const DetailAccount = props => {

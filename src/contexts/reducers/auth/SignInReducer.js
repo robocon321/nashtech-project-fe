@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/auth/SignInAction";
+import { ACTIONS } from "@contexts/actions/auth/SignInAction";
 
 const initState = {
   username: "",

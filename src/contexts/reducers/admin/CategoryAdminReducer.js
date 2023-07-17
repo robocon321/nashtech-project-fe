@@ -1,5 +1,5 @@
-import { ACTIONS } from "../../actions/admin/CategoryAdminAction";
-import { convertToSlug } from "../../../utils/convert";
+import { ACTIONS } from "@contexts/actions/admin/CategoryAdminAction";
+import { convertToSlug } from "@utils/convert";
 
 const initState = {
   category: {

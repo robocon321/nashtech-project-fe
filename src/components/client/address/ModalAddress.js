@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { Modal, Button } from "@mui/material";
 
 import styles from "./ModalAddress.module.css";
-import Input from "../../common/Input";
-import { AddressContext } from "../../../contexts/providers/client/AddressProvider";
+import Input from "@components/common/Input";
+import { AddressContext } from "@providers/client/AddressProvider";
 import { useContext } from "react";
 
 const ModalAddress = (props) => {

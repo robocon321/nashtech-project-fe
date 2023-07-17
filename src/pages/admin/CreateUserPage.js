@@ -1,5 +1,5 @@
-import CreateUser from "../../components/admin/create-user/CreateUser";
-import NewUserAdminProvider from "../../contexts/providers/admin/NewUserAdminProvider";
+import CreateUser from "@components/admin/create-user/CreateUser";
+import NewUserAdminProvider from "@providers/admin/NewUserAdminProvider";
 
 const CreateUserPage = props => {
   return (

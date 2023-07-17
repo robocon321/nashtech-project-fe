@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/auth/SignUpAction" 
+import { ACTIONS } from "@contexts/actions/auth/SignUpAction" 
 
 const initState = {
   user: {

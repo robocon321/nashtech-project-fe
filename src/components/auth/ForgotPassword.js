@@ -3,8 +3,8 @@ import { Helmet } from "react-helmet";
 import { useContext } from "react";
 import { Alert } from "@mui/material";
 
-import { ForgotPasswordContext } from "../../contexts/providers/auth/ForgotPasswordProvider";
-import Loading from "../common/Loading";
+import { ForgotPasswordContext } from "@providers/auth/ForgotPasswordProvider";
+import Loading from "@components/common/Loading";
 
 const ForgotPassword = (props) => {
   const { forgotPassState, setEmail, submit } = useContext(

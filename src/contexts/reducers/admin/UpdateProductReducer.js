@@ -1,5 +1,5 @@
-import { ACTIONS } from "../../actions/admin/UpdateProductAction";
-import { convertToSlug } from "../../../utils/convert";
+import { ACTIONS } from "@contexts/actions/admin/UpdateProductAction";
+import { convertToSlug } from "@utils/convert";
 
 const initState = {
   status: {

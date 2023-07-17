@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import styles from "./Feedback.module.css";
-import Input from "../../common/Input";
+import Input from "@components/common/Input";
 
 const Feedback = (props) => {
   return (

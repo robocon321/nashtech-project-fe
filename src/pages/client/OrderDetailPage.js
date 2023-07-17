@@ -1,4 +1,4 @@
-import OrderDetail from "../../components/client/order-detail/OrderDetail";
+import OrderDetail from "@components/client/order-detail/OrderDetail";
 
 const OrderDetailPage = (props) => {
   return (

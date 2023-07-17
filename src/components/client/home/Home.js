@@ -19,9 +19,9 @@ import { AiTwotoneAudio } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
-import { HomeContext } from "../../../contexts/providers/client/HomeProvider";
-import ProductCard from '../../common/ProductCard';
-import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
+import { HomeContext } from "@providers/client/HomeProvider";
+import ProductCard from '@components/common/ProductCard';
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 const Home = (props) => {
   const { homeState } = useContext(HomeContext);

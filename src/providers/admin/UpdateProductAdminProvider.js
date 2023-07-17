@@ -7,9 +7,9 @@ import {
   setStatusAction,
   setLoadingAction,
   loadProductAction
-} from "../../actions/admin/UpdateProductAction";
-import UpdateProductReducer from "../../reducers/admin/UpdateProductReducer";
-import { validateSlug } from '../../../utils/validate';
+} from "@contexts/actions/admin/UpdateProductAction";
+import UpdateProductReducer from "@contexts/reducers/admin/UpdateProductReducer";
+import { validateSlug } from '@utils/validate';
 import { useParams } from "react-router-dom";
 
 const initState = {

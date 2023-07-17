@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Grid, Button, Snackbar, Alert } from "@mui/material";
-import Input from "../../common/Input";
+import Input from "@components/common/Input";
 import styles from "./CreateProduct.module.css";
-import { NewProductAdminContext } from '../../../contexts/providers/admin/NewProductAdminProvider';
+import { NewProductAdminContext } from '@providers/admin/NewProductAdminProvider';
 import { Helmet } from 'react-helmet';
 
 const CreateProduct = (props) => {

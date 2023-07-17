@@ -11,9 +11,9 @@ import {
   setCategoryAction,
   deleteCategoryAction,
   submitFormAction
-} from "../../actions/admin/CategoryAdminAction";
-import CategoryAdminReducer from "../../reducers/admin/CategoryAdminReducer";
-import { validateSlug } from '../../../utils/validate';
+} from "@contexts/actions/admin/CategoryAdminAction";
+import CategoryAdminReducer from "@contexts/reducers/admin/CategoryAdminReducer";
+import { validateSlug } from '@utils/validate';
 
 const initState = {
   category: {

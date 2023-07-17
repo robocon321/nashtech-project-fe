@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import ProductDetailReducer from "../../reducers/client/ProductDetailReducer";
+import ProductDetailReducer from "@contexts/reducers/client/ProductDetailReducer";
 import {
   loadProductAction,
   setLoadingAction,
@@ -11,8 +11,8 @@ import {
   setStatusAction,
   submitAction,
   toggleModalAction
-} from "../../actions/client/ProductDetailAction";
-import { AppContext } from '../../../contexts/providers/AppProvider';
+} from "@contexts/actions/client/ProductDetailAction";
+import { AppContext } from '@providers/AppProvider';
 
 export const ProductDetailCotnext = createContext();
 

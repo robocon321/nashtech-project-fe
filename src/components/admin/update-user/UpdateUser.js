@@ -1,9 +1,9 @@
 import { Grid, Button, Alert, Snackbar, Switch } from "@mui/material";
 
 import styles from "./UpdateUser.module.css";
-import Input from "../../common/Input";
+import Input from "@components/common/Input";
 import { useContext } from "react";
-import { UpdateUserAdminContext } from "../../../contexts/providers/admin/UpdateUserAdminProvider";
+import { UpdateUserAdminContext } from "@providers/admin/UpdateUserAdminProvider";
 import { Helmet } from "react-helmet";
 
 const UpdateUser = (props) => {

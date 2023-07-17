@@ -4,9 +4,9 @@ import { FaSearch, FaRegEye, FaTrashAlt } from "react-icons/fa";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Moment from "react-moment";
 
-import Input from "../../common/Input";
+import Input from "@components/common/Input";
 import styles from "./CategoryList.module.css";
-import { CategoryAdminContext } from "../../../contexts/providers/admin/CategoryAdminProvider";
+import { CategoryAdminContext } from "@providers/admin/CategoryAdminProvider";
 import { Helmet } from "react-helmet";
 
 const CategoryList = (props) => {

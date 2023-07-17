@@ -1,18 +1,21 @@
 import React, { useReducer, createContext, useEffect } from "react";
-import NewUserAdminReducer from "../../reducers/admin/NewUserAdminReducer";
+import UpdateUserAdminReducer from "@contexts/reducers/admin/UpdateUserAdminReducer";
 import {
   setFieldAction,
   resetAllFieldAction,
   setStatusAction,
   submitAction,
-} from "../../actions/admin/NewUserAdminAction";
+  loadUserAction,
+  setLoadingAction,
+} from "@contexts/actions/admin/UpdateUserAdminAction";
 import {
   validateEmail,
   validateFullname,
   validatePhone,
-} from "../../../utils/validate";
+} from "@utils/validate";
+import { useParams } from "react-router-dom";
 
-export const NewUserAdminContext = createContext();
+export const UpdateUserAdminContext = createContext();
 
 const initState = {
   status: {
@@ -20,21 +23,34 @@ const initState = {
     message: "",
     success: true,
   },
-  user: {
-    
-  },
+  user: {},
 };
 
-const NewUserAdminProvider = (props) => {
-  const [newUserState, dispatch] = useReducer(NewUserAdminReducer, initState);
+const UpdateUserAdminProvider = (props) => {
+  const [updateUserState, dispatch] = useReducer(UpdateUserAdminReducer, initState);
+  const { id } = useParams();
 
   useEffect(() => {
-    console.log(newUserState);
-  }, [newUserState]);
+    loadData();
+  }, []);  
+
+  useEffect(() => {
+    console.log(updateUserState);
+  }, [updateUserState]);
+
+  const loadData = async () => {
+    setLoadingAction(true)(dispatch);
+    await loadUserAction(id)(dispatch);
+    setLoadingAction(false)(dispatch);
+  }
 
   const changeField = (e) => {
     setFieldAction({ field: e.target.name, value: e.target.value })(dispatch);
   };
+
+  const switchVisible = (status) => {
+    setFieldAction({ field: 'status', value: status})(dispatch);
+  }
 
   const clearAllField = () => {
     resetAllFieldAction()(dispatch);
@@ -43,12 +59,12 @@ const NewUserAdminProvider = (props) => {
   const submit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      submitAction(newUserState.user)(dispatch);
+      submitAction(updateUserState.user)(dispatch);
     }
   };
 
   const validateForm = () => {
-    if (!newUserState.user.username || newUserState.user.username.length < 6) {
+    if (!updateUserState.user.username || updateUserState.user.username.length < 6) {
       setStatusAction({
         isLoading: false,
         success: false,
@@ -57,7 +73,8 @@ const NewUserAdminProvider = (props) => {
       return false;
     }
 
-    if (!newUserState.user.fullname || !validateFullname(newUserState.user.fullname)) {
+    if (!updateUserState.user.fullname || !validateFullname(updateUserState.user.fullname)) {
+      console.log(updateUserState.user.fullname ,validateFullname(updateUserState.user.fullname));
       setStatusAction({
         isLoading: false,
         success: false,
@@ -66,7 +83,7 @@ const NewUserAdminProvider = (props) => {
       return false;
     }
 
-    if (!newUserState.user.email || !validateEmail(newUserState.user.email)) {
+    if (!updateUserState.user.email || !validateEmail(updateUserState.user.email)) {
       setStatusAction({
         isLoading: false,
         success: false,
@@ -75,7 +92,7 @@ const NewUserAdminProvider = (props) => {
       return false;
     }
 
-    if (!newUserState.user.phone || !validatePhone(newUserState.user.phone)) {
+    if (!updateUserState.user.phone || !validatePhone(updateUserState.user.phone)) {
       setStatusAction({
         isLoading: false,
         success: false,
@@ -83,16 +100,6 @@ const NewUserAdminProvider = (props) => {
       })(dispatch);
       return false;
     }
-
-    if (!newUserState.user.password || newUserState.user.password.length < 6) {
-      setStatusAction({
-        isLoading: false,
-        success: false,
-        message: "Password not less 6 letters",
-      })(dispatch);
-      return false;
-    }
-
 
     return true;
   };
@@ -106,18 +113,19 @@ const NewUserAdminProvider = (props) => {
   };
 
   const value = {
-    newUserState,
+    updateUserState,
     changeField,
     clearAllField,
     submit,
-    resetStatus
+    resetStatus,
+    switchVisible
   };
 
   return (
-    <NewUserAdminContext.Provider value={value}>
+    <UpdateUserAdminContext.Provider value={value}>
       {props.children}
-    </NewUserAdminContext.Provider>
+    </UpdateUserAdminContext.Provider>
   );
 };
 
-export default NewUserAdminProvider;
+export default UpdateUserAdminProvider;

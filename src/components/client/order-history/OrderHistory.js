@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 
 import styles from "./OrderHistory.module.css";
-import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
+import { ClientLayoutContext } from '@providers/client/ClientLayoutProvider';
 
 const OrderHistory = (props) => {
   const { changeLang, t, lang } =

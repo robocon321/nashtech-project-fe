@@ -22,14 +22,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import styles from "./ProductDetail.module.css";
-import Input from "./../../common/Input";
-import Service from "./../../common/Service";
+import Input from "@components/common/Input";
+import Service from "@components/common/Service";
 
-import { ProductDetailCotnext } from "../../../contexts/providers/client/ProductDetailProvider";
-import Loading from "../../common/Loading";
+import { ProductDetailCotnext } from "@providers/client/ProductDetailProvider";
+import Loading from "@components/common/Loading";
 import Moment from "react-moment";
-import RequiredLoginModal from "../../common/RequiredLoginModal";
-import ProductCard from "../../common/ProductCard";
+import RequiredLoginModal from "@components/common/RequiredLoginModal";
+import ProductCard from "@components/common/ProductCard";
 import { Helmet } from "react-helmet";
 
 const ProductDetail = (props) => {

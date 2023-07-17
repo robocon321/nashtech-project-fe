@@ -1,5 +1,5 @@
-import Product from "../../components/client/product/Product";
-import ProductProvider from "../../contexts/providers/client/ProductProvider";
+import Product from "@components/client/product/Product";
+import ProductProvider from "@providers/client/ProductProvider";
 
 const ProductPage = (props) => {
   return (

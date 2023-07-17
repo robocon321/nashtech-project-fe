@@ -5,8 +5,7 @@ import {
   DISTRICT_API,
   WARD_API,
   SHIPPING_TOKEN,
-  SHIPPING_API,
-} from "../../../utils/contant";
+} from "@utils/contant";
 
 axios.defaults.headers.common["token"] = SHIPPING_TOKEN;
 

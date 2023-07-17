@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
-import SignUpReducer from '../../reducers/auth/SignUpReducer';
-import { changeFieldAction, setStatusAction, signUpAction } from "../../actions/auth/SignUpAction";
-import { validateEmail, validateFullname, validatePhone } from "../../../utils/validate";
+import SignUpReducer from '@contexts/reducers/auth/SignUpReducer';
+import { changeFieldAction, setStatusAction, signUpAction } from "@contexts/actions/auth/SignUpAction";
+import { validateEmail, validateFullname, validatePhone } from "@utils/validate";
 import { useNavigate } from "react-router-dom";
 
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import { AppContext } from '../../contexts/providers/AppProvider';
-import { LOCAL_STORAGE_TOKEN } from '../../utils/contant';
+import { AppContext } from '@providers/AppProvider';
+import { LOCAL_STORAGE_TOKEN } from '@utils/contant';
 
 const OAuth2Redirect = (props) =>  {
   const [searchParams, setSearchParams] = useSearchParams();

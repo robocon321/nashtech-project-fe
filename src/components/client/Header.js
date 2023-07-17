@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-free-solid";
 
 import styles from "./Header.module.css";
-import { AppContext } from "../../contexts/providers/AppProvider";
-import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayoutProvider";
-import RequiredLoginModal from "../common/RequiredLoginModal";
+import { AppContext } from "@providers/AppProvider";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
+import RequiredLoginModal from "@components/common/RequiredLoginModal";
 
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);

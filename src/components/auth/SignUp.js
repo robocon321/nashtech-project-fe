@@ -3,8 +3,7 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
-import { SignUpContext } from "../../contexts/providers/auth/SignUpProvider";
-import Loading from "../common/Loading";
+import { SignUpContext } from "@providers/auth/SignUpProvider";
 import styles from "./Auth.module.css";
 
 const SignUp = (props) => {

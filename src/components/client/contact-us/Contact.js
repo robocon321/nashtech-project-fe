@@ -2,7 +2,7 @@ import styles from './Contact.module.css';
 import Map from './Map';
 import Feedback from './Feedback';
 import { Helmet } from 'react-helmet';
-import { ClientLayoutContext } from '../../../contexts/providers/client/ClientLayoutProvider';
+import { ClientLayoutContext } from '@providers/client/ClientLayoutProvider';
 import { useContext } from 'react';
 
 const Contact = (props) => {

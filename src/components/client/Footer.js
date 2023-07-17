@@ -10,7 +10,7 @@ import {
   FaPhoneAlt
 } from "react-icons/fa";
 import { useContext } from "react";
-import { ClientLayoutContext } from "../../contexts/providers/client/ClientLayoutProvider";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 const Footer = (props) => {
   const { changeLang, t, lang } =

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { FaSearch, FaRegEye, FaTrashAlt } from "react-icons/fa";
 import { RiAddLine } from "react-icons/ri";
-import { UserAdminContext } from "../../../contexts/providers/admin/UserAdminProvider";
+import { UserAdminContext } from "@providers/admin/UserAdminProvider";
 
 import styles from "./UserList.module.css";
 

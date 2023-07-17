@@ -1,8 +1,8 @@
 import { createContext, useReducer, useEffect, useContext } from "react";
-import SignInReducer from '../../reducers/auth/SignInReducer';
-import { changeFieldAction, signInAction } from "../../actions/auth/SignInAction";
+import SignInReducer from '@contexts/reducers/auth/SignInReducer';
+import { changeFieldAction, signInAction } from "@contexts/actions/auth/SignInAction";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../AppProvider";
+import { AppContext } from "@providers/AppProvider";
 
 
 export const SignInContext = createContext();

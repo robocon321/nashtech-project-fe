@@ -18,7 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom';
 
-import { AppContext } from '../../contexts/providers/AppProvider';
+import { AppContext } from '@providers/AppProvider';
 
 const drawerWidth = 300;
 

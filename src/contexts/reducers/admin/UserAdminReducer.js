@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../actions/admin/UserAdminAction";
+import { ACTIONS } from "@contexts/actions/admin/UserAdminAction";
 
 const initState = {
   status: {

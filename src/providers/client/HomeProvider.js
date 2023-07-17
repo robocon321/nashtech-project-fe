@@ -1,10 +1,8 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
-import { withNamespaces } from 'react-i18next';
-import i18n from '../../../i18n';
+import i18n from '../../i18n';
 
 
-import HomeReducer from "../../reducers/client/HomeReducer";
 import {
   setBestSellerProductAction,
   setFeaturedProductAction,
@@ -12,7 +10,8 @@ import {
   setNewestProductAction,
   setPhoneComputerProductAction,
   setTvCameraProductAction
-} from "../../actions/client/HomeAction";
+} from "@contexts/actions/client/HomeAction";
+import HomeReducer from "@contexts/reducers/client/HomeReducer";
 
 const initState = {
   feature_products: [],

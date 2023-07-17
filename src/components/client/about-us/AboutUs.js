@@ -2,7 +2,7 @@ import { Container } from "@mui/material";
 import styles from "./AboutUs.module.css";
 import { Helmet } from "react-helmet";
 import { useContext } from "react";
-import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 const AboutUs = (props) => {
   const { changeLang, t, lang } =

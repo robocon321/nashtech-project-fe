@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import UploadImageHelper from '../../utils/uploadImageHelper';
+import UploadImageHelper from '@utils/uploadImageHelper';
 
 const CustomEditor = ({
     id,

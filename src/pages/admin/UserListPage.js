@@ -1,5 +1,5 @@
-import UserList from "../../components/admin/user/UserList";
-import UserAdminProvider from "../../contexts/providers/admin/UserAdminProvider";
+import UserList from "@components/admin/user/UserList";
+import UserAdminProvider from "@providers/admin/UserAdminProvider";
 
 const UserListPage = props => {
   return (

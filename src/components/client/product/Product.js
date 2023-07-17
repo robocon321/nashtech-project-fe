@@ -5,14 +5,14 @@ import { BsGrid3X3GapFill } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import ProductCard from "../../common/ProductCard";
+import ProductCard from "@components/common/ProductCard";
 
 import styles from "./Product.module.css";
-import Services from "../../common/Service";
-import { ProductContext } from "../../../contexts/providers/client/ProductProvider";
-import Input from "../../common/Input";
+import Services from "@components/common/Service";
+import { ProductContext } from "@providers/client/ProductProvider";
+import Input from "@components/common/Input";
 import { Helmet } from "react-helmet";
-import { ClientLayoutContext } from "../../../contexts/providers/client/ClientLayoutProvider";
+import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
