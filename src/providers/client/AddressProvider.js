@@ -20,7 +20,6 @@ export const AddressContext = createContext();
 const AddressProvider = (props) => {
   const dispatch = useDispatch();
   const addressState = useSelector(state => state.addressReducer);  
-  console.log(addressState);
 
   useEffect(() => {
     initDataAction()(dispatch);

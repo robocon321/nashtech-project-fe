@@ -4,6 +4,9 @@ import styles from "./ModalAddress.module.css";
 import Input from "@components/common/Input";
 import { AddressContext } from "@providers/client/AddressProvider";
 import { useContext } from "react";
+import CustomTextInput from "@components/common/CustomTextInput";
+import CustomSelectInput from "@components/common/CustomSelectInput";
+import CustomTextAreaInput from "@components/common/CustomTextAreaInput";
 
 const ModalAddress = (props) => {
   const { addressState, setShowModal, setFieldContact, submit } =
@@ -17,8 +20,7 @@ const ModalAddress = (props) => {
         aria-describedby="modal-modal-description"
       >
         <div className={styles["modal-address"]}>
-          <Input
-            type="text"
+          <CustomTextInput
             title="Full name"
             name="fullname"
             id="fullname"
@@ -28,7 +30,7 @@ const ModalAddress = (props) => {
             }
             required={true}
           />
-          <Input
+          <CustomTextInput
             type="text"
             title="Phone"
             name="phone"
@@ -39,8 +41,7 @@ const ModalAddress = (props) => {
             }
             required={true}
           />
-          <Input
-            type="text"
+          <CustomTextInput
             title="Email"
             name="email"
             id="email"
@@ -50,8 +51,7 @@ const ModalAddress = (props) => {
             }
             required={true}
           />          
-          <Input
-            type="select"
+          <CustomSelectInput
             title="Province"
             name="province"
             id="province"
@@ -60,14 +60,13 @@ const ModalAddress = (props) => {
             onChange={(e) =>
               setFieldContact({ field: e.target.name, value: e.target.value })
             }
-            props={{
+            options={{
               data: addressState.provinces,
               key: "ProvinceName",
               value: "ProvinceID",
             }}
           />
-          <Input
-            type="select"
+          <CustomSelectInput
             title="District"
             name="district"
             id="district"
@@ -76,14 +75,13 @@ const ModalAddress = (props) => {
             onChange={(e) =>
               setFieldContact({ field: e.target.name, value: e.target.value })
             }
-            props={{
+            options={{
               data: addressState.districts,
               key: "DistrictName",
               value: "DistrictID",
             }}
           />
-          <Input
-            type="select"
+          <CustomSelectInput
             title="Ward"
             name="ward"
             id="ward"
@@ -92,14 +90,13 @@ const ModalAddress = (props) => {
             onChange={(e) =>
               setFieldContact({ field: e.target.name, value: e.target.value })
             }
-            props={{
+            options={{
               data: addressState.wards,
               key: "WardName",
               value: "WardCode",
             }}
           />
-          <Input
-            type="textarea"
+          <CustomTextAreaInput
             title="Detail address"
             name="detail"
             id="detail"
