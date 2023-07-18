@@ -4,7 +4,7 @@
 
 /* start new address */
 
-a.new-address {
+div.new-address {
   color: var(--green);
   background-color: var(--gray);
   display: flex;
@@ -12,9 +12,10 @@ a.new-address {
   align-items: center;
   width: 100%;
   padding: 20px 0px;
+  cursor: pointer;
 }
 
-a.new-address:hover {
+div.new-address:hover {
   color: var(--blue);
 }
 

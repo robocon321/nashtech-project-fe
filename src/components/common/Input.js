@@ -83,11 +83,11 @@ const Input = ({
             className={styles["input"]}
             onChange={onChange}
           >
-            <option value="" selected disabled hidden>
+            <option value="" defaultChecked disabled hidden>
               {placeholder}
             </option>
-            {props.data.map((item) => {
-              return <option value={item[props.value]}>{item[props.key]}</option>;
+            {props.data.map((item, index) => {
+              return <option key={index} value={item[props.value]}>{item[props.key]}</option>;
             })}
           </select>
         </div>
@@ -181,7 +181,7 @@ const Input = ({
               onChange={onChange}
               onClick={onClick}
               name={name}
-              value={value}
+              defaultValue={value}
               {...props}
             />
             {/* )

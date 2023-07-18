@@ -6,29 +6,124 @@ import {
   WARD_API,
   SHIPPING_TOKEN,
 } from "@utils/contant";
+import {   
+  setDistricts,
+  setFieldContact,
+  setWards,
+  setShowModal,
+  setStatus,
+  initData,
+  setContacts
+ } from "@contexts/reducers/client/AddressSlice";
 
 axios.defaults.headers.common["token"] = SHIPPING_TOKEN;
 
-export const ACTIONS = {
-  SET_STATUS: "SET_STATUS",
-  SET_MESSAGE: "SET_MESSAGE",
-  SET_LOADING: "SET_LOADING",
-  SET_SUCCESS: "SET_SUCCESS",
-  SET_PROVINCES: "SET_PROVINCES",
-  SET_DISTRICTS: "SET_DISTRICTS",
-  SET_WARDS: "SET_WARDS",
-  SET_FIELD_CONTACT: "SET_FIELD_CONTACT",
-  SET_SHOW_MODAL: "SET_SHOW_MODAL",
-  SET_CONTACTS: "SET_CONTACTS"
+export const initDataAction = () => async (dispatch) => {
+  const payload = {};
+  const status = {
+    isLoading: true,
+    message: "",
+    success: true,
+  }
+  const loadContactResult = await loadContactAction();
+  if(!loadContactResult.status.success) {
+    status.success = false;
+    status.message += loadContactResult.status.message;
+  } else {
+    payload.contacts = loadContactResult.data;
+  }
+
+  const loadProvinceResult = await loadProvinceAction();
+  if(!loadProvinceResult.status.success) {
+    status.success = false;
+    status.message += loadProvinceResult.status.message;
+  } else {
+    payload.provinces = loadProvinceResult.data;
+  }
+
+  payload.status = status;
+  dispatch(initData(payload));
+}
+
+export const loadDistrictAction = (provinceId) => async (dispatch) => {
+  if(provinceId) {
+    await axios
+    .get(`${DISTRICT_API}`, {
+      params: {
+        province_id: provinceId
+      }
+    })
+    .then((response) => {
+      dispatch(setDistricts(response.data.data));
+    })
+    .catch((error) => {
+      handleError(error);
+    });    
+  }
 };
 
-export const loadContactAction = () => async (dispatch) => {
+export const loadWardAction = (districtId) => async (dispatch) => {
+  if(districtId) {
+    await axios
+    .get(`${WARD_API}`, {
+      params: {
+        district_id: districtId
+      }
+    })
+    .then((response) => {
+      dispatch(setWards(response.data.data));
+    })
+    .catch((error) => {
+      handleError(error);
+    });    
+  }
+};
+
+export const setFieldContactAction = ({field, value}) => dispatch => {
+  dispatch(setFieldContact({field, value}));
+}
+
+export const setStatusAction = (status) => (dispatch) => {
+  dispatch(setStatus(status));
+};
+
+export const setShowModalAction = (isShow) => dispatch => {
+  dispatch(setShowModal(isShow));
+}
+
+export const submitAction = (contact) => async dispatch => {
+  await axios.post(`${BACKEND_URL}/contacts`, contact).then(async (response) => {
+    const loadContactResult = await loadContactAction();
+    if(loadContactResult.status.success) dispatch(setContacts(loadContactResult.data));
+    else handleError(loadContactResult.error);
+  }).catch(error => {
+    handleError(error)(dispatch);
+  })
+}
+
+const handleError = (error) => (dispatch) => {
+  dispatch(setStatus({
+    message: error.response.data.message,
+    success: false,
+    isLoading: false
+  }));
+}
+
+const loadContactAction = async() => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios
     .get(`${BACKEND_URL}/contacts`)
     .then(async (response) => {
       const contacts = response.data.data;
 
-      for(var i = 0; i < contacts.length; i ++) {
+      for(let i = 0; i < contacts.length; i ++) {
         await axios
         .get(`${PROVINCE_API}`)
         .then((response) => {
@@ -65,158 +160,37 @@ export const loadContactAction = () => async (dispatch) => {
         });
 
         }
-
-        
-        dispatch({
-          type: ACTIONS.SET_CONTACTS,
-          payload: contacts
-        })
-      })      
+        result.data = contacts;
+      })
     .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_MESSAGE,
-        payload: error.response.data.message,
-      });
-      dispatch({
-        type: ACTIONS.SET_SUCCESS,
-        payload: false,
-      });
+      result.status = {
+        message: error.response.data.message,
+        success: false
+      }   
     });
-  
+    return result;
 }
 
-export const loadProvinceAction = () => async (dispatch) => {
+const loadProvinceAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios
     .get(`${PROVINCE_API}`)
     .then((response) => {
-      dispatch({
-        type: ACTIONS.SET_PROVINCES,
-        payload: response.data.data,
-      });
+      result.data = response.data.data;
     })
     .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_MESSAGE,
-        payload: error.response.data.message,
-      });
-      dispatch({
-        type: ACTIONS.SET_SUCCESS,
-        payload: false,
-      });
-    });
-};
-
-export const loadDistrictAction = (provinceId) => async (dispatch) => {
-  if(provinceId) {
-    await axios
-    .get(`${DISTRICT_API}`, {
-      params: {
-        province_id: provinceId
+      result.status = {
+        message: error.response.data.message,
+        success: false
       }
-    })
-    .then((response) => {
-      dispatch({
-        type: ACTIONS.SET_DISTRICTS,
-        payload: response.data.data,
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_MESSAGE,
-        payload: error.response.data.message,
-      });
-      dispatch({
-        type: ACTIONS.SET_SUCCESS,
-        payload: false,
-      });
-    });    
-  }
-};
-
-export const loadWardAction = (districtId) => async (dispatch) => {
-  if(districtId) {
-    await axios
-    .get(`${WARD_API}`, {
-      params: {
-        district_id: districtId
-      }
-    })
-    .then((response) => {
-      console.log(response);
-      dispatch({
-        type: ACTIONS.SET_WARDS,
-        payload: response.data.data,
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_MESSAGE,
-        payload: error.response.data.message,
-      });
-      dispatch({
-        type: ACTIONS.SET_SUCCESS,
-        payload: false,
-      });
-    });    
-  }
-};
-
-export const setFieldContactAction = ({field, value}) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_FIELD_CONTACT,
-    payload: {
-      field, value
-    }
-  })
-}
-
-export const setStatusAction = (status) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: status,
-  });
-};
-
-export const setLoadingAction = (isLoading) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_LOADING,
-    payload: isLoading,
-  });
-};
-
-export const setMessageAction = (message) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_MESSAGE,
-    payload: message,
-  });
-};
-
-export const setSuccessAction = (success) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_SUCCESS,
-    payload: success,
-  });
-};
-
-export const setShowModalAction = (isShow) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_SHOW_MODAL,
-    payload: isShow
-  })
-}
-
-export const submitAction = (contact) => async dispatch => {
-  await axios.post(`${BACKEND_URL}/contacts`, contact).then(response => {
-    loadContactAction()(dispatch);
-  }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
     });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
-
-} 
+    
+    return result;
+};

@@ -1,10 +1,10 @@
 import { Alert, Container, Snackbar } from "@mui/material";
-import { useContext } from "react";
-import { Helmet } from "react-helmet";
-import { FaPlus, FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import { AddressContext } from "@providers/client/AddressProvider";
 import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
+import { useContext } from "react";
+import { Helmet } from "react-helmet";
+import { FaEdit, FaPlus } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 import styles from "./Address.module.css";
 import ModalAddress from "./ModalAddress";
@@ -12,7 +12,7 @@ import ModalAddress from "./ModalAddress";
 const Address = (props) => {
   const { addressState, resetStatus, setShowModal } =
     useContext(AddressContext);  
-    const { changeLang, t, lang } =
+    const { t } =
     useContext(ClientLayoutContext);
 
   return (
@@ -25,13 +25,12 @@ const Address = (props) => {
       <Container>
         <div className={styles["addresses"]}>
           <h1>My Addresses</h1>
-          <a
+          <div
             className={styles["new-address"]}
-            href="#"
             onClick={() => setShowModal(true)}
           >
             <FaPlus /> Add new address
-          </a>
+          </div>
           {addressState.contacts.map((item) => {
             return (
               <div className={styles["address"]} key={item.id}>
@@ -76,7 +75,7 @@ const Address = (props) => {
         </div>
       </Container>
       <Snackbar
-        open={addressState.status.message}
+        open={!addressState.status.success}
         onClose={resetStatus}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >

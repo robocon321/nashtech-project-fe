@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import addressSlice from "./reducers/client/AddressSlice";
+import addressReducer from "./reducers/client/AddressSlice";
 
 export default configureStore({
     reducer: {
-        addressSlice
+        addressReducer
     }
 });

@@ -1,65 +1,39 @@
-import React, { useReducer, createContext, useEffect } from "react";
+import React, { createContext, useEffect } from "react";
 import {
   validateEmail,
   validateFullname,
   validatePhone,
 } from "@utils/validate";
 import {
-  loadContactAction,
+  initDataAction,
   loadDistrictAction,
-  loadProvinceAction,
   loadWardAction,
   setFieldContactAction,
-  setLoadingAction,
   setShowModalAction,
   setStatusAction,
   submitAction
 } from "@contexts/actions/client/AddressAction";
-import AddressReducer from "@contexts/reducers/client/AddressReducer";
-
-const initState = {
-  contact: {},
-  provinces: [],
-  districts: [],
-  wards: [],
-  status: {
-    isLoading: true,
-    message: "",
-    success: true,
-  },
-  isShowModal: false,
-  contacts: [],
-};
+import { useDispatch, useSelector } from "react-redux";
 
 export const AddressContext = createContext();
 
 const AddressProvider = (props) => {
-  const [addressState, dispatch] = useReducer(AddressReducer, initState);
+  const dispatch = useDispatch();
+  const addressState = useSelector(state => state.addressReducer);  
+  console.log(addressState);
 
   useEffect(() => {
-    loadData();
+    initDataAction()(dispatch);
   }, []);
 
   useEffect(() => {
     loadDistrictAction(addressState.contact.province)(dispatch);
-  }, [addressState.contact.province]);
+  }, [addressState.contact.province, dispatch]);
 
   useEffect(() => {
     loadWardAction(addressState.contact.district)(dispatch);
-  }, [addressState.contact.district]);
+  }, [addressState.contact.district, dispatch]);
 
-  useEffect(() => {
-    console.log(addressState);
-  }, [addressState]);
-
-  const loadData = async () => {
-    setLoadingAction(true)(dispatch);
-
-    await loadProvinceAction()(dispatch);
-    await loadContactAction()(dispatch);
-
-    setLoadingAction(false)(dispatch);
-  };
 
   const submit = () => {
     if (validate()) {
@@ -171,19 +145,6 @@ const AddressProvider = (props) => {
   };
 
   const setFieldContact = ({ field, value }) => {
-    if (field == "province") {
-      setFieldContact({
-        field: "district",
-        value: null,
-      });
-    }
-    if (field == "district") {
-      setFieldContact({
-        field: "ward",
-        value: null,
-      });
-    }
-
     setFieldContactAction({ field, value })(dispatch);
   };
 
