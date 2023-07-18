@@ -1,19 +1,69 @@
 import axios from 'axios';
 import { BACKEND_URL } from '@utils/contant';
+import { initData } from '@contexts/reducers/client/HomeSlice';
 
-export const ACTIONS = {
-  SET_FEATURED_PRODUCT: 'SET_FEATURED_PRODUCT',
-  SET_BESTSELLER_PRODUCT: 'SET_BESTSELLER_PRODUCT',
-  SET_NEWEST_PRODUCT: 'SET_NEWEST_PRODUCT',
-  SET_PHONE_COMPUTER_PRODUCT: 'SET_PHONE_COMPUTER_PRODUCT',
-  SET_TV_CAMERA_PRODUCT: 'SET_TV_CAMERA_PRODUCT',
-  SET_STATUS: 'SET_STATUS',
-  SET_LOADING: 'SET_LOADING',
-  SET_MESSAGE: 'SET_MESSAGE',
-  SET_SUCCESS: 'SET_SUCCESS'
-}
+export const initDataAction = () => async (dispatch) => {
+  const payload = {};
+  const status = {
+    isLoading: true,
+    message: "",
+    success: true,
+  }
+  const loadFeatureProduct = await setFeaturedProductAction();
+  if(!loadFeatureProduct.status.success) {
+    status.success = false;
+    status.message += loadFeatureProduct.status.message;
+  } else {
+    payload.feature_products = loadFeatureProduct.data;
+  }
 
-export const setFeaturedProductAction = () => async dispatch => {
+  const loadBestSellerProduct = await setBestSellerProductAction();
+  if(!loadBestSellerProduct.status.success) {
+    status.success = false;
+    status.message += loadBestSellerProduct.status.message;
+  } else {
+    payload.best_seller_products = loadBestSellerProduct.data;
+  }
+
+  const loadNewestProduct = await setNewestProductAction();
+  if(!loadNewestProduct.status.success) {
+    status.success = false;
+    status.message += loadNewestProduct.status.message;
+  } else {
+    payload.newest_products = loadNewestProduct.data;
+  }
+
+  const loadPhoneComputerProduct = await setPhoneComputerProductAction();
+  if(!loadPhoneComputerProduct.status.success) {
+    status.success = false;
+    status.message += loadPhoneComputerProduct.status.message;
+  } else {
+    payload.phone_computer_products = loadPhoneComputerProduct.data;
+  }
+
+  const loadTvCameraProduct = await setTvCameraProductAction();
+  if(!loadTvCameraProduct.status.success) {
+    status.success = false;
+    status.message += loadTvCameraProduct.status.message;
+  } else {
+    payload.tv_camera_products = loadTvCameraProduct.data;
+  }
+
+  console.log(dispatch);
+  payload.status = status;
+  dispatch(initData(payload));
+
+} 
+
+const setFeaturedProductAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios.get(`${BACKEND_URL}/products`, {
     params: {
       size: 10,
@@ -21,23 +71,26 @@ export const setFeaturedProductAction = () => async dispatch => {
       AND_status: 1
     }
   }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_FEATURED_PRODUCT,
-      payload: response.data.data.content
-    })
+    result.data = response.data.data.content;
   }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    }
+  });
+  
+  return result;
 }
 
-export const setBestSellerProductAction = () => async dispatch => {
+const setBestSellerProductAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios.get(`${BACKEND_URL}/products`, {
     params: {
       size: 10,
@@ -45,23 +98,26 @@ export const setBestSellerProductAction = () => async dispatch => {
       AND_status: 1
     }
   }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_BESTSELLER_PRODUCT,
-      payload: response.data.data.content
-    })
+    result.data = response.data.data.content;
   }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    }
+  });
+
+  return result;
 }
 
-export const setNewestProductAction = () => async dispatch => {
+const setNewestProductAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios.get(`${BACKEND_URL}/products`, {
     params: {
       size: 10,
@@ -69,23 +125,26 @@ export const setNewestProductAction = () => async dispatch => {
       AND_status: 1
     }
   }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_NEWEST_PRODUCT,
-      payload: response.data.data.content
-    })
+    result.data = response.data.data.content;
   }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    }
+  });
+
+  return result;
 }
 
-export const setPhoneComputerProductAction = () => async dispatch => {
+const setPhoneComputerProductAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios.get(`${BACKEND_URL}/products`, {
     params: {
       size: 10,
@@ -93,23 +152,26 @@ export const setPhoneComputerProductAction = () => async dispatch => {
       AND_status: 1
     }
   }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_PHONE_COMPUTER_PRODUCT,
-      payload: response.data.data.content
-    })
+    result.data = response.data.data.content;
   }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    }
+  });
+
+  return result;
 }
 
-export const setTvCameraProductAction = () => async dispatch => {
+const setTvCameraProductAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios.get(`${BACKEND_URL}/products`, {
     params: {
       size: 10,
@@ -117,46 +179,13 @@ export const setTvCameraProductAction = () => async dispatch => {
       AND_status: 1
     }
   }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_TV_CAMERA_PRODUCT,
-      payload: response.data.data.content
-    })
+    result.data = response.data.data.content;
   }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
-}
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    }
+  });
 
-export const setStatusAction = (status) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: status
-  })
-}
-
-export const setLoadingAction = (isLoading) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_LOADING,
-    payload: isLoading
-  })
-}
-
-export const setMessageAction = (message) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_MESSAGE,
-    payload: message
-  })
-}
-
-export const setSuccessAction = (success) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_SUCCESS,
-    payload: success
-  })
+  return result;
 }

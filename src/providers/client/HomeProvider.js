@@ -1,56 +1,22 @@
-import React, { createContext, useEffect, useReducer } from "react";
-
+import {
+  initDataAction
+} from "@contexts/actions/client/HomeAction";
+import React, { createContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import i18n from '../../i18n';
 
-
-import {
-  setBestSellerProductAction,
-  setFeaturedProductAction,
-  setLoadingAction,
-  setNewestProductAction,
-  setPhoneComputerProductAction,
-  setTvCameraProductAction
-} from "@contexts/actions/client/HomeAction";
-import HomeReducer from "@contexts/reducers/client/HomeReducer";
-
-const initState = {
-  feature_products: [],
-  best_seller_products: [],
-  newest_products: [],
-  phone_computer_products: [],
-  tv_camera_products: [],
-  status: {
-    isLoading: true,
-    message: "",
-    success: true,
-  },
-};
 
 export const HomeContext = createContext();
 
 const HomeProvider = (props) => {
-
-  const [homeState, dispatch] = useReducer(HomeReducer, initState);
+  const dispatch = useDispatch();
+  const homeState = useSelector(state => state.homeReducer);
+  console.log(homeState);
 
   useEffect(() => {
-    loadData();
+    initDataAction()(dispatch);
   }, []);
 
-  useEffect(() => {
-    // console.log(homeState.feature_products);
-  }, [homeState]);
-
-  const loadData = async () => {
-    setLoadingAction(true);
-
-    await setBestSellerProductAction()(dispatch);
-    await setFeaturedProductAction()(dispatch);
-    await setNewestProductAction()(dispatch);
-    await setTvCameraProductAction()(dispatch);
-    await setPhoneComputerProductAction()(dispatch);
-
-    setLoadingAction(false);
-  }
 
   const value = {
     homeState,

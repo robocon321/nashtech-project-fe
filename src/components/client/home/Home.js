@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
 import { Container } from '@mui/material';
+import React, { useContext, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,24 +8,24 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { Autoplay, Pagination, Navigation } from "swiper";
 import { Grid } from '@mui/material';
-import styles from "./Home.module.css";
-import { FaRegUser, FaRegCalendarAlt, FaShippingFast, FaDropbox, FaRegCalendar } from 'react-icons/fa';
-import { TiMessages }  from 'react-icons/ti';
-import { FiMonitor } from 'react-icons/fi';
-import { BsPhone } from 'react-icons/bs';
+import { Helmet } from "react-helmet";
 import { AiTwotoneAudio } from 'react-icons/ai';
+import { BsPhone } from 'react-icons/bs';
+import { FaDropbox, FaRegCalendar, FaRegCalendarAlt, FaRegUser, FaShippingFast } from 'react-icons/fa';
+import { FiMonitor } from 'react-icons/fi';
+import { TiMessages } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
-import {Helmet} from "react-helmet";
+import { Autoplay, Navigation, Pagination } from "swiper";
+import styles from "./Home.module.css";
 
-import { HomeContext } from "@providers/client/HomeProvider";
 import ProductCard from '@components/common/ProductCard';
 import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
+import { HomeContext } from "@providers/client/HomeProvider";
 
 const Home = (props) => {
   const { homeState } = useContext(HomeContext);
-  const { changeLang, t, lang } =
+  const { t } =
     useContext(ClientLayoutContext);
 
     const [tab, setTab] = useState(0);
