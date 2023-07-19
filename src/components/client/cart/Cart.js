@@ -20,7 +20,7 @@ const Cart = (props) => {
     changeAddressShipping,
     resetStatus
   } = useContext(CartContext);
-  const { changeLang, t, lang } =
+  const { t } =
   useContext(ClientLayoutContext);
 
 
@@ -184,7 +184,7 @@ const Cart = (props) => {
         </div>
       </Container>
       <Snackbar
-        open={cartState.status.message}
+        open={cartState.status.message !== ''}
         onClose={resetStatus}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
