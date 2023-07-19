@@ -1,32 +1,24 @@
-import React, { createContext, useEffect, useReducer } from 'react';
-import { useContext } from 'react';
-import { loadPopularProductAction, loadProductAction, setConditionAction, setFieldAction, setLoadingAction } from '@contexts/actions/client/ProductAction';
-import ProductReducer from '@contexts/reducers/client/ProductReducer';
-import { ClientLayoutContext } from './ClientLayoutProvider'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { fileterProductAction, initDataAction } from '@contexts/actions/client/ProductAction';
+import React, { createContext, useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
-
-const initState = {
-  products: {},
-  status: {
-    isLoading: true,
-    message: '',
-    success: true
-  },
-  conditions: {
-    page: 0,
-    size: 12,
-    sort: 'createTime__desc'
-  },
-  popular_products: []
-}
+import { ClientLayoutContext } from './ClientLayoutProvider';
 
 export const ProductContext = createContext();
 
 const ProductProvider = props => {
   const { clientState } = useContext(ClientLayoutContext);
-  const [ productState, dispatch ] = useReducer(ProductReducer, initState);
+
+  const dispatch = useDispatch();
+  const productState = useSelector(state => state.productReducer);
+  console.log("Re-rendering");
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    initDataAction()(dispatch);
+  }, []);
 
   useEffect(() => {
     setField({
@@ -34,27 +26,6 @@ const ProductProvider = props => {
       value: clientState.search
     });
   }, [clientState.search]);
-
-  useEffect(() => {
-    const conditions = Object.fromEntries([...searchParams]);
-    setConditionAction(conditions)(dispatch);
-  }, []);
-
-  useEffect(() => {
-    navigate({
-      pathname: '/product',
-      search: `?${createSearchParams(productState.conditions)}`,
-    });
-
-    loadData();
-  }, [productState.conditions]);
-
-  const loadData = async () => {
-    setLoadingAction(true)(dispatch);
-    await loadProductAction(productState.conditions)(dispatch);
-    await loadPopularProductAction()(dispatch);
-    setLoadingAction(false)(dispatch);
-  }
 
   const changePageCondition = (event, value) => {
     setField({
@@ -71,10 +42,13 @@ const ProductProvider = props => {
   }
 
   const setField = ({field, value}) => {
-    setFieldAction({
-      field,
-      value
-    })(dispatch);
+    const conditions = Object.fromEntries([...searchParams]);
+    conditions[field] = value; 
+    fileterProductAction(conditions)(dispatch);
+    navigate({
+      pathname: '/product',
+      search: createSearchParams(conditions).toString()
+    });
   }
 
   const changeCategory = () => {

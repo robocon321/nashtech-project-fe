@@ -1,96 +1,90 @@
 import axios from 'axios';
 import { BACKEND_URL } from '@utils/contant';
+import { filterProducts, initData } from '@contexts/reducers/client/ProductSlice';
 
-export const ACTIONS = {
-  SET_PRODUCTS: 'SET_PRODUCTS',
-  SET_FIELD_CONDITION: 'SET_FIELD_CONDITION',
-  SET_POPULAR_PRODUCTS: 'POPULAR_PRODUCTS',
-  SET_STATUS: 'SET_STATUS',
-  SET_LOADING: 'SET_LOADING',
-  SET_MESSAGE: 'SET_MESSAGE',
-  SET_SUCCESS: 'SET_SUCCESS',
-  SET_CONDITIONS: 'SET_CONDITIONS'
+export const initDataAction = () => async (dispatch) => {
+  const payload = {};
+  const status = {
+    isLoading: true,
+    message: "",
+    success: true,
+  }
+
+  const loadPopularProductResult = await loadPopularProductAction();
+  if(!loadPopularProductResult.status.success) {
+    status.success = false;
+    status.message += loadPopularProductResult.status.message;
+  } else {
+    payload.popular_products = loadPopularProductResult.data;
+  }
+
+  payload.status = status;
+  dispatch(initData(payload));
+} 
+
+export const fileterProductAction = (conditions) => async (dispatch) => {
+  const payload = {};
+  const status = {
+    isLoading: true,
+    message: "",
+    success: true,
+  }
+
+  const loadProductResult = await loadProductAction(conditions);
+  if(!loadProductResult.status.success) {
+    status.success = false;
+    status.message += loadProductResult.status.message;
+  } else {
+    payload.products = loadProductResult.data;
+  }
+
+  payload.status = status;
+  payload.conditions = conditions;
+  dispatch(filterProducts(payload));
 }
 
-export const loadProductAction = (conditions) => async dispatch => {
+const loadProductAction = async (conditions) => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios.get(`${BACKEND_URL}/products`, {
     params: {...conditions, OR_status: 1}
   }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_PRODUCTS,
-      payload: response.data.data
-    })
+    result.data = response.data.data
   }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    }
+  });
+  
+  return result;
 }
 
-export const loadPopularProductAction = () => async dispatch => {
+const loadPopularProductAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   await axios.get(`${BACKEND_URL}/products`, {
     params: { sort: 'rating__desc', OR_status: 1, size: 5 }
   }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_POPULAR_PRODUCTS,
-      payload: response.data.data.content
-    })
+    result.data = response.data.data
   }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
-
-}
-
-export const setFieldAction = ({field, value}) => async dispatch => {
-  dispatch({
-    type: ACTIONS.SET_FIELD_CONDITION,
-    payload: {field, value}
-  })
-}
-
-export const setStatusAction = (status) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: status
-  })
-}
-
-export const setLoadingAction = (isLoading) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_LOADING,
-    payload: isLoading
-  })
-}
-
-export const setMessageAction = (message) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_MESSAGE,
-    payload: message
-  })
-}
-
-export const setSuccessAction = (success) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_SUCCESS,
-    payload: success
-  })
-}
-
-export const setConditionAction = (conditions) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_CONDITIONS,
-    payload: conditions
-  })
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    }
+  });
+  
+  return result;
 }

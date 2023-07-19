@@ -49,10 +49,8 @@ export const initDataAction = () => async (dispatch) => {
     payload.tv_camera_products = loadTvCameraProduct.data;
   }
 
-  console.log(dispatch);
   payload.status = status;
   dispatch(initData(payload));
-
 } 
 
 const setFeaturedProductAction = async () => {

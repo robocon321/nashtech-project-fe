@@ -28,7 +28,7 @@ const Index = (props) => {
     changeCategory,
     categories,
   } = useContext(ProductContext);
-  const { changeLang, t, lang } =
+  const { t } =
   useContext(ClientLayoutContext);
 
 
@@ -97,77 +97,13 @@ const Index = (props) => {
                     </div>
                   </div>
                 </div>
-                {/* <div className={styles["name-filter"]}>
-                  <h4>Manufacturer</h4>
-                  <hr />
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                </div>
-                <div className={styles["name-filter"]}>
-                  <h4>Select By Color</h4>
-                  <hr />
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                  <div className={styles["category"]}>
-                    <input type="checkbox" />
-                    <label>Appliances (18)</label>
-                  </div>
-                </div> */}
               </div>
               <div className={styles["banner"]}>
                 <img src="/images/big-sale-banner.jpg" alt="Not found" />
               </div>
               <div className={styles["new-products"]}>
                 <h2>POPULAR PRODUCTS</h2>
-                {productState.popular_products.map((item) => (
+                {productState.popular_products.content && productState.popular_products.content.map((item) => (
                   <div className={styles["new-product"]} key={item.id}>
                     <div className={styles["image-new-product"]}>
                       <img src={item.thumbnail} alt="Not found" />

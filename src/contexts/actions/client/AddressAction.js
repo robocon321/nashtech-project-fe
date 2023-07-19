@@ -166,7 +166,7 @@ const loadContactAction = async() => {
       result.status = {
         message: error.response.data.message,
         success: false
-      }   
+      }
     });
     return result;
 }
