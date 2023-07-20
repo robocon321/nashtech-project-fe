@@ -57,7 +57,7 @@ export const loadDistrictAction = (provinceId) => async (dispatch) => {
       dispatch(setDistricts(response.data.data));
     })
     .catch((error) => {
-      handleError(error);
+      handleError(error)(dispatch);
     });    
   }
 };

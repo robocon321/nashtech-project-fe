@@ -7,6 +7,8 @@ import productDetailReducer from "@contexts/reducers/client/ProductDetailSlice";
 import clientLayoutReducer from "@contexts/reducers/client/ClientLayoutSlice";
 import appReducer from "@contexts/reducers/AppSlice";
 
+import categoryAdminReducer from "@contexts/reducers/admin/CategoryAdminReducer";
+
 export default configureStore({
     reducer: {
         addressReducer,
@@ -15,6 +17,7 @@ export default configureStore({
         cartReducer,
         productDetailReducer,
         clientLayoutReducer,
-        appReducer
+        appReducer,
+        categoryAdminReducer
     }
 });

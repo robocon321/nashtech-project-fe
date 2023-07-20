@@ -72,6 +72,7 @@ const CategoryList = (props) => {
       },
     },
     {
+      field: "action",
       headerName: "Action",
       minWidth: 200,
       flex: 2,
@@ -246,7 +247,7 @@ const CategoryList = (props) => {
           </div>
         </Grid>
       </Grid>
-      <Snackbar open={categoryAdminState.status.message} onClose={resetStatus} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+      <Snackbar open={categoryAdminState.status.message !== ''} onClose={resetStatus} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert onClose={resetStatus} severity={categoryAdminState.status.success ? "success" : "error"} sx={{ width: '100%' }}>
           {categoryAdminState.status.message}
         </Alert>

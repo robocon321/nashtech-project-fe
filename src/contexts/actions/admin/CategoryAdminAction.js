@@ -1,100 +1,34 @@
-import axios from "axios";
+import { changeField, deleteCategory, resetCategory, setCategories, setCategory, setConditions, setFieldCondition, setSelected, setStatus, updateCategory } from "@contexts/reducers/admin/CategoryAdminReducer";
 import { BACKEND_URL } from "@utils/contant";
-
-export const ACTIONS = {
-  SET_CATEGORIES: "SET_CATEGORIES",
-  CHANGE_FIELD: "CHANGE_FIELD",
-  SET_STATUS: "SET_STATUS",
-  SET_CATEGORY: "SET_CATEGORY",
-  SET_CONDITIONS: "SET_CONDITIONS",
-  SET_FIELD_CONDITION: "SET_FIELD_CONDITION",
-  SET_SELECTED: "SET_SELECTED",
-  RESET_CATEGORY: "RESET_CATEGORY",
-  DELETE_CATEGORY: "DELETE_CATEGORY",
-  UPDATE_CATEGORY: "UPDATE_CATEGORY",
-};
-
-export const loadCategoryAction = (conditions) => async (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: {
-      isLoading: false,
-      message: "",
-      success: false,
-    },
-  });
-
-  await axios
-    .get(`${BACKEND_URL}/categories`, {
-      params: {
-        ...conditions,
-      },
-    })
-    .then((response) => {
-      dispatch({
-        type: ACTIONS.SET_CATEGORIES,
-        payload: response.data.data,
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: error.response.data.message,
-          success: false,
-        },
-      });
-    });
-};
+import axios from "axios";
 
 export const changeFieldAction = ({ field, value }) => (dispatch) => {
-    dispatch({
-      type: ACTIONS.CHANGE_FIELD,
-      payload: { field, value },
-    });
+    dispatch(changeField({field, value}));
 };
 
 export const setStatusAction = (status) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: status,
-  });
+  dispatch(setStatus(status));
 };
 
 export const setCategoryAction = (category) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_CATEGORY,
-    payload: category,
-  });
+  dispatch(setCategory(category));
 };
 
 export const setFieldConditionAction = ({ field, value }) =>
   (dispatch) => {
-    dispatch({
-      type: ACTIONS.SET_FIELD_CONDITION,
-      payload: { field, value },
-    });
+    dispatch(setFieldCondition({field, value}))
 };
 
-export const setConditionAction = (conditions) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_CONDITIONS,
-    payload: conditions,
-  });
+export const setConditionsAction = (conditions) => (dispatch) => {
+  dispatch(setConditions(conditions));
 };
 
 export const setSelectedAction = (selected) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_SELECTED,
-    payload: selected,
-  });
+  dispatch(setSelected(selected));
 };
 
 export const resetCategoryAction = () => (dispatch) => {
-  dispatch({
-    type: ACTIONS.RESET_CATEGORY,
-  });
+  dispatch(resetCategory());
 };
 
 export const deleteCategoryAction = (ids) => async (dispatch) => {
@@ -103,25 +37,10 @@ export const deleteCategoryAction = (ids) => async (dispatch) => {
       data: ids,
     })
     .then((response) => {
-      setStatusAction({
-        isLoading: true,
-        message: response.data.message,
-        success: response.data.success,
-      });
-      dispatch({
-        type: ACTIONS.DELETE_CATEGORY,
-        payload: ids,
-      });
+      dispatch(deleteCategory(ids));
     })
     .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: error.response.data.message,
-          success: false,
-        },
-      });
+      handleError(error)(dispatch);
     });
 };
 
@@ -130,52 +49,56 @@ export const submitFormAction = (category) => async (dispatch) => {
     await axios
       .post(`${BACKEND_URL}/categories`, category)
       .then((response) => {
-        dispatch({
-          type: ACTIONS.SET_STATUS,
-          payload: {
-            isLoading: true,
-            message: response.data.message,
-            success: response.data.success,
-          },
-        });
+        dispatch(setStatus({
+          isLoading: false,
+          message: response.data.message,
+          success: response.data.success,
+        }));
       })
       .catch((error) => {
-        dispatch({
-          type: ACTIONS.SET_STATUS,
-          payload: {
-            isLoading: false,
-            message: error.response.data.message,
-            success: false,
-          },
-        });
+        handleError(error)(dispatch);
       });
   } else {
     await axios
       .put(`${BACKEND_URL}/categories`, category)
-      .then((response) => {
-        dispatch({
-          type: ACTIONS.SET_STATUS,
-          payload: {
-            isLoading: true,
-            message: response.data.message,
-            success: true,
-          },
-        });
-        
-        dispatch({
-          type: ACTIONS.UPDATE_CATEGORY,
-          payload: category
-        });
+      .then((response) => {        
+        dispatch(updateCategory(category));
       })
       .catch((error) => {
-        dispatch({
-          type: ACTIONS.SET_STATUS,
-          payload: {
-            isLoading: false,
-            message: error.response.data.message,
-            success: false,
-          },
-        });
+        handleError(error)(dispatch);
       });
   }
 };
+
+export const loadCategoryAction = (conditions) => async dispatch => {
+  const payload = {
+    status: {
+      isLoading: false,
+      message: "",
+      success: true,
+    }
+  };
+
+  await axios
+    .get(`${BACKEND_URL}/categories`, {
+      params: {
+        ...conditions,
+      },
+    })
+    .then((response) => {
+      payload.categories = response.data.data;
+      dispatch(setCategories(payload));
+    })
+    .catch((error) => {
+      handleError(error)(dispatch);
+    });
+
+};
+
+const handleError = (error) => (dispatch) => {
+  dispatch(setStatus({
+    message: error.response.data.message,
+    success: false,
+    isLoading: false
+  }));
+}

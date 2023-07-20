@@ -14,6 +14,7 @@ import {
 } from "@contexts/actions/admin/CategoryAdminAction";
 import CategoryAdminReducer from "@contexts/reducers/admin/CategoryAdminReducer";
 import { validateSlug } from '@utils/validate';
+import { useDispatch, useSelector } from "react-redux";
 
 const initState = {
   category: {
@@ -36,16 +37,9 @@ const initState = {
 export const CategoryAdminContext = createContext();
 
 const CategoryAdminProvider = (props) => {
-  const [categoryAdminState, dispatch] = useReducer(
-    CategoryAdminReducer,
-    initState
-  );
-
+  const dispatch = useDispatch();
+  const categoryAdminState = useSelector(state => state.categoryAdminReducer);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(categoryAdminState);
-  }, [categoryAdminState]);
 
   useEffect(() => {
     loadCategoryAction(categoryAdminState.conditions)(dispatch);
