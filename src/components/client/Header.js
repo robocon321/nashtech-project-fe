@@ -11,7 +11,7 @@ import RequiredLoginModal from "@components/common/RequiredLoginModal";
 
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);
-  const { clientState, onSearch, resetStatus, changeLang, t, lang, setShowModal } =
+  const { clientState, onSearch, resetStatus, changeLang, t, setShowModal } =
     useContext(ClientLayoutContext);
   const location = useLocation();
 
@@ -59,7 +59,7 @@ const Header = (props) => {
           </div>
           <div className={styles["col-top-header"]}>
             <div className="dropdown">
-              {appState.user.id ? (
+              {appState.user ? (
                 <>
                   <span>
                     <FontAwesomeIcon icon="fa-solid fa-user" />{" "}

@@ -1,44 +1,31 @@
-import { createContext, useReducer, useEffect } from "react";
-import AppReducer from "@contexts/reducers/AppReducer";
-import { loadAccountAction, logoutAction } from "@contexts/actions/AppAction";
+import {initDataAction, logoutAction} from "@contexts/actions/AppAction";
+import {createContext, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 export const AppContext = createContext();
 
-const initState = {
-  user: {},
-  status: {
-    isLoading: true,
-    message: '',
-    success: true
-  }
-}
-
 const AppProvider = (props) => {
-  const [appState, dispatch] = useReducer(AppReducer, initState);
+    const dispatch = useDispatch();
+    const appState = useSelector(state => state.appReducer);
 
-  useEffect(() => {
-    loadData();
-  }, []);
+    useEffect(() => {
+        initDataAction()(dispatch);
+    }, []);
 
-  const loadData = async () => {
-    await loadAccountAction()(dispatch);
-  }
+    const logout = () => {
+        logoutAction()(dispatch);
+    }
 
-  const logout = () => {
-    logoutAction()(dispatch);
-  }
+    const value = {
+        appState,
+        logout
+    }
 
-  const value = {
-    appState,
-    loadData,
-    logout
-  }
-  
-  return (
-    <AppContext.Provider value={value}>
-      {props.children}
-    </AppContext.Provider>
-  ) 
+    return (
+        <AppContext.Provider value={value}>
+            {props.children}
+        </AppContext.Provider>
+    )
 }
 
 export default AppProvider;

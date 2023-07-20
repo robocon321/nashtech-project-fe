@@ -1,58 +1,57 @@
 import axios from 'axios';
 import { setAuthToken } from '@utils/authToken';
 import { LOCAL_STORAGE_TOKEN, BACKEND_URL } from '@utils/contant';
+import { initData, removeUser } from '@contexts/reducers/AppSlice';
 
-export const ACTIONS = {
-  SET_USER: 'SET_USER',
-  SET_STATUS: 'SET_STATUS'
+export const initDataAction = () => async (dispatch) => {
+  const payload = {};
+  const status = {
+    isLoading: false,
+    message: "",
+    success: true,
+  }
+
+  const loadAccountResult = await loadAccountAction();
+
+  if(!loadAccountResult.status.success) {
+    status.success = false;
+    status.message += loadAccountResult.status.message;
+  } else {
+    payload.user = loadAccountResult.data;
+  }
+
+  payload.status = status;
+  dispatch(initData(payload));
+
 }
 
-export const loadAccountAction = () => async (dispatch) => {
+const loadAccountAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  }
+
   const token = localStorage[LOCAL_STORAGE_TOKEN];
   if(token) {
     setAuthToken(token);
     await axios.get(`${BACKEND_URL}/sign-in`)
     .then(response => {
-      dispatch({
-        type: ACTIONS.SET_USER,
-        payload: response.data.data
-      });
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: response.data.message,
-          success: response.data.success
-        }
-      })
+      result.data = response.data.data;
     }).catch(error => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: error.response.data.message,
-          success: error.response.data.success
-        }
-      })
-    })
-  
-  } else {
-    dispatch({
-      type: ACTIONS.SET_STATUS,
-      payload: {
-        isLoading: false,
-        message: '',
-        success: true
+      result.status = {
+        message: error.response.data.message,
+        success: false
       }
     })
-  
   }
+
+  return result;
 }
 
 export const logoutAction = () => (dispatch) => {
   localStorage.removeItem(LOCAL_STORAGE_TOKEN);
-  dispatch({
-    type: ACTIONS.SET_USER,
-    payload: {}
-  });
+  dispatch(removeUser({}));
 }

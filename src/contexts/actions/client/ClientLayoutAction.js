@@ -8,9 +8,10 @@ import {
     setShowModal,
     setStatus,
     updateCartItem
-} from '@contexts/reducers/client/ClientLayoutReducer';
+} from '@contexts/reducers/client/ClientLayoutSlice';
 
 export const initDataAction = (user) => async dispatch => {
+    
     const payload = {};
     const status = {
         isLoading: false,
@@ -25,7 +26,7 @@ export const initDataAction = (user) => async dispatch => {
         payload.categories = loadCategoryResult.data;
     }
 
-    if (user.id != null) {
+    if (user != null) {
         const loadCartItemResult = await loadCartItemAction();
         if (!loadCartItemResult.status.success) {
             status.success = false;
@@ -33,6 +34,8 @@ export const initDataAction = (user) => async dispatch => {
         } else {
             payload.cart = loadCartItemResult.data;
         }
+    } else {
+        payload.cart = {};
     }
 
     payload.status = status;

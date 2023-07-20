@@ -39,7 +39,7 @@ const ClientLayoutProvider = (props) => {
     };
 
     const saveCartItem = async (cartItem) => {
-        if (appState.user.id) {
+        if (appState.user) {
             saveCartItemAction(cartItem)(dispatch);
         } else {
             setShowModal(true);

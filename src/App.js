@@ -45,7 +45,7 @@ function App() {
     );
   } else {
     if (
-      appState.user.id != null &&
+      appState.user != null &&
       appState.user.roles.filter((item) => item.name === "ADMIN").length ===
         1
     ) { 
@@ -69,7 +69,7 @@ function App() {
         </Routes>
       );      
     } else if (
-      appState.user.id != null &&
+      appState.user != null &&
       appState.user.roles.filter((item) => item.name === "CLIENT").length ===
         1
     ) { 
