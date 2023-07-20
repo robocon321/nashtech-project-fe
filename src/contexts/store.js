@@ -3,12 +3,14 @@ import addressReducer from "@contexts/reducers/client/AddressSlice";
 import homeReducer from "@contexts/reducers/client/HomeSlice";
 import productReducer from "@contexts/reducers/client/ProductSlice";
 import cartReducer from "@contexts/reducers/client/CartSlice";
+import productDetailReducer from "./reducers/client/ProductDetailSlice";
 
 export default configureStore({
     reducer: {
         addressReducer,
         homeReducer,
         productReducer,
-        cartReducer
+        cartReducer,
+        productDetailReducer
     }
 });

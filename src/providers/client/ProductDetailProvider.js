@@ -1,94 +1,35 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import ProductDetailReducer from "@contexts/reducers/client/ProductDetailReducer";
 import {
-  loadProductAction,
-  setLoadingAction,
-  loadRatingAction,
-  loadRelatedProductAction,
+  initDataAction,
   setRatingFormAction,
   setStatusAction,
   submitAction,
   toggleModalAction
 } from "@contexts/actions/client/ProductDetailAction";
 import { AppContext } from '@providers/AppProvider';
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProductDetailCotnext = createContext();
 
-const initState = {
-  product: {},
-  ratings: {},
-  related_products: [],
-  rating_conditions: {
-    page: 0,
-    size: 10,
-    sort: "createTime__desc",
-  },
-  status: {
-    isLoading: true,
-    message: "",
-    success: true,
-  },
-  rating_form: {
-    star: 5,
-    content: "",
-  },
-  open_modal: false
-};
-
 const ProductDetailProvider = (props) => {
   const { appState } = useContext(AppContext);
-  const [productDetailState, dispatch] = useReducer(
-    ProductDetailReducer,
-    initState
-  );
+  const dispatch = useDispatch();
+  const productDetailState = useSelector(state => state.productDetailReducer);
   const params = useParams();
   const navigate = useNavigate();
+  console.log(productDetailState);
 
   useEffect(() => {
-    loadProduct();
+    initDataAction(params.slug)(dispatch);
   }, [params.slug]);
-
-  useEffect(() => {
-    if (productDetailState.product.id > 0) {
-      loadRating();
-      loadRelatedProduct();
-      setProductIdToRatingForm();
-    }
-  }, [productDetailState.product]);
 
   useEffect(() => {
     if(!productDetailState.status.isLoading && productDetailState.product.id == null) {
       navigate("/404");
     }
   }, [productDetailState.status.isLoading]);
-
-  const loadProduct = async () => {
-    setLoadingAction(true)(dispatch);
-    await loadProductAction(params.slug)(dispatch);
-  };
-
-  const loadRelatedProduct = async () => {
-    loadRelatedProductAction(
-      productDetailState.product.categories.map((item) => item.id)
-    )(dispatch);
-  };
-
-  const loadRating = async () => {
-    await loadRatingAction(
-      productDetailState.rating_conditions,
-      productDetailState.product.id
-    )(dispatch);
-    setLoadingAction(false)(dispatch);
-  };
-
-  const setProductIdToRatingForm = () => {
-    setRatingFormAction({
-      field: "productId",
-      value: productDetailState.product.id,
-    })(dispatch);
-  };
 
   const setRatingForm = (e) => {
     setRatingFormAction({
@@ -104,10 +45,13 @@ const ProductDetailProvider = (props) => {
   }
 
   const submit = async () => {
+    setStatusAction({
+      isLoading: true,
+      message: "",
+      success: false,    
+    });
     if (validate()) {
-      setLoadingAction(true);
-      await submitAction(productDetailState.rating_form)(dispatch);
-      setLoadingAction(false);
+      submitAction(productDetailState.rating_form)(dispatch);
     }
   };
 
