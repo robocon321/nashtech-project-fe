@@ -11,7 +11,6 @@ export const HomeContext = createContext();
 const HomeProvider = (props) => {
   const dispatch = useDispatch();
   const homeState = useSelector(state => state.homeReducer);
-  console.log(homeState);
 
   useEffect(() => {
     initDataAction()(dispatch);

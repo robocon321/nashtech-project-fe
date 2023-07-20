@@ -1,166 +1,145 @@
 import axios from 'axios';
-import { BACKEND_URL } from '@utils/contant';
+import {BACKEND_URL} from '@utils/contant';
+import {
+    addCartItem,
+    deleteCartItem,
+    initData,
+    setSearch,
+    setShowModal,
+    setStatus,
+    updateCartItem
+} from '@contexts/reducers/client/ClientLayoutReducer';
 
-export const ACTIONS = {
-  SET_CATEGORIES: 'SET_CATEGORIES',
-  SET_STATUS: 'SET_STATUS',
-  SET_LOADING: 'SET_LOADING',
-  SET_MESSAGE: 'SET_MESSAGE',
-  SET_SUCCESS: 'SET_SUCCESS',
-  SET_SEARCH: 'SET_SEARCH',
-  SET_CART: 'SET_CART',
-  ADD_CART_ITEM: 'ADD_CART_ITEM',
-  DELETE_CART_ITEM: 'DELETE_CART_ITEM',
-  UPDATE_CART_ITEM: 'UPDATE_CART_ITEM',
-  SET_SHOW_MODAL: 'SET_SHOW_MODAL'
-};
+export const initDataAction = (user) => async dispatch => {
+    const payload = {};
+    const status = {
+        isLoading: false,
+        message: "",
+        success: true
+    }
+    const loadCategoryResult = await loadCategoryAction();
+    if (!loadCategoryResult.status.success) {
+        status.success = false;
+        status.message += loadCategoryResult.status.message;
+    } else {
+        payload.categories = loadCategoryResult.data;
+    }
 
-export const loadCartItemAction = () => async dispatch => {
-  await axios.get(`${BACKEND_URL}/carts/cart_item/product`)
-  .then(response => {
-    dispatch({
-      type: ACTIONS.SET_CART,
-      payload: response.data.data
-    })
-  }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
+    if (user.id != null) {
+        const loadCartItemResult = await loadCartItemAction();
+        if (!loadCartItemResult.status.success) {
+            status.success = false;
+            status.message += loadCartItemResult.status.message;
+        } else {
+            payload.cart = loadCartItemResult.data;
+        }
+    }
+
+    payload.status = status;
+    dispatch(initData(payload));
+
 }
 
 export const setSearchAction = (search) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_SEARCH,
-    payload: search
-  })
-}
-
-export const loadCategoryAction = () => async dispatch => {
-  await axios.get(`${BACKEND_URL}/categories`, {
-    params: {
-      size: 100,
-      AND_status: 1
-    }
-  }).then(response => {
-    dispatch({
-      type: ACTIONS.SET_CATEGORIES,
-      payload: response.data.data.content
-    })
-  }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
+    dispatch(setSearch(search));
 }
 
 export const setStatusAction = (status) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: status
-  })
-}
-
-export const setLoadingAction = (isLoading) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_LOADING,
-    payload: isLoading
-  })
-}
-
-export const setMessageAction = (message) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_MESSAGE,
-    payload: message
-  })
-}
-
-export const setSuccessAction = (success) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_SUCCESS,
-    payload: success
-  })
+    dispatch(setStatus(status));
 }
 
 export const saveCartItemAction = (cartItem) => async dispatch => {
-  await axios.post(`${BACKEND_URL}/cart_items`, cartItem)
-  .then(response => {
-    dispatch({
-      type: ACTIONS.ADD_CART_ITEM,
-      payload: response.data.data
-    })
-  }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
-}
+    await axios
+        .post(`${BACKEND_URL}/cart_items`, cartItem)
+        .then(response => {
+            dispatch(addCartItem(response.data.data));
+        })
+        .catch(error => {
+            handleError(error)(dispatch);
+        })
+    }
 
 export const deleteCartItemAction = (ids) => async dispatch => {
-  console.log(ids);
-  await axios.delete(`${BACKEND_URL}/cart_items`, {data: ids})
-  .then(response => {
-    dispatch({
-      type: ACTIONS.DELETE_CART_ITEM,
-      payload: ids
-    })
-  }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
-}
+    await axios
+        .delete(`${BACKEND_URL}/cart_items`, {data: ids})
+        .then(response => {
+            dispatch(deleteCartItem(ids));
+        })
+        .catch(error => {
+            handleError(error)(dispatch);
+        })
+    }
 
 export const updateCartItemAction = (cartItem) => async dispatch => {
-  await axios.put(`${BACKEND_URL}/cart_items`, cartItem)
-  .then(response => {
-    dispatch({
-      type: ACTIONS.UPDATE_CART_ITEM,
-      payload: cartItem
-    })
-  }).catch(error => {
-    dispatch({
-      type: ACTIONS.SET_MESSAGE,
-      payload: error.response.data.message
-    });
-    dispatch({
-      type: ACTIONS.SET_SUCCESS,
-      payload: false
-    })
-  }) 
-
-}
-
-export const setCartAction = (cart) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_CART,
-    payload: {}
-  })
-} 
+    await axios
+        .put(`${BACKEND_URL}/cart_items`, cartItem)
+        .then(response => {
+            dispatch(updateCartItem(cartItem))
+        })
+        .catch(error => {
+            handleError(error)(dispatch);
+        })
+    }
 
 export const setShowModalAction = (isShow) => dispatch => {
-  dispatch({
-    type: ACTIONS.SET_SHOW_MODAL,
-    payload: isShow
-  })
+    dispatch(setShowModal(isShow));
+}
+
+const loadCategoryAction = async () => {
+    const result = {
+        data: null,
+        status: {
+            message: '',
+            success: true
+        }
+    }
+
+    await axios
+        .get(`${BACKEND_URL}/categories`, {
+            params: {
+                size: 100,
+                AND_status: 1
+            }
+        })
+        .then(response => {
+            result.data = response.data.data.content;
+        })
+        .catch(error => {
+            result.status = {
+                message: error.response.data.message,
+                success: false
+            }
+        });
+
+    return result;
+}
+
+const loadCartItemAction = async () => {
+    const result = {
+        data: null,
+        status: {
+            message: '',
+            success: true
+        }
+    }
+
+    await axios
+        .get(`${BACKEND_URL}/carts/cart_item/product`)
+        .then(response => {
+            result.data = response.data.data;
+        })
+        .catch(error => {
+            result.status = {
+                message: error.response.data.message,
+                success: false
+            }
+        });
+
+    return result;
+}
+
+const handleError = (error) => (dispatch) => {
+    dispatch(
+        setStatus({message: error.response.data.message, success: false, isLoading: false})
+    );
 }

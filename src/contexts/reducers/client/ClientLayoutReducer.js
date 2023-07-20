@@ -1,6 +1,8 @@
-import { ACTIONS } from "@contexts/actions/client/ClientLayoutAction";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const name = "client-layout";
+
+const initialState = {
   categories: [],
   status: {
     isLoading: true,
@@ -11,49 +13,40 @@ const initState = {
   isShowModal: false
 };
 
-const reducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ACTIONS.SET_SHOW_MODAL:
-      state = { ...state, isShowModal: payload};
-      break;
-    case ACTIONS.UPDATE_CART_ITEM:      
-      state = { ...state, cart: { ...state.cart, cartItems: state.cart.cartItems.map(item => {
-        if(item.id === payload.id) return payload;
-        else return item;
-      })}};
-      break;
-    case ACTIONS.ADD_CART_ITEM:
-      state = { ...state, cart: {...state.cart, cartItems: [...state.cart.cartItems, payload]}}
-      break;
-    case ACTIONS.DELETE_CART_ITEM:
-      state = { ...state, cart: {...state.cart, cartItems: state.cart.cartItems.filter(item => !payload.includes(item.id))}}
-      break;
-    case ACTIONS.SET_CART:
-      state = { ...state, cart: payload};
-      break;
-    case ACTIONS.SET_SEARCH:
-      state = { ...state, search: payload};
-      break;
-    case ACTIONS.SET_CATEGORIES:
-      state = { ...state, categories: payload };
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload };
-      break;
-    case ACTIONS.SET_LOADING:
-      state = { ...state, status: { ...state.status, isLoading: payload } };
-      break;
-    case ACTIONS.SET_MESSAGE:
-      state = { ...state, status: { ...state.status, message: payload } };
-      break;
-    case ACTIONS.SET_SUCCESS:
-      state = { ...state, status: { ...state.status, success: payload } };
-      break;
-    default:
-      break;
+const reducers = {
+  initData: (state, {payload}) => {
+    state.categories = payload.categories;
+    state.cart = payload.cart;
+    state.status = payload.status;
+  },
+  setShowModal: (state, {payload}) => {
+    state.isShowModal = payload;
+  },
+  setCartItems: (state, {payload}) => {
+    state.cart.cartItems = payload;
+  },
+  updateCartItem: (state, {payload}) => {
+    state.cart.cartItems = state.cart.cartItems.map(item => {
+      if(item.id === payload.id) return payload;
+      else return item;  
+    })
+  },
+  addCartItem: (state, {payload}) => {
+    state.cart.cartItems.push(payload);
+  },
+  deleteCartItem: (state, {payload}) => {
+    state.cart.cartItems.filter(item => !payload.includes(item.id)); 
+  },
+  setSearch: (state, {payload}) => {
+    state.search = payload;
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
   }
-
-  return { ...state };
 };
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const {initData, setShowModal, setCartItems, updateCartItem, addCartItem, deleteCartItem, setSearch, setCategories, setStatus} = slice.actions;
+
+export default slice.reducer;

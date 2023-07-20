@@ -3,7 +3,8 @@ import addressReducer from "@contexts/reducers/client/AddressSlice";
 import homeReducer from "@contexts/reducers/client/HomeSlice";
 import productReducer from "@contexts/reducers/client/ProductSlice";
 import cartReducer from "@contexts/reducers/client/CartSlice";
-import productDetailReducer from "./reducers/client/ProductDetailSlice";
+import productDetailReducer from "@contexts/reducers/client/ProductDetailSlice";
+import clientLayoutReducer from "@contexts/reducers/client/ClientLayoutReducer";
 
 export default configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
         homeReducer,
         productReducer,
         cartReducer,
-        productDetailReducer
+        productDetailReducer,
+        clientLayoutReducer
     }
 });
