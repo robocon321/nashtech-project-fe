@@ -1,6 +1,9 @@
 import { ACTIONS } from "@contexts/actions/admin/NewUserAdminAction";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const name = "new-user-admin";
+
+const initialState = {
   status: {
     isLoading: true,
     message: "",
@@ -9,34 +12,22 @@ const initState = {
   user: {}
 };
 
-const reducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ACTIONS.RESET_ALL_FIELD:
-      state = { ...state, user: {}};
-      break;
-    case ACTIONS.SET_FIELD:
-      state = { ...state, user: {
-        ...state.user,
-        [payload.field]: payload.value}
-      };
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload };
-      break;
-    case ACTIONS.SET_LOADING:
-      state = { ...state, status: { ...state.status, isLoading: payload } };
-      break;
-    case ACTIONS.SET_MESSAGE:
-      state = { ...state, status: { ...state.status, message: payload } };
-      break;
-    case ACTIONS.SET_SUCCESS:
-      state = { ...state, status: { ...state.status, success: payload } };
-      break;
-    default:
-      break;
-  }
-
-  return { ...state };
+const reducers = {
+  resetAllField: (state, {payload}) => {
+    state.user = {};
+  },
+  setField: (state, {payload}) => {
+    state.user[payload.field] = payload.value;
+  },
+  setStatus: (state, {payload}) =>  {
+    state.status = payload;
+  },
 };
 
-export default reducer;
+const slice = createSlice({
+  name, initialState, reducers
+});
+
+export const { resetAllField, setField, setStatus } = slice.actions;
+
+export default slice.reducer;

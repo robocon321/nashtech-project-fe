@@ -1,8 +1,6 @@
-import React, { useReducer, createContext, useEffect } from "react";
-import NewUserAdminReducer from "@contexts/reducers/admin/NewUserAdminReducer";
 import {
-  setFieldAction,
   resetAllFieldAction,
+  setFieldAction,
   setStatusAction,
   submitAction,
 } from "@contexts/actions/admin/NewUserAdminAction";
@@ -11,26 +9,15 @@ import {
   validateFullname,
   validatePhone,
 } from "@utils/validate";
+import React, { createContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const NewUserAdminContext = createContext();
 
-const initState = {
-  status: {
-    isLoading: true,
-    message: "",
-    success: true,
-  },
-  user: {
-    
-  },
-};
-
 const NewUserAdminProvider = (props) => {
-  const [newUserState, dispatch] = useReducer(NewUserAdminReducer, initState);
+  const dispatch = useDispatch();
+  const newUserState = useSelector(state => state.newUserAdminReducer);
 
-  useEffect(() => {
-    console.log(newUserState);
-  }, [newUserState]);
 
   const changeField = (e) => {
     setFieldAction({ field: e.target.name, value: e.target.value })(dispatch);
