@@ -1,19 +1,11 @@
 import axios from "axios";
 import { BACKEND_URL } from "@utils/contant";
-
-export const ACTIONS = {
-  CHANGE_FIELD: "CHANGE_FIELD",
-  SET_CATEGORIES: "SET_CATEGORIES",
-  SET_STATUS: "SET_STATUS",
-};
+import { changeField, setCategories, setStatus } from "@contexts/reducers/admin/NewProductAdminReducer";
 
 export const changeFieldAction =
   ({ field, value }) =>
   (dispatch) => {
-    dispatch({
-      type: ACTIONS.CHANGE_FIELD,
-      payload: { field, value },
-    });
+    dispatch(changeField({field, value}));
   };
 
 export const loadCategoriesAction = () => async (dispatch) => {
@@ -25,20 +17,14 @@ export const loadCategoriesAction = () => async (dispatch) => {
       },
     })
     .then((response) => {
-      dispatch({
-        type: ACTIONS.SET_CATEGORIES,
-        payload: response.data.data.content,
-      });
+      dispatch(setCategories(response.data.data.content));
     })
     .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: error.response.data.message,
-          success: false,
-        },
-      });
+      dispatch(setStatus({
+        isLoading: false,
+        message: error.response.data.message,
+        success: false,
+      }))
     });
 };
 
@@ -65,30 +51,21 @@ export const submitAction = (product) => async (dispatch) => {
   await axios
     .post(`${BACKEND_URL}/products`, formData)
     .then((response) => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: response.data.message,
-          success: true,
-        },
-      });
+      dispatch(setStatus({
+        isLoading: false,
+        message: response.data.message,
+        success: true,
+      }))
     })
     .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: error.response.data.message,
-          success: false,
-        },
-      });
+      dispatch(setStatus({
+        isLoading: false,
+        message: error.response.data.message,
+        success: false,
+      }))
     });
 };
 
 export const setStatusAction = (status) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: status,
-  });
+  dispatch(setStatus(status));
 };

@@ -5,9 +5,11 @@ import productReducer from "@contexts/reducers/client/ProductSlice";
 import cartReducer from "@contexts/reducers/client/CartSlice";
 import productDetailReducer from "@contexts/reducers/client/ProductDetailSlice";
 import clientLayoutReducer from "@contexts/reducers/client/ClientLayoutSlice";
+
 import appReducer from "@contexts/reducers/AppSlice";
 
 import categoryAdminReducer from "@contexts/reducers/admin/CategoryAdminReducer";
+import newProductAdminReducer from "@contexts/reducers/admin/NewProductAdminReducer";
 
 export default configureStore({
     reducer: {
@@ -18,6 +20,7 @@ export default configureStore({
         productDetailReducer,
         clientLayoutReducer,
         appReducer,
-        categoryAdminReducer
+        categoryAdminReducer,
+        newProductAdminReducer
     }
 });

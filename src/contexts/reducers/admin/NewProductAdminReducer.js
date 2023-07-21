@@ -1,7 +1,9 @@
-import { ACTIONS } from "@contexts/actions/admin/NewProductAdminAction";
+import { createSlice } from "@reduxjs/toolkit";
 import { convertToSlug } from "@utils/convert";
 
-const initState = {
+const name = "new-product-admin";
+
+const initialState = {
   status: {
     isLoading: true,
     message: "",
@@ -11,35 +13,29 @@ const initState = {
   product: {}
 };
 
-const reducer = (state = initState, { type, payload }) => {
-  switch(type) {
-    case ACTIONS.CHANGE_FIELD:
-      if(payload.field === 'name') {
-        state = { ...state, product: {
-          ...state.product,
-          name: payload.value,
-          slug: convertToSlug(payload.value)
-        }};
-  
-      } else {
-        state = { ...state, product: {
-          ...state.product,
-          [payload.field]: payload.value
-        }};  
-      }
-
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload};
-      break;
-    case ACTIONS.SET_CATEGORIES:
-      state = { ...state, categories: payload};
-      break;
-    default: 
-      break;
-
+const reducers = {
+  changeField: (state, {payload}) => {
+    if(payload.field === 'name') {
+      state.product.name = payload.value;
+      state.product.slug = convertToSlug(payload.value);
+    } else {
+      state.product[payload.field] = payload.value
+    }
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
+  },
+  setCategories: (state, {payload}) => {
+    state.categories = payload;
   }
-  return {...state};
 };
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const {
+  changeField,
+  setStatus,
+  setCategories
+} = slice.actions;
+export default slice.reducer;
+

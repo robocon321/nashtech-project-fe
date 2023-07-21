@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useEffect } from "react";
 
 import {
   changeFieldAction,
@@ -6,26 +6,15 @@ import {
   submitAction,
   setStatusAction
 } from "@contexts/actions/admin/NewProductAdminAction";
-import NewProductAdminReducer from "@contexts/reducers/admin/NewProductAdminReducer";
 import { validateSlug } from '@utils/validate';
+import { useDispatch, useSelector } from "react-redux";
 
-const initState = {
-  status: {
-    isLoading: false,
-    message: "",
-    success: false,
-  },
-  categories: [],
-  product: {}
-};
 
 export const NewProductAdminContext = createContext();
 
 const ProductAdminProvider = (props) => {
-  const [newProductAdminState, dispatch] = useReducer(
-    NewProductAdminReducer,
-    initState
-  );
+  const dispatch = useDispatch();
+  const newProductAdminState = useSelector(state => state.newProductAdminReducer);
 
   useEffect(() => {
     loadCategoriesAction()(dispatch);
