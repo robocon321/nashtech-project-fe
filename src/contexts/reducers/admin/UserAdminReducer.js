@@ -1,6 +1,9 @@
 import { ACTIONS } from "@contexts/actions/admin/UserAdminAction";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const name = "user-admin";
+
+const initialState = {
   status: {
     isLoading: true,
     message: "",
@@ -15,52 +18,34 @@ const initState = {
   selected: [],
 };
 
-const reducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ACTIONS.SET_USERS:
-      state = { ...state, users: payload };
-      break;
-
-    case ACTIONS.SET_CONDITIONS:
-      state = { ...state, conditions: payload };
-      break;
-    case ACTIONS.SET_FIELD_CONDITION:
-      state = {
-        ...state,
-        conditions: {
-          ...state.conditions,
-          [payload.field]: payload.value,
-        },
-      };
-      break;
-    case ACTIONS.SET_SELECTED:
-      state = { ...state, selected: payload };
-      break;
-    case ACTIONS.DELETE_USER:
-      state.users.content.forEach((item) => {
-        if (payload.includes(item.id)) {
-          item.status = 0;
-        }
-      });
-      break;
-
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload };
-      break;
-    case ACTIONS.SET_LOADING:
-      state = { ...state, status: { ...state.status, isLoading: payload } };
-      break;
-    case ACTIONS.SET_MESSAGE:
-      state = { ...state, status: { ...state.status, message: payload } };
-      break;
-    case ACTIONS.SET_SUCCESS:
-      state = { ...state, status: { ...state.status, success: payload } };
-      break;
-    default:
-      break;
+const reducers = {
+  setUsers: (state, {payload}) => {
+    state.users = payload;
+  },
+  setConditions: (state, {payload}) => {
+    state.conditions = payload;
+  },
+  setFieldCondition: (state, {payload}) => {
+    state.conditions[payload.field] = payload.value;
+  },
+  setSelected: (state, {payload}) => {
+    state.selected = payload;
+  },
+  deleteUser: (state, {payload}) => {
+    state.users.content.forEach((item) => {
+      if (payload.ids.includes(item.id)) {
+        item.status = 0;
+      }
+    });
+    state.status = payload.status;
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
   }
-
-  return { ...state };
 };
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const { setUsers, setConditions, setFieldCondition, setSelected, deleteUser, setStatus } = slice.actions;
+
+export default slice.reducer;

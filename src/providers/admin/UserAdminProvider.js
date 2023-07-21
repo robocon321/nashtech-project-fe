@@ -1,55 +1,24 @@
-import { useEffect } from "react";
-import { createContext, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   deleteUserAction,
   loadUserAction,
   setFieldConditionAction,
-  setLoadingAction,
   setSelectedAction,
   setStatusAction,
 } from "@contexts/actions/admin/UserAdminAction";
-import UserAdminReducer from "@contexts/reducers/admin/UserAdminReducer";
-
-const initState = {
-  status: {
-    isLoading: true,
-    message: "",
-    success: true,
-  },
-  users: null,
-  conditions: {
-    page: 0,
-    size: 10,
-    sort: "id__asc",
-  },
-  selected: [],
-};
+import { createContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const UserAdminContext = createContext();
 
 const UserAdminProvider = (props) => {
-  const [userState, dispatch] = useReducer(UserAdminReducer, initState);
+  const dispatch = useDispatch();
+  const userState = useSelector(state => state.userAdminReducer);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  useEffect(() => {
-    console.log(userState);
-  }, [userState]);
 
   useEffect(() => {
     loadUserAction(userState.conditions)(dispatch);
   }, [userState.conditions]);
-
-
-  const loadData = async () => {
-    setLoadingAction(false)(dispatch);
-    loadUserAction(userState.conditions)(dispatch);
-    setLoadingAction(true)(dispatch);
-  };
 
   const setPage = (page) => {
     setFieldConditionAction({
