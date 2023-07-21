@@ -11,6 +11,7 @@ import appReducer from "@contexts/reducers/AppSlice";
 import categoryAdminReducer from "@contexts/reducers/admin/CategoryAdminReducer";
 import newProductAdminReducer from "@contexts/reducers/admin/NewProductAdminReducer";
 import newUserAdminReducer from "@contexts/reducers/admin/NewUserAdminReducer";
+import productAdminReducer from "@contexts/reducers/admin/ProductAdminReducer";
 
 export default configureStore({
     reducer: {
@@ -23,6 +24,7 @@ export default configureStore({
         appReducer,
         categoryAdminReducer,
         newProductAdminReducer,
-        newUserAdminReducer
+        newUserAdminReducer,
+        productAdminReducer
     }
 });

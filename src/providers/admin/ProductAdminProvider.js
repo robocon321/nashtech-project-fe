@@ -1,39 +1,21 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
+  deleteProductAction,
+  loadCategoriesAction,
   loadProductAction,
   setFieldConditionAction,
   setSelectedAction,
-  setStatusAction,
-  deleteProductAction,
-  loadCategoriesAction
+  setStatusAction
 } from "@contexts/actions/admin/ProductAdminAction";
-import ProductAdminReducer from "@contexts/reducers/admin/ProductAdminReducer";
-
-const initState = {
-  status: {
-    isLoading: true,
-    message: "",
-    success: true,
-  },
-  products: null,
-  conditions: {
-    page: 0,
-    size: 10,
-    sort: "id__asc"
-  },
-  selected: [],
-  categories: []
-};
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProductAdminContext = createContext();
 
 const ProductAdminProvider = (props) => {
-  const [productAdminState, dispatch] = useReducer(
-    ProductAdminReducer,
-    initState
-  );
+  const dispatch = useDispatch();
+  const productAdminState = useSelector(state => state.productAdminReducer);
 
   const navigate = useNavigate();
 

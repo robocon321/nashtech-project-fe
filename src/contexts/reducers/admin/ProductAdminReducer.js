@@ -1,57 +1,65 @@
-import { ACTIONS } from "@contexts/actions/admin/ProductAdminAction";
+import {createSlice} from "@reduxjs/toolkit";
 
-const initState = {
-  status: {
-    isLoading: true,
-    message: '',
-    success: true
-  },
-  products: null,
-  conditions: {
-    page: 0,
-    size: 10,
-    sort: 'id__asc'
-  },
-  selected: [],
-  categories: []
+const name = "product-admin"
+
+const initialState = {
+    status: {
+        isLoading: true,
+        message: '',
+        success: true
+    },
+    products: null,
+    conditions: {
+        page: 0,
+        size: 10,
+        sort: 'id__asc'
+    },
+    selected: [],
+    categories: []
 }
 
-const reducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ACTIONS.SET_PRODUCTS:
-      state = { ...state, products: payload };
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload };
-      break;
-    case ACTIONS.SET_CONDITIONS:
-      state = { ...state, conditions: payload};
-      break;
-    case ACTIONS.SET_FIELD_CONDITION:
-      state = { ...state, conditions: {
-        ...state.conditions,
-        [payload.field]: payload.value
-      }};
-      break;
-    case ACTIONS.SET_SELECTED:
-      state = { ...state, selected: payload};
-      break;
-    case ACTIONS.DELETE_PRODUCT: 
-    // state.products.content = state.products.content.filter(item => !payload.includes(item.id));
-
-      state.products.content.forEach(item => {
-        if(payload.includes(item.id)) {
-          item.status = 0
-        }
-      })
-      break;
-    case ACTIONS.SET_CATEGORIES:
-      state = { ...state, categories: payload};
-      break;
-    default:
-      break;
-  }
-  return {...state};
+const reducers = {
+    setProducts: (state, {payload}) => {
+        state.products = payload;
+    },
+    setStatus: (state, {payload}) => {
+        state.status = payload;
+    },
+    setCondition: (state, {payload}) => {
+        state.conditions = payload;
+    },
+    setFieldConditions: (state, {payload}) => {
+        state.conditions[payload.field] = payload.value;
+    },
+    setSelected: (state, {payload}) => {
+        state.selected = payload;
+    },
+    deleteProduct: (state, {payload}) => {
+        state
+            .products
+            .content
+            .forEach(item => {
+                if (payload.includes(item.id)) {
+                    item.status = 0
+                }
+            });
+        state.status.isLoading = false;
+    },
+    setCategories: (state, {payload}) => {
+        state.categories = payload;
+    }
 };
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const {
+    setProducts,
+    setStatus,
+    setCondition,
+    setFieldConditions,
+    setSelected,
+    deleteProduct,
+    setCategories
+} = slice.actions;
+
+export default slice.reducer;
