@@ -1,50 +1,35 @@
-import React, { useReducer, createContext, useEffect } from "react";
-import UpdateUserAdminReducer from "@contexts/reducers/admin/UpdateUserAdminReducer";
 import {
-  setFieldAction,
+  loadUserAction,
   resetAllFieldAction,
+  setFieldAction,
   setStatusAction,
   submitAction,
-  loadUserAction,
-  setLoadingAction,
 } from "@contexts/actions/admin/UpdateUserAdminAction";
 import {
   validateEmail,
   validateFullname,
   validatePhone,
 } from "@utils/validate";
+import React, { createContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export const UpdateUserAdminContext = createContext();
 
-const initState = {
-  status: {
-    isLoading: true,
-    message: "",
-    success: true,
-  },
-  user: {},
-};
-
 const UpdateUserAdminProvider = (props) => {
-  const [updateUserState, dispatch] = useReducer(UpdateUserAdminReducer, initState);
+  const dispatch = useDispatch();
+  const updateUserState = useSelector(state => state.updateUserAdminReducer);
+  console.log(updateUserState.user.sex);
   const { id } = useParams();
 
   useEffect(() => {
-    loadData();
+    loadUserAction(id)(dispatch);
   }, []);  
 
-  useEffect(() => {
-    console.log(updateUserState);
-  }, [updateUserState]);
-
-  const loadData = async () => {
-    setLoadingAction(true)(dispatch);
-    await loadUserAction(id)(dispatch);
-    setLoadingAction(false)(dispatch);
-  }
-
   const changeField = (e) => {
+    if(e.target.name == 'sex') {
+      e.target.value = e.target.value == 1;
+    }
     setFieldAction({ field: e.target.name, value: e.target.value })(dispatch);
   };
 

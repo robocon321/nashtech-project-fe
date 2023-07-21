@@ -1,6 +1,8 @@
-import { ACTIONS } from "@contexts/actions/admin/UpdateUserAdminAction";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const name = "update-user-admin";
+
+const initialState = {
   status: {
     isLoading: true,
     message: "",
@@ -9,37 +11,24 @@ const initState = {
   user: {}
 };
 
-const reducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ACTIONS.SET_USER:
-      state = { ...state, user: payload};
-      break;
-    case ACTIONS.RESET_ALL_FIELD:
-      state = { ...state, user: {id: state.user.id, status: 1}};
-      break;
-    case ACTIONS.SET_FIELD:
-      state = { ...state, user: {
-        ...state.user,
-        [payload.field]: payload.value}
-      };
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload };
-      break;
-    case ACTIONS.SET_LOADING:
-      state = { ...state, status: { ...state.status, isLoading: payload } };
-      break;
-    case ACTIONS.SET_MESSAGE:
-      state = { ...state, status: { ...state.status, message: payload } };
-      break;
-    case ACTIONS.SET_SUCCESS:
-      state = { ...state, status: { ...state.status, success: payload } };
-      break;
-    default:
-      break;
+const reducers = {
+  setUser: (state, {payload}) => {
+    state.user = payload;
+  },
+  resetAllField: (state, {payload}) => {
+    state.user = {id: state.user.id, status: 1};
+  },
+  setField: (state, {payload}) => {
+    state.user[payload.field] = payload.value;
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
   }
-
-  return { ...state };
 };
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const { setUser, resetAllField, setField, setStatus } = slice.actions;
+
+export default slice.reducer;
+

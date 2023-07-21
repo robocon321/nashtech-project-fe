@@ -112,24 +112,24 @@ const UpdateUser = (props) => {
               data: [
                 {
                   name: "Male",
-                  value: 0,
+                  value: 1,
                 },
                 {
                   name: "Female",
-                  value: 1,
+                  value: 0,
                 },
               ],
               key: "name",
               value: "value",
             }}
             onChange={changeField}
-            value={0}
+            value={updateUserState.user.sex == true ? 1 : 0}
           />
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <label>Visible</label>
           <Switch
-            checked={updateUserState.user.status}
+            checked={updateUserState.user.status === 1}
             onChange={() =>
               switchVisible(1 - updateUserState.user.status)
             }
@@ -151,7 +151,7 @@ const UpdateUser = (props) => {
         </Button>
       </div>
       <Snackbar
-        open={updateUserState.status.message}
+        open={updateUserState.status.message != ''}
         onClose={resetStatus}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
