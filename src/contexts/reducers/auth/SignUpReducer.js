@@ -1,6 +1,9 @@
 import { ACTIONS } from "@contexts/actions/auth/SignUpAction" 
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const name = "signup";
+
+const initialState = {
   user: {
     username: '',
     fullname: '',
@@ -16,19 +19,16 @@ const initState = {
   }
 }
 
-const reducer = (state = initState, {type, payload}) => {
-  switch(type) {
-    case ACTIONS.CHANGE_FIELD:
-      state = {...state, user: {...state.user, [payload.field]: payload.value}};
-      break;
-    case ACTIONS.SET_STATUS:
-      state = {...state, status: payload};
-      break;
-    default:
-      break;
+const reducers = {
+  changeField: (state, {payload}) => {
+    state.user[payload.field] = payload.value;
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
   }
-
-  return state;
 }
 
-export default reducer;
+const slice = createSlice({ name, initialState, reducers });
+
+export const { changeField, setStatus } = slice.actions;
+export default slice.reducer;

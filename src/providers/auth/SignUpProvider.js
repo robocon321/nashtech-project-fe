@@ -1,30 +1,15 @@
-import { createContext, useEffect, useReducer } from "react";
-import SignUpReducer from '@contexts/reducers/auth/SignUpReducer';
 import { changeFieldAction, setStatusAction, signUpAction } from "@contexts/actions/auth/SignUpAction";
 import { validateEmail, validateFullname, validatePhone } from "@utils/validate";
+import { createContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
 export const SignUpContext = createContext();
 
-const initState = {
-  user: {
-    username: '',
-    fullname: '',
-    email: '',
-    phone: '',
-    password: '',
-    retype_password: ''  
-  }, 
-  status: {
-    isLoading: true,
-    message: '',
-    success: true
-  }
-}
-
 const SignUpProvider = (props) => {
-  const [signUpState, dispatch] = useReducer(SignUpReducer, initState);
+  const dispatch = useDispatch();
+  const signUpState = useSelector(state => state.signUpReducer);
   const navigation = useNavigate();
 
   useEffect(() => {
