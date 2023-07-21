@@ -16,6 +16,8 @@ import updateProductAdminReducer from "@contexts/reducers/admin/UpdateProductRed
 import updateUserAdminReducer from "@contexts/reducers/admin/UpdateUserAdminReducer";
 import userAdminReducer from "@contexts/reducers/admin/UserAdminReducer";
 
+import signInReducer from "@contexts/reducers/auth/SignInReducer";
+
 export default configureStore({
     reducer: {
         addressReducer,
@@ -31,6 +33,7 @@ export default configureStore({
         productAdminReducer,
         updateProductAdminReducer,
         updateUserAdminReducer,
-        userAdminReducer
+        userAdminReducer,
+        signInReducer
     }
 });

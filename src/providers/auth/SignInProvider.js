@@ -1,39 +1,33 @@
-import { createContext, useReducer, useEffect, useContext } from "react";
-import SignInReducer from '@contexts/reducers/auth/SignInReducer';
+import { loadAccountAction } from "@contexts/actions/AppAction";
 import { changeFieldAction, signInAction } from "@contexts/actions/auth/SignInAction";
-import { useNavigate } from "react-router-dom";
 import { AppContext } from "@providers/AppProvider";
+import { createContext, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 export const SignInContext = createContext();
 
-const initState = {
-  username: '',
-  password: '',
-  user: {},
-  status: {
-    isLoading: true,
-    message: '',
-    success: true
-  }
-}
-
 const SignInProvider = (props) => {
-  const [signInState, dispatch] = useReducer(SignInReducer, initState);
-  const { loadData } = useContext(AppContext);
+  const dispatch = useDispatch();
+  const signInState = useSelector((state) => state.signInReducer);
 
   const navigation = useNavigate();
 
   useEffect(() => {
+    loadData();
+  }, [signInState.user]);
+
+  const loadData = () => {
     if(signInState.user.id != null) {
-      loadData();
+      loadAccountAction()(dispatch);
       if(signInState.user.roles.filter(item => item.name === 'ADMIN').length === 1) {
         navigation("/admin/dashboard");
       } else {
         navigation("/");
       }
     }
-  }, [signInState.user]);
+  }
 
   const changeField = (e) => {
     changeFieldAction(e.target.name, e.target.value)(dispatch);    

@@ -1,15 +1,16 @@
-import {initDataAction, logoutAction} from "@contexts/actions/AppAction";
-import {createContext, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { loadAccountAction, logoutAction } from "@contexts/actions/AppAction";
+import { createContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const AppContext = createContext();
 
 const AppProvider = (props) => {
     const dispatch = useDispatch();
     const appState = useSelector(state => state.appReducer);
+    console.log(appState);
 
     useEffect(() => {
-        initDataAction()(dispatch);
+        loadAccountAction()(dispatch);
     }, []);
 
     const logout = () => {

@@ -1,6 +1,8 @@
-import { ACTIONS } from "@contexts/actions/auth/SignInAction";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const name = "signin";
+
+const initialState = {
   username: "",
   password: "",
   user: {},
@@ -11,24 +13,21 @@ const initState = {
   },
 };
 
-const reducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ACTIONS.CHANGE_FIELD:
-      state = {
-        ...state,
-        [payload.field]: payload.value,
-      };
-      break;
-    case ACTIONS.SET_USER:
-      state = { ...state, user: { ...payload } };
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: { ...payload } };
-      break;
-    default:
-      break;
+const reducers =  {
+  changeField: (state, {payload}) => {
+    state[payload.field] = payload.value;
+  },
+  setUser: (state, {payload}) => {
+    state.user = payload.user;
+    state.status = payload.status;
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
   }
-  return { ...state };
 };
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const { changeField, setUser, setStatus } = slice.actions;
+
+export default slice.reducer;
