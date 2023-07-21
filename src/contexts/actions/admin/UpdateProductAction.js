@@ -1,64 +1,42 @@
 import axios from "axios";
 import { BACKEND_URL } from "@utils/contant";
+import { changeField, initData, setStatus } from "@contexts/reducers/admin/UpdateProductReducer";
 
-export const ACTIONS = {
-  CHANGE_FIELD: "CHANGE_FIELD",
-  SET_CATEGORIES: "SET_CATEGORIES",
-  SET_STATUS: "SET_STATUS",
-  SET_PRODUCT: "SET_PRODUCT",
-  SET_LOADING: "SET_LOADING",
-  SET_MESSAGE: "SET_MESSAGE",
-  SET_SUCCESS: "SET_SUCCESS"
-};
+export const initDataAction = (slug) => async (dispatch) => {
+  const payload = {};
+  const status = {
+    isLoading: true,
+    message: "",
+    success: true,
+  }
+
+  const loadCategoriesResult = await loadCategoriesAction();
+  if(!loadCategoriesResult.status.success) {
+    status.success = false;
+    status.message += loadCategoriesResult.status.message;
+  } else {
+    payload.categories = loadCategoriesResult.data;
+  }
+
+  const loadProductResult = await loadProductAction(slug);
+  if(!loadProductResult.status.success) {
+    status.success = false;
+    status.message += loadProductResult.status.message;
+  } else {
+    payload.product = loadProductResult.data;
+  }
+
+  payload.status = status;
+  dispatch(initData(payload));
+
+}
 
 export const changeFieldAction = ({ field, value }) =>
   (dispatch) => {
-    dispatch({
-      type: ACTIONS.CHANGE_FIELD,
-      payload: { field, value },
-    });
+    dispatch(changeField({field, value}));
   };
 
-export const loadCategoriesAction = () => async (dispatch) => {
-  await axios
-    .get(`${BACKEND_URL}/categories`, {
-      params: {
-        size: 100,
-        AND_status: 1
-      },
-    })
-    .then((response) => {
-      dispatch({
-        type: ACTIONS.SET_CATEGORIES,
-        payload: response.data.data.content,
-      });
-    })
-    .catch((error) => {
-      setMessageAction(error.response.data.message)(dispatch);
-      setSuccessAction(false)(dispatch);
-    });
-};
-
-export const loadProductAction = (slug) => async (dispatch) => {
-  await axios.get(`${BACKEND_URL}/products/category/${slug}`)
-  .then((response) => {
-    dispatch({
-      type: ACTIONS.SET_PRODUCT,
-      payload: response.data.data
-    });
-  }).catch(error => {
-    setMessageAction(error.response.data.message)(dispatch);
-    setSuccessAction(false)(dispatch);
-  })
-}
-
 export const submitAction = (product) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     "content-type": "multipart/form-data",
-  //   },
-  // };
-
   const formData =  new FormData();
 
   for (var key in product ) {
@@ -77,51 +55,76 @@ export const submitAction = (product) => async (dispatch) => {
   await axios
     .put(`${BACKEND_URL}/products`, formData)
     .then((response) => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: response.data.message,
-          success: true,
-        },
-      });
+      dispatch(setStatus({
+        isLoading: false,
+        message: response.data.message,
+        success: true
+      }))
     })
     .catch((error) => {
-      dispatch({
-        type: ACTIONS.SET_STATUS,
-        payload: {
-          isLoading: false,
-          message: error.response.data.message,
-          success: false,
-        },
-      });
+      handleError(error)(dispatch);
     });
 };
 
 export const setStatusAction = (status) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_STATUS,
-    payload: status,
-  });
+  dispatch(setStatus(status));
 };
 
-export const setLoadingAction = (isLoading) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_LOADING,
-    payload: isLoading
-  })
+const handleError = (error) => (dispatch) => {
+  dispatch(setStatus({
+    message: error.response.data.message,
+    success: false,
+    isLoading: false
+  }));
 }
 
-export const setMessageAction = (message) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_MESSAGE,
-    payload: message
-  })
-}
+const loadCategoriesAction = async () => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  };
 
-export const setSuccessAction = (success) => (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_SUCCESS,
-    payload: success
-  })
+  await axios
+    .get(`${BACKEND_URL}/categories`, {
+      params: {
+        size: 100,
+        AND_status: 1
+      },
+    })
+    .then((response) => {
+      result.data = response.data.data.content;
+    })
+    .catch((error) => {
+      result.status = {
+        message: error.response.data.message,
+        success: false
+      }
+    });
+  
+    return result;
+};
+
+const loadProductAction = async (slug) => {
+  const result = {
+    data: null,
+    status: {
+      message: '',
+      success: true
+    }
+  };
+
+  await axios.get(`${BACKEND_URL}/products/category/${slug}`)
+  .then((response) => {
+    result.data = response.data.data;
+  }).catch(error => {
+    result.status = {
+      message: error.response.data.message,
+      success: false
+    };
+  });
+
+  return result;
 }

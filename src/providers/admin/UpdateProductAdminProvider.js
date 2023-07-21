@@ -1,12 +1,10 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 import {
   changeFieldAction,
-  loadCategoriesAction,
-  submitAction,
+  initDataAction,
   setStatusAction,
-  setLoadingAction,
-  loadProductAction
+  submitAction
 } from "@contexts/actions/admin/UpdateProductAction";
 import UpdateProductReducer from "@contexts/reducers/admin/UpdateProductReducer";
 import { validateSlug } from '@utils/validate';
@@ -32,7 +30,7 @@ const UpdateProductAdminProvider = props => {
   const params = useParams();
 
   useEffect(() => {
-    loadData();
+    initDataAction(params.slug)(dispatch);
   }, []);
 
   useEffect(() => {
@@ -45,15 +43,6 @@ const UpdateProductAdminProvider = props => {
       } 
     }
   }, [updateProductAdminState.product.categories])
-
-  const loadData = async () => {
-    setLoadingAction(true)(dispatch);
-
-    await loadCategoriesAction()(dispatch);
-    await loadProductAction(params.slug)(dispatch);
-
-    setLoadingAction(false)(dispatch);
-  }
 
   const changeField = (e) => {
     changeFieldAction({

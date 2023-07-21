@@ -12,6 +12,7 @@ import categoryAdminReducer from "@contexts/reducers/admin/CategoryAdminReducer"
 import newProductAdminReducer from "@contexts/reducers/admin/NewProductAdminReducer";
 import newUserAdminReducer from "@contexts/reducers/admin/NewUserAdminReducer";
 import productAdminReducer from "@contexts/reducers/admin/ProductAdminReducer";
+import updateProductAdminReducer from "@contexts/reducers/admin/UpdateProductReducer";
 
 export default configureStore({
     reducer: {
@@ -25,6 +26,7 @@ export default configureStore({
         categoryAdminReducer,
         newProductAdminReducer,
         newUserAdminReducer,
-        productAdminReducer
+        productAdminReducer,
+        updateProductAdminReducer
     }
 });

@@ -1,7 +1,10 @@
 import { ACTIONS } from "@contexts/actions/admin/UpdateProductAction";
+import { createSlice } from "@reduxjs/toolkit";
 import { convertToSlug } from "@utils/convert";
 
-const initState = {
+const name = "update-product";
+
+const initialState = {
   status: {
     isLoading: true,
     message: "",
@@ -11,57 +14,36 @@ const initState = {
   product: {},
 };
 
-const reducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ACTIONS.SET_PRODUCT:
-      state = { ...state, product: {
-        ...payload,
-        thumbnail: null,
-        gallery: null,
-        categories: payload.categories.map(item => item.id)
-      }};
-      break;
-    case ACTIONS.CHANGE_FIELD:
-      if (payload.field === "name") {
-        state = {
-          ...state,
-          product: {
-            ...state.product,
-            name: payload.value,
-            slug: convertToSlug(payload.value),
-          },
-        };
-      } else {
-        state = {
-          ...state,
-          product: {
-            ...state.product,
-            [payload.field]: payload.value,
-          },
-        };
+const reducers = {
+  initData: (state, {payload}) => {
+    console.log(payload);
+    state.product = {
+      ...payload.product,
+      thumbnail: null,
+      gallery: null,
+      categories: payload.product.categories.map(item => item.id)
+    }
+    state.status = payload.status;
+    state.categories = payload.categories;    
+  },
+  changeField: (state, {payload}) => {
+    if (payload.field === "name") {
+      state.product = {
+        ...state.product,
+        name: payload.value,
+        slug: convertToSlug(payload.value),
       }
-
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload };
-      break;
-    case ACTIONS.SET_CATEGORIES:
-      state = { ...state, categories: payload };
-      break;
-    case ACTIONS.SET_LOADING:
-      state = { ...state, status: { ...state.status, isLoading: payload } };
-      break;
-    case ACTIONS.SET_MESSAGE:
-      state = { ...state, status: { ...state.status, message: payload } };
-      break;
-    case ACTIONS.SET_SUCCESS:
-      state = { ...state, status: { ...state.status, success: payload } };
-      break;
-
-    default:
-      break;
+    } else {
+      state.product[payload.field] = payload.value;
+    }
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
   }
-  return { ...state };
 };
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const { initData, changeField, setStatus } = slice.actions;
+
+export default slice.reducer;
