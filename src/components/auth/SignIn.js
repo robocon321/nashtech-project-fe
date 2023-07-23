@@ -88,7 +88,7 @@ const SignIn = (props) => {
               <span className={styles["txt1"]}>Password</span>
               <span> </span>
               <Link
-                to="#"
+                to="/forgot-password"
                 className={
                   styles["txt2"] +
                   " " +

@@ -1,26 +1,23 @@
 import React, {useReducer, createContext} from 'react';
 
-import { setEmailAction, setLoadingAction, setStatusAction, submitAction } from '@contexts/actions/auth/ForgotPasswordAction';
+import { setEmailAction, setStatusAction, submitAction } from '@contexts/actions/auth/ForgotPasswordAction';
 import ForgotPasswordReducer from '@contexts/reducers/auth/ForgotPasswordReducer';
 import { validateEmail } from '@utils/validate';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const ForgotPasswordContext = createContext();
 
-const initState = {
-  email: '',
-  status: {
-    isLoading: true,
-    message: '',
-    success: true
-  }
-}
-
 const ForgotPasswordProvider = props => {
-  const [ forgotPassState, dispatch ] = useReducer(ForgotPasswordReducer, initState);
+  const dispatch = useDispatch();
+  const forgotPassState = useSelector(state => state.forgotPasswordReducer);
 
   useEffect(() => {
-    setLoadingAction(false)(dispatch);
+    setStatusAction({
+      isLoading: false,
+      message: '',
+      success: true
+    })(dispatch);
   }, []);
 
   const setEmail = e => {
@@ -30,9 +27,7 @@ const ForgotPasswordProvider = props => {
   const submit = async (e) => {
     e.preventDefault();
     if(validate()) {
-      setLoadingAction(true)(dispatch);
       await submitAction(forgotPassState.email)(dispatch);
-      setLoadingAction(false)(dispatch);  
     }
   } 
 

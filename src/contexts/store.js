@@ -18,6 +18,7 @@ import userAdminReducer from "@contexts/reducers/admin/UserAdminReducer";
 
 import signInReducer from "@contexts/reducers/auth/SignInReducer";
 import signUpReducer from "@contexts/reducers/auth/SignUpReducer";
+import forgotPasswordReducer from "@contexts/reducers/auth/ForgotPasswordReducer";
 
 export default configureStore({
     reducer: {
@@ -36,6 +37,7 @@ export default configureStore({
         updateUserAdminReducer,
         userAdminReducer,
         signInReducer,
-        signUpReducer
+        signUpReducer,
+        forgotPasswordReducer
     }
 });

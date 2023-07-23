@@ -1,6 +1,9 @@
 import { ACTIONS } from "@contexts/actions/auth/ForgotPasswordAction";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const name = "forgot-password";
+
+const initialState = {
   email: '',
   status: {
     isLoading: true,
@@ -9,27 +12,17 @@ const initState = {
   }
 }
 
-const reducer = (state = initState, {type, payload}) => {
-  switch (type) {
-    case ACTIONS.SET_EMAIL:
-      state = { ...state, email: payload};
-      break;
-    case ACTIONS.SET_STATUS:
-      state = { ...state, status: payload };
-      break;
-    case ACTIONS.SET_LOADING:
-      state = { ...state, status: { ...state.status, isLoading: payload } };
-      break;
-    case ACTIONS.SET_MESSAGE:
-      state = { ...state, status: { ...state.status, message: payload } };
-      break;
-    case ACTIONS.SET_SUCCESS:
-      state = { ...state, status: { ...state.status, success: payload } };
-      break;
-    default:
-      break;
+const reducers =  {
+  setEmail: (state, {payload}) => {
+    state.email = payload;
+  },
+  setStatus: (state, {payload}) => {
+    state.status = payload;
   }
-  return { ...state}
 }
 
-export default reducer;
+const slice = createSlice({name, initialState, reducers});
+
+export const { setEmail, setStatus } = slice.actions;
+
+export default slice.reducer;
