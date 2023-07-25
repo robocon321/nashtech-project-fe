@@ -1,7 +1,6 @@
 import { Modal, Button } from "@mui/material";
 
-import styles from "./ModalAddress.module.css";
-import Input from "@components/common/Input";
+import styles from "@components/client/address/ModalAddress/index.module.css";
 import { AddressContext } from "@providers/client/AddressProvider";
 import { useContext } from "react";
 import CustomTextInput from "@components/common/CustomTextInput";

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 
 const AboutUs = (props) => {
-  const { changeLang, t, lang } =
+  const { t } =
     useContext(ClientLayoutContext);
 
   return (
