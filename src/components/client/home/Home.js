@@ -7,7 +7,7 @@ import BannerThree from "@components/client/home/BannerThree/index";
 import BannerTwo from "@components/client/home/BannerTwo/index";
 import FeatureCategory from "@components/client/home/FeatureCategories/index";
 import Blogs from "@components/client/home/BlogSection/index";
-import ProductModule from "@components/client/home/ProductModule/index";
+import ProductModule from "@components/client/home/ProductSection/index";
 import Services from "@components/client/home/Services/index";
 import TabProducts from "@components/client/home/TabProducts/index";
 

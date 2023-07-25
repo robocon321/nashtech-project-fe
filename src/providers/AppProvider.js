@@ -7,7 +7,6 @@ export const AppContext = createContext();
 const AppProvider = (props) => {
     const dispatch = useDispatch();
     const appState = useSelector(state => state.appReducer);
-    console.log(appState);
 
     useEffect(() => {
         loadAccountAction()(dispatch);

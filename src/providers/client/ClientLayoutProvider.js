@@ -23,7 +23,6 @@ const ClientLayoutProvider = (props) => {
     const navigate = useNavigate();
     const clientState = useSelector(state => state.clientLayoutReducer);
     const dispatch = useDispatch();
-    console.log(clientState);
     const {appState} = useContext(AppContext);
 
     useEffect(() => {
