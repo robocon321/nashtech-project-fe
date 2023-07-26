@@ -7,7 +7,7 @@ import styles from "./OrderHistory.module.css";
 import { ClientLayoutContext } from '@providers/client/ClientLayoutProvider';
 
 const OrderHistory = (props) => {
-  const { changeLang, t, lang } =
+  const { t } =
   useContext(ClientLayoutContext);
 
   return (

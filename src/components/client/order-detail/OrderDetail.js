@@ -7,7 +7,7 @@ import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
 import styles from "./OrderDetail.module.css";
 
 const OrderDetail = (props) => {
-  const { changeLang, t, lang } =
+  const { t } =
   useContext(ClientLayoutContext);
 
   return (
