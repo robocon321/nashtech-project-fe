@@ -1,11 +1,11 @@
-import CategoryList from "@components/admin/category/CategoryList";
+import ManageCategoryList from "@components/admin/category/ManageCategoryList";
 import CategoryAdminProvider from "@providers/admin/CategoryAdminProvider";
 
 const CategoryListPage = props => {
   return (
     <main>
       <CategoryAdminProvider>
-        <CategoryList />
+        <ManageCategoryList />
       </CategoryAdminProvider>
     </main>
   )
