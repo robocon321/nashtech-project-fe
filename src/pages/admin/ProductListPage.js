@@ -1,4 +1,4 @@
-import ProductList from "@components/admin/product/ProductList";
+import ProductList from "@components/admin/product/ManageProductList";
 import ProductAdminProvider from "@providers/admin/ProductAdminProvider";
 
 const ProductListPage = (props) => {
