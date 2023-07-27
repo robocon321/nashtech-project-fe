@@ -153,7 +153,7 @@ const UserList = (props) => {
         )}
       </div>
       <Snackbar
-        open={userState.status.message}
+        open={userState.status.message !== ''}
         onClose={resetStatus}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >

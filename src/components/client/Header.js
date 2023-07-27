@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { Alert, Container, Snackbar } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-free-solid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Alert, Container, Snackbar } from "@mui/material";
+import { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-import styles from "./Header.module.css";
+import RequiredLoginModal from "@components/common/RequiredLoginModal";
 import { AppContext } from "@providers/AppProvider";
 import { ClientLayoutContext } from "@providers/client/ClientLayoutProvider";
-import RequiredLoginModal from "@components/common/RequiredLoginModal";
+import styles from "./Header.module.css";
 
 const Header = (props) => {
   const { appState, logout } = useContext(AppContext);
@@ -161,17 +161,21 @@ const Header = (props) => {
               {t('search')}
             </button>
           </div>
-          <div className={styles["col-center-header"]}>
-            <div className={"bg-blue " + styles["btn-cart-header"]}>
-              <Link to="/cart">
-              {t('cart')}:{" "}
-                {clientState.cart.cartItems
-                  ? clientState.cart.cartItems.length
-                  : 0}{" "}
-                  {t('items')}
-              </Link>
-            </div>
-          </div>
+          {
+            appState.user && (
+              <div className={styles["col-center-header"]}>
+              <div className={"bg-blue " + styles["btn-cart-header"]}>
+                <Link to="/cart">
+                {t('cart')}:{" "}
+                  {clientState.cart.cartItems
+                    ? clientState.cart.cartItems.length
+                    : 0}{" "}
+                    {t('items')}
+                </Link>
+              </div>
+            </div>  
+            )
+          }
         </div>
       </Container>
       <div className={styles["bottom-header"]}>
@@ -179,7 +183,7 @@ const Header = (props) => {
           <ul className={styles["menu-bottom-header"]}>
             <li>
               <Link
-                className={location.pathname == "/" ? styles["active"] : ""}
+                className={location.pathname === "/" ? styles["active"] : ""}
                 to="/"
               >
                 {t('home')}
@@ -188,7 +192,7 @@ const Header = (props) => {
             <li>
               <Link
                 className={
-                  location.pathname == "/product" ? styles["active"] : ""
+                  location.pathname === "/product" ? styles["active"] : ""
                 }
                 to="/product"
               >
@@ -197,7 +201,7 @@ const Header = (props) => {
             </li>
             <li>
               <Link
-                className={location.pathname == "/blog" ? styles["active"] : ""}
+                className={location.pathname === "/blog" ? styles["active"] : ""}
                 to="/blog"
               >
                 {t('blog')}
@@ -206,7 +210,7 @@ const Header = (props) => {
             <li>
               <Link
                 className={
-                  location.pathname == "/about-us" ? styles["active"] : ""
+                  location.pathname === "/about-us" ? styles["active"] : ""
                 }
                 to="/about-us"
               >
@@ -216,7 +220,7 @@ const Header = (props) => {
             <li>
               <Link
                 className={
-                  location.pathname == "/contact-us" ? styles["active"] : ""
+                  location.pathname === "/contact-us" ? styles["active"] : ""
                 }
                 to="/contact-us"
               >

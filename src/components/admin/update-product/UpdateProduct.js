@@ -291,7 +291,7 @@ const UpdateProduct = (props) => {
         </Grid>
       </Grid>
       <Snackbar
-        open={updateProductAdminState.status.message}
+        open={updateProductAdminState.status.message !== ''}
         onClose={resetStatus}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >

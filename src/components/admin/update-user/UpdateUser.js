@@ -151,7 +151,7 @@ const UpdateUser = (props) => {
         </Button>
       </div>
       <Snackbar
-        open={updateUserState.status.message != ''}
+        open={updateUserState.status.message !== ''}
         onClose={resetStatus}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >

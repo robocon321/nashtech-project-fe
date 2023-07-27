@@ -25,7 +25,7 @@ const ManageProductList = (props) => {
         <ProductList />
       </Grid>
       <Snackbar
-        open={productAdminState.status.message}
+        open={productAdminState.status.message !== ''}
         onClose={resetStatus}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >

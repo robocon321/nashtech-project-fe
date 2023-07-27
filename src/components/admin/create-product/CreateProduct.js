@@ -276,7 +276,7 @@ const CreateProduct = (props) => {
           </div>
         </Grid>
       </Grid>
-      <Snackbar open={newProductAdminState.status.message} onClose={resetStatus} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+      <Snackbar open={newProductAdminState.status.message !== ''} onClose={resetStatus} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert onClose={resetStatus} severity={newProductAdminState.status.success ? "success" : "error"} sx={{ width: '100%' }}>
           {newProductAdminState.status.message}
         </Alert>
