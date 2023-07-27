@@ -20,9 +20,13 @@ const ProductProvider = props => {
   }, []);
 
   useEffect(() => {
+    if(clientState.search === undefined) {
+      fileterProductAction({})(dispatch);
+      return ;
+    }
     setField({
       field: 'LIKE_name',
-      value: clientState.search == undefined ? '' : clientState.search
+      value: clientState.search
     });
   }, [clientState.search]);
 
@@ -43,7 +47,6 @@ const ProductProvider = props => {
   const setField = ({field, value}) => {
     const conditions = Object.fromEntries([...searchParams]);
     conditions[field] = value; 
-    console.log(conditions);
     fileterProductAction(conditions)(dispatch);
     navigate({
       pathname: '/product',
