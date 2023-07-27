@@ -6,7 +6,7 @@ import { FaSearch, FaRegEye, FaTrashAlt } from "react-icons/fa";
 import { RiAddLine } from "react-icons/ri";
 import { UserAdminContext } from "@providers/admin/UserAdminProvider";
 
-import styles from "./UserList.module.css";
+import styles from "@components/admin/user/ManageUserList.module.css";
 
 const UserList = (props) => {
   const {

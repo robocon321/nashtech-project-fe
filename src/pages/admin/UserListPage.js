@@ -1,11 +1,11 @@
-import UserList from "@components/admin/user/UserList";
+import ManageUserList from "@components/admin/user/ManageUserList";
 import UserAdminProvider from "@providers/admin/UserAdminProvider";
 
 const UserListPage = props => {
   return (
     <main>
       <UserAdminProvider>
-        <UserList />
+        <ManageUserList />
       </UserAdminProvider>
     </main>
   )
