@@ -68,3 +68,85 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Demo
+
+<h2>Home</h2>
+<img src="documents/home.png" alt="Not found" />
+<br/>
+<img src="documents/home-1.png" alt="Not found" />
+
+<h2>Filter Product</h2>
+<img src="documents/filter-product.png" alt="Not found" />
+
+<h2>Detail product</h2>
+<img src="documents/detail.png" alt="Not found" />
+
+
+
+<h2>Login</h2>
+<img src="documents/login.png" alt="Not found" />
+
+<h2>Login by Social network</h2>
+<img src="documents/login-by-gg.png" alt="Not found" />
+
+<h2>Sign up</h2>
+<img src="documents/sign-up.png" alt="Not found" />
+
+<h2>Require login</h2>
+<img src="documents/require-login.png" alt="Not found" />
+
+<h2>Forgot password</h2>
+<img src="documents/forgot-pass.png" alt="Not found" />
+
+<h2>List address</h2>
+<img src="documents/list-address.png" alt="Not found" />
+
+<h2>Multi languages</h2>
+<img src="documents/multi-lang.png" alt="Not found" />
+
+<h2>Detail order</h2>
+<img src="documents/detail-order.png" alt="Not found" />
+
+<h2>Order History</h2>
+<img src="documents/order-history.png" alt="Not found" /><
+
+<h2>List address</h2>
+<img src="documents/list-address.png" alt="Not found" />
+
+<h2>Add address</h2>
+<img src="documents/add-addres.png" alt="Not found" />
+
+<h2>Add to cart</h2>
+<img src="documents/add-to-cart.png" alt="Not found" />
+
+
+<h2>Feedback</h2>
+<img src="documents/feedback.png" alt="Not found" />
+
+<h2>404 Not found</h2>
+<img src="documents/404.png" alt="Not found" />
+
+<h1>ADMIN</h1>
+
+<h2>List user</h1>
+<img src="documents/admin-user-list.png" alt="Not found" />
+
+<h2>Create user</h1>
+<img src="documents/admin-create-user.png" alt="Not found" />
+
+<h2>Detail user</h2>
+<img src="documents/admin-detail-user.png" alt="Not found" />
+
+<h2>List product</h2>
+<img src="documents/admin-product-list.png" alt="Not found" />
+
+<h2>Create product</h2>
+<img src="documents/admin-product-create.png" alt="Not found" />
+
+<h2>Detail product</h2>
+<img src="documents/admin-detail-product.png" alt="Not found" />
+
+<h2>List category</h2>
+<img src="documents/admin-category.png" alt="Not found" />
+
